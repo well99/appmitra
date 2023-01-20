@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" type="image/png" href="img/logo.svg">
+      <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
+      <!-- Slick Slider -->
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick-theme.min.css"/>
+      <!-- Icofont Icon-->
+      <link href="assets/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap core CSS -->
+      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="assets/css/style.css" rel="stylesheet">
+      <link href="assets/css/mystyle.css" rel="stylesheet">
+      <!-- Sidebar CSS -->
+      <link href="assets/vendor/sidebar/demo.css" rel="stylesheet">
+   </head>
+   <body class="fixed-bottom-padding">
+    <div class="loading" id="loading"></div>
+      <!-- home page -->
+      <div class="osahan-home-page">
+         <div class="p-3">
+            <div class="title d-flex align-items-center">
+                <a class="font-weight-bold text-success text-decoration-none" href="penarikan_saldo.html">
+                <i class="icofont-rounded-left back-page"></i></a>
+                <h4 class="font-weight-bold m-0 ml-3">Detail Penarikan Saldo</h4>
+            </div>
+        </div>
+         <!-- body -->
+         <div class="osahan-body" style="margin-top: -20px;">
+
+            <div class="p-3" style="margin-top: -15px;">
+                <div class="custom-control custom-radio px-0 mb-1 position-relative border-custom-radio">
+                    <div class="cart-items bg-white position-relative mb-0">
+                        <h6 class="font-weight-bold ml-2 mt-2 pt-2 pl-2">Rekening Tujuan</h6>
+                        <div class="osahan-notifications bg-white" style="margin-top: -10px;">
+                            <div class="position-absolute ml-1 py-3"><i class="icofont-credit-card pl-2 p-1"></i></div>
+
+                            <div class="notifiction p-3 ml-3">
+                                <p id="namaBank" class="font-weight-bold mb-0"></p>
+                                <p id="noRek" class="font-weight-bold mb-0"></p>
+                                <p id="atsName" class="font-weight-bold mb-1"></p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="cart-items bg-white position-relative border-bottom mb-2">
+                        <h6 class="font-weight-bold ml-2 mt-2 pt-2 pl-2">Rincian</h6>
+                        <div class="osahan-notifications bg-white" style="margin-top: -10px;">
+
+                                <div class="d-flex align-items-center pl-3 pr-3 py-3 pb-0">
+                                    <h6 class="mb-1">Nominal Penarikan</h6>
+                                    <h6 id="nominalPenarikan" class="font-weight-bold ml-auto mb-1"></h6>
+                                 </div>
+                
+                                 <div class="d-flex align-items-center mb-2 pl-3 pr-3" style="margin-top: -10px;">
+                                    <h6 class="mb-1">Biaya Admin</h6>
+                                    <h6 id="biayaAdmin" class="font-weight-bold ml-auto mb-1"></h6>
+                                 </div>
+                             
+                                 <!-- <div class="my-2 mx-1 border-top" style="background: black;"></div> -->
+
+                                 <div class="d-flex align-items-center pl-3 pr-3 py-2 ">
+                                    <h5 class="font-weight-bold mb-1">Sisa saldo</h5>
+                                    <h5 id="sisa" class="font-weight-bold ml-auto mb-1"></h5>
+                                 </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+
+        </div>
+        <div class="fixed-bottom">
+            <button class="btn btn-success btn-lg btn-block" onclick="tarik()">Tarik Saldo</button>
+        </div>
+      </div>
+      
+      <!-- Bootstrap core JavaScript -->
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- slick Slider JS-->
+      <script type="assets/text/javascript" src="vendor/slick/slick.min.js"></script>
+      <!-- Sidebar JS-->
+      <script type="assets/text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="assets/js/osahan.js"></script>
+      <script src="assets/js/main.js"></script>
+
+      <script>
+        document.addEventListener('DOMContentLoaded',async function() {
+            var form = new FormData();
+            url = `https://fisio.oktal.dev/api/api/biaya_admin`;
+            urlsal = `https://fisio.oktal.dev/api/api/therapist_nfo`;
+            var form = new FormData();
+            form.append("mitra_code", codeTetapis);
+
+            dtAdmin = await ambilData(form,url);
+            dtInfo = await ambilData(form,urlsal);
+            document.getElementById('loading').classList.add('hilang');
+            // console.log(dtAdmin);
+            // console.log(dtInfo.result[0]);
+            biaya = parseInt(dtAdmin.result.value_conf);
+            document.getElementById('namaBank').innerHTML = dtInfo.result[0].bank_name;
+            document.getElementById('noRek').innerHTML = dtInfo.result[0].rekening_number;
+            document.getElementById('atsName').innerHTML = dtInfo.result[0].rekening_an;
+            document.getElementById('nominalPenarikan').innerHTML = config.uang(localStorage.getItem('nominal'));
+            document.getElementById('biayaAdmin').innerHTML = config.uang(biaya);
+            total = (parseInt(localStorage.getItem('nominal')) + biaya);
+            sisaSaldo = parseInt(dtInfo.result[0].balance) - total;
+            // console.log(sisaSaldo);
+            document.getElementById('sisa').innerHTML = config.uang(sisaSaldo);
+        })
+        
+        const codeTetapis = localStorage.getItem('code_mitra');
+
+        async function tarik() {
+            document.getElementById('loading').classList.remove('hilang');
+            console.log(total);
+            var form = new FormData();
+            form.append("mitra_code", codeTetapis);
+            form.append("nominal", total);
+            url = `https://fisio.oktal.dev/api/api/balance_withdraw`;
+            kirim = await ambilData(form,url);
+            document.getElementById('loading').classList.add('hilang');
+            if (kirim.status == 'success') {
+                alert("Permintaan Penarikan Saldo Berhasil. Silahkan tunggu approval admin.");
+                window.location.href = "index.html"
+            }
+        }
+
+function ambilData(form,url) {
+   var requestOptions = {
+      method: 'POST',
+      body: form,
+      redirect: 'follow'
+   };
+return fetch(url, requestOptions)
+         .then(response => response.json())
+         .then(result => result)
+         .catch(error => error);
+}
+      </script>
+
+   </body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" type="image/png" href="img/logo.svg">
+      <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
+      <!-- Slick Slider -->
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick-theme.min.css"/>
+      <!-- Icofont Icon-->
+      <link href="assets/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap core CSS -->
+      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="assets/css/style.css" rel="stylesheet">
+      <!-- Sidebar CSS -->
+      <link href="assets/vendor/sidebar/demo.css" rel="stylesheet">
+   </head>
+   <body class="fixed-bottom-padding">
+      <div class="theme-switch-wrapper" style="left: 12px; margin: auto; bottom: 120px; z-index: 1111; width: 300px;">
+        <button onclick="keluar()" class="btn btn-danger btn-lg btn-block">Keluar</button>
+        </div>
+
+        <div class="theme-switch-wrapper" style="left: 12px; margin: auto; bottom: 70px; z-index: 1111; width: 300px;">
+            <h6 id="versiApk"></h6>
+        </div>
+
+      <!-- home page -->
+      <div class="osahan-home-page bg-white">
+         <div class="p-3">
+            <div class="title d-flex align-items-center">
+                    <div>
+                        <h4>Pengaturan</h4>
+                    </div>
+            </div>
+         </div>
+         <!-- body -->
+         <div class="osahan-body">
+            <div class="p-1 bg-white" style="margin-top: -15px;">
+                <div class="m-2">
+                    <a href="profil.html" class="text-dark">
+                        <div class="d-flex align-items-center" style="height: 50px;">
+                            <div class="input-group-prepend">
+                                <button class="border-0 btn btn-outline-secondary text-success bg-white" style="font-size: 17px;"><i class="icofont-user"></i></button>
+                             </div>
+    
+                             <!-- <h6 class="font-weight-bold align-items-center">Pengaturan Profil</h6> -->
+                           <span class="font-weight-bold" style="font-size: 17px;">
+                              Pengaturan Profil
+                           </span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="m-2">
+                    <a href="status_layanan.html" class="text-dark">
+                        <div class="d-flex align-items-center" style="height: 50px;">
+                            <div class="input-group-prepend">
+                                <button class="border-0 btn btn-outline-secondary text-success bg-white" style="font-size: 17px;"><i class="icofont-bag"></i></button>
+                             </div>
+                           <span class="font-weight-bold" style="font-size: 17px;">
+                              On/Off Layanan
+                           </span>
+                        </div>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <div class="osahan-menu-fotter fixed-bottom bg-white text-center border-top">
+         <div class="row m-0">
+            <a href="index.html" class="text-muted small col text-decoration-none p-2">
+               <p class="h5 m-0"><i class=" icofont-home"></i></p>
+               Home
+            </a>
+            <a href="pesanan_baru.html" class="text-muted col small text-decoration-none p-2">
+               <p class="h5 m-0"><i class="icofont-cart"></i></p>
+               Pesanan
+            </a>
+            <a href="layanan.html" class="text-muted col small text-decoration-none p-2">
+               <p class="h5 m-0"><i class="icofont-list"></i></p>
+               Layanan
+            </a>
+            <a href="pengaturan.html" class="text-dark small col font-weight-bold text-decoration-none p-2 selected">
+               <p class="h5 m-0"><i class="text-success icofont-user"></i></p>
+               Pengaturan
+            </a>
+         </div>
+      </div>
+      
+      <!-- Bootstrap core JavaScript -->
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- slick Slider JS-->
+      <script type="assets/text/javascript" src="vendor/slick/slick.min.js"></script>
+      <!-- Sidebar JS-->
+      <script type="assets/text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="assets/js/osahan.js"></script>
+
+      <script>
+
+         var d = new Date();
+         // let da = new Intl.DateTimeFormat('ind', { day: '2-digit' }).format(d);
+         let da = new Intl.DateTimeFormat('ind', { day: '2-digit' }).format(d);
+         let mt = new Intl.DateTimeFormat('ind', { month: '2-digit' }).format(d);
+         let yr = new Intl.DateTimeFormat('ind', { year: '2-digit' }).format(d);
+
+         coba = 'Version '+ yr+'.'+mt+'.'+da+'.001';
+
+         document.getElementById('versiApk').innerHTML = coba
+         function keluar() {
+            localStorage.removeItem('code_mitra');
+            localStorage.clear();
+            window.location.href = "login.html";
+         }
+        // function pilih_all() {
+        //     window.location.href = "layananall.html";
+        // }
+
+        // function editProduk() {
+        //     window.location.href = "edit_produk.html";
+        // }
+      </script>
+   </body>
+</html>

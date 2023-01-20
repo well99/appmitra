@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+      <meta name="format-detection" content="telephone=no">
+      <meta name="msapplication-tap-highlight" content="no">
+      <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" type="image/png" href="img/logo.svg">
+      <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
+      <!-- Slick Slider -->
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick-theme.min.css"/>
+      <!-- Icofont Icon-->
+      <link href="assets/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap core CSS -->
+      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="assets/css/style.css" rel="stylesheet">
+      <link href="assets/css/mystyle.css" rel="stylesheet">
+      <!-- Sidebar CSS -->
+      <link href="assets/vendor/sidebar/demo.css" rel="stylesheet">
+   
+   </head>
+   <body class="fixed-bottom-padding">
+      <div class="loading" id="loading"></div>
+
+      <div id="notifPesanan" class="switch-wrapper hilang" style="bottom: 70px; position: fixed; z-index: 1111; width: 300px; margin-left: 10%;">
+         <!-- <button class="btn btn-success btn-lg btn-block" onclick="btnAtursekaligus()">Atur Sekaligus</button> -->
+         <!-- <button class="btn btn-success btn-lg btn-block" onclick="pesananBaru()">Pesanan baru Masuk</button> -->
+      </div>
+
+      <!-- home page -->
+      <div class="osahan-home-page">
+         <div class="p-3">
+            <div class="title d-flex align-items-center">
+                    <div>
+                        <p style="margin-bottom: 0px; margin-top:5px;">Selamat datang mitra</p>
+                        <h6 id="namaMitra" onclick="pesan()"></h6>
+                    </div>
+                    <div class="ml-auto m-2">
+                        <div onclick="buttonNotif()">
+                           <button type="button" class="btn bg-white position-relative rounded" style="padding:0.5rem;">
+                              <i class="text-dark icofont-notification"></i>
+                              <span class="position-absolute top-10 start-100 translate-middle badge rounded-pill bg-danger border border-light rounded-circle small" style="top: -8px; padding: 3px; font-size: 10px;" id="jml_notif">
+                              </span>
+                           </button>
+                           <!-- <a href="notif.html" class="text-decoration-none bg-white rounded shadow-sm d-flex align-items-center" style="padding:0.5rem;">
+                              <i class="text-dark icofont-notification"></i>
+                           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="jml_notif" style="padding: 0px;"></span>
+                           </a> -->
+                        </div>
+                    </div>
+                   <!-- <p class="ml-auto m-0">
+                   </p> -->
+                   <!-- <a class="toggle ml-3" href="#"><i class="icofont-navigation-menu"></i></a> -->
+            </div>
+         </div>
+         <!-- body -->
+         <div class="osahan-body">
+            <!-- Promos -->
+            <div class="p-3" style="margin-top: -15px;">
+                <div class="py-2">
+                    <div class="rounded bg-success shadow-sm p-3 text-white">
+                        <div class="row align-items-center">
+                            <div class="col-5">
+                                <p style="margin-bottom: 0px;">Saldo Anda</p>
+                                <!-- <h6 class="m-0"></h6> -->
+                                <h6 id="saldo" class="m-0"></h6>
+                            </div>
+                            <div class="col" style="margin-right: -20px;">
+                              <!-- <a href="penarikan_saldo.html"> -->
+                                 <div class="bg-white rounded p-2 text-center" onclick="btnTarikSaldo()">
+                                     <div>
+                                         <i class="text-dark icofont-download"></i>
+                                     </div>
+                                     <small style="color: black;">Tarik Saldo</small>
+                                 </div>
+                              <!-- </a> -->
+                            </div>
+                            <div class="col">
+                              <a href="riwayat.html">
+                                 <div class="bg-white rounded p-2 text-center">
+                                     <div>
+                                         <i class="text-dark icofont-clock-time"></i>
+                                     </div>
+                                     <small style="color: black;">Riwayat</small>
+                                 </div>
+                              </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-3 osahan-categories">
+                <div class="row m-0">
+                    <div class="col pl-0 py-1">
+                     <a href="pesanan_baru.html">
+                        <div class="bg-white shadow-sm rounded text-center  px-2 py-3 c-it">
+                            <h6>Pesanan Baru </h6>
+                            <h6 id="psBar"></h6>
+                        </div>
+                     </a>
+                    </div>
+                    <div class="col pr-1 py-1">
+                     <a href="diproses.html">
+                        <div class="bg-white shadow-sm rounded text-center  px-2 py-3 c-it">
+                            <h6>Diproses </h6>
+                            <h6 id="dpros"></h6>
+                        </div>
+                     </a>
+                    </div>
+                </div>
+                <div class="row m-0">
+                     <div class="col pl-0 py-4">
+                        <a href="dibayar.html">
+                           <div class="bg-white shadow-sm rounded text-center  px-2 py-3 c-it">
+                              <h6>Dibayar </h6>
+                              <h6 id="dbayar"></h6>
+                           </div>
+                        </a>
+                     </div>
+                    
+                    <div class="col pr-1 py-4">
+                     <a href="batal.html">
+                        <div class="bg-white shadow-sm rounded text-center  px-2 py-3 c-it">
+                            <h6>Dibatalkan</h6>
+                            <h6 id="dbtl"></h6>
+                        </div>
+                     </a>
+                    </div>
+                </div>
+                <div class="row m-0">
+                  <div class="col pl-0 py-1">
+                     <a href="selesai.html">
+                        <div class="bg-white shadow-sm rounded text-center  px-2 py-3 c-it">
+                            <h6>Selesai</h6>
+                            <h6 id="dselesai"></h6>
+                        </div>
+                     </a>
+                    </div>
+                  <div class="col pr-1 py-1"></div>
+                </div>
+                
+            </div>
+
+            <div class="osahan-recommend px-3">
+               <div class="row">
+                  <div class="col-12 mb-3">
+                        <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
+                           <div class="p-2 position-relative">
+                              <h4 class="mb-1 font-weight-bold">Pesanan Selesai
+                              </h4>
+                              <!-- <p class="text-muted">Orange Great Quality item from Jamaica.</p> -->
+                              <div class="d-flex align-items-center">
+                                 <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+                                 <!-- <h6 class="m-0">Gambar Chart</h6> -->
+                              </div>
+                           </div>
+                        </div>
+                  </div>
+               </div>
+            </div>
+            
+            <div class="osahan-recommend px-3">
+               <div class="row">
+                  <div class="col-12 mb-3">
+                     <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
+                        <div class="p-3 position-relative">
+                           <h4 class="mb-1 font-weight-bold">Status Pesanan </h4>
+                           <span>Performa 7 Hari Terakhir</span>
+                           <div class="d-flex align-items-center">
+                              <!-- <h6 class="m-0">Gambar Pie Chart </h6> -->
+                              <canvas id="myChartPie" style="width:100%;max-width:600px"></canvas>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      </div>
+      <!-- Footer -->
+      <div class="osahan-menu-fotter fixed-bottom bg-white text-center border-top">
+         <div class="row m-0">
+            <a href="index.html" class="text-dark small col font-weight-bold text-decoration-none p-2 selected">
+               <p class="h5 m-0"><i class="text-success icofont-home"></i></p>
+               Home
+            </a>
+            <a href="pesanan_baru.html" class="text-muted col small text-decoration-none p-2">
+               <p class="h5 m-0"><i class="icofont-cart"></i></p>
+               Pesanan
+            </a>
+            <a href="layanan.html" class="text-muted col small text-decoration-none p-2">
+               <p class="h5 m-0"><i class="icofont-list"></i></p>
+               Layanan
+            </a>
+            <a href="pengaturan.html" class="text-muted small col text-decoration-none p-2">
+               <p class="h5 m-0"><i class="icofont-user"></i></p>
+               Pengaturan
+            </a>
+         </div>
+      </div>
+
+      <div class="modal fade" id="modalDialogNotif" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 50%; height: 35%;">
+         <div class="modal-dialog" style="height: 100px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+               <div class="modal-body w-100 text-center">
+                  <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Silahkan masukkan nomor rekening untuk melakukan penarikan saldo</h5>
+                  
+                  <div class="modal-footer">
+                     <div class="col">     
+                        <button type="button" onclick="btnMasuk()" class="btn btn-success btn-lg btn-block">Masukkan sekarang</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      
+      <!-- Bootstrap core JavaScript -->
+      <script src="cordova.js"></script>
+      <!-- <script src="js/index.js"></script> -->
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- slick Slider JS-->
+      <script type="assets/text/javascript" src="vendor/slick/slick.min.js"></script>
+      <!-- Sidebar JS-->
+      <script type="assets/text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="assets/js/osahan.js"></script>
+      <script src="assets/js/main.js"></script>
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+      <script>
+
+// const codeTetapis = 'THR65A8Z';
+const codeTetapis = localStorage.getItem('code_mitra');
+// localStorage.setItem('code_mitra', codeTetapis);
+
+document.addEventListener("backbutton", onBackKeyDown, false);
+document.addEventListener('touchstart', handleTouchStart, false);        
+document.addEventListener('touchmove', handleTouchMove, false);
+
+          var xDown = null;                                                        
+          var yDown = null;
+
+          function getTouches(evt) {
+            return evt.touches ||             // browser API
+                  evt.originalEvent.touches; // jQuery
+          }                                                     
+                                                                                  
+          function handleTouchStart(evt) {
+              const firstTouch = getTouches(evt)[0];                                      
+              xDown = firstTouch.clientX;                                      
+              yDown = firstTouch.clientY;                                      
+          };                                                
+                                                                                  
+          function handleTouchMove(evt) {
+              if ( ! xDown || ! yDown ) {
+                  return;
+              }
+
+              var xUp = evt.touches[0].clientX;                                    
+              var yUp = evt.touches[0].clientY;
+
+              var xDiff = xDown - xUp;
+              var yDiff = yDown - yUp;
+                                                                                  
+              if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/most significant/
+                  if ( xDiff > 0 ) {
+                      /* right swipe */
+                  } else {
+                      /* left swipe */
+                  }                       
+              } else {
+                  if ( yDiff > 0 ) {
+                      /* down swipe */ 
+                  } else { 
+                      /* up swipe */window.location.reload();
+                  }                                                                 
+              }
+              /* reset values */
+              xDown = null;
+              yDown = null;                                             
+          };
+
+var countPress = 0;  
+function onBackKeyDown(e) {
+   e.preventDefault();
+   console.log(e);
+   if (document.body.classList.contains("modal-open")) {
+      $("#modalDialogNotif").modal('hide');
+   } else {
+      // countPress += 1;
+      if (confirm('Anda yakin ingin keluar dari Aplikasi ?') == true) {
+         navigator.app.exitApp();
+      } else {
+         return false
+      }
+   }
+
+}
+
+document.addEventListener('DOMContentLoaded', async function() {
+   console.log(codeTetapis); 
+
+if (codeTetapis == null) {
+   window.location.href = 'login.html'
+}
+
+urlGrfPie = `https://fisio.oktal.dev/api/api/jml_pesanan`;
+url = `https://fisio.oktal.dev/api/api/therapist_nfo`;
+urlNotif = `https://fisio.oktal.dev/api/api/notif`;
+
+var formGrafik = new FormData();
+formGrafik.append("mitra_code", codeTetapis);
+
+var form = new FormData();
+form.append("mitra_code", codeTetapis);
+
+var formnotif = new FormData();
+formnotif.append("code_mitra", codeTetapis);
+formnotif.append("user_type", "mitra");
+
+ceKdata = await ambilData(form,url);
+dNotif = await ambilData(formnotif,urlNotif);
+dGrafik = await ambilData(formGrafik,urlGrfPie);
+// console.log(dGrafik);
+// console.log(dNotif);
+document.getElementById('loading').classList.add('hilang');
+if (ceKdata.result[0].balance) {
+   jmlSaldo = config.uang(ceKdata.result[0].balance);
+} else {
+   jmlSaldo = config.uang(0);
+}
+// console.log(ceKdata);
+document.getElementById("namaMitra").innerHTML = ceKdata.result[0].name;
+document.getElementById("psBar").innerHTML = dGrafik.result.jml_the_wait
+document.getElementById("dpros").innerHTML = dGrafik.result.jml_pay_wait;
+document.getElementById("dselesai").innerHTML = dGrafik.result.jml_com;
+document.getElementById("dbtl").innerHTML = dGrafik.result.jml_the_can;
+document.getElementById("dbayar").innerHTML = dGrafik.result.jml_paid;
+document.getElementById("saldo").innerHTML = jmlSaldo;
+
+jmlNotif = dNotif.jml_notif.length;
+// console.log(jmlNotif);
+if (jmlNotif > 0) {
+   document.getElementById("jml_notif").innerHTML = jmlNotif;
+} else {
+   document.getElementById("jml_notif").innerHTML = '';
+}
+
+let label = [];
+   for (let i = 0; i < 7; i++) {
+        var date = new Date();
+        const el = date.setTime(date.getTime() - ([i] * 24 * 60 * 60 * 1000));
+        var d = new Date(el);
+        const hr = d.toLocaleDateString();
+        let mo = new Intl.DateTimeFormat('ind', { month: 'short' }).format(d);
+        let da = new Intl.DateTimeFormat('ind', { day: '2-digit' }).format(d);
+      //   console.log(hr);
+         var harine = da +' '+ mo;
+         console.log(harine);
+      //   label.push(hr);
+        label.push(harine);
+   }
+// console.log(label.reverse());
+
+var xValues = label.reverse();
+var yValues = [dGrafik.result.count_paid7, dGrafik.result.count_paid6, dGrafik.result.count_paid5, dGrafik.result.count_paid4, dGrafik.result.count_paid3, dGrafik.result.count_paid2, dGrafik.result.count_paid1];
+var barColors = ["red", "green","blue","orange","brown","cyan","gray"];
+
+new Chart("myChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false,
+   },
+  }
+});
+
+var xValues = ["pesanan baru", "diproses", "dibayar", "dibatalkan", "selesai"];
+var yValues = [dGrafik.result.therapist_wait, dGrafik.result.payment_wait, dGrafik.result.paid, dGrafik.result.therapist_cancel, dGrafik.result.complete];
+var barColors = [
+  "#b91d47",
+  "#00aba9",
+  "#2b5797",
+  "#e8c3b9",
+  "#1e7145"
+];
+
+new Chart("myChartPie", {
+  type: "doughnut",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+});
+
+
+}, false);
+
+function btnTarikSaldo() {
+   // console.log(ceKdata.result[0].rekening_number);
+   if (ceKdata.result[0].rekening_number) {
+      saldo = ceKdata.result[0].balance;
+      // localStorage.setItem('saldo',saldo);
+      // localStorage.setItem('rek',ceKdata.result[0].rekening_number);
+      // localStorage.setItem('anrek',ceKdata.result[0].rekening_an);
+      // localStorage.setItem('nmbank',ceKdata.result[0].bank_name);
+      window.location.href ='ri_penarikan_saldo.html';
+      // window.location.href = 'penarikan_saldo.html';
+   } else {
+      $("#modalDialogNotif").modal('show');
+   }
+}
+
+function ambilData(form,url) {
+   var requestOptions = {
+      method: 'POST',
+      body: form,
+      redirect: 'follow'
+   };
+return fetch(url, requestOptions)
+         .then(response => response.json())
+         .then(result => result)
+         .catch(error => error);
+}
+
+         // function pesan() {
+         //    var element = document.getElementById("notifPesanan");
+         //    element.classList.remove("hilang");
+         // }
+
+         // function pesananBaru() {
+         //    window.location.href = 'pesanan_baru.html';
+         // }
+
+function btnMasuk() {
+   window.location.href = 'tambah_rekening.html';
+}
+
+function buttonNotif() {
+   window.location.href = 'notif.html';
+}
+      </script>
+   </body>
+</html>

@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" type="image/png" href="img/logo.svg">
+      <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
+      <!-- Slick Slider -->
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick-theme.min.css"/>
+      <!-- Icofont Icon-->
+      <link href="assets/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap core CSS -->
+      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="assets/css/style.css" rel="stylesheet">
+      <link href="assets/css/mystyle.css" rel="stylesheet">
+      <!-- Sidebar CSS -->
+      <link href="assets/vendor/sidebar/demo.css" rel="stylesheet">
+      <style>
+         .hiden {
+            display: none;
+         }
+      </style>
+   </head>
+   <body class="fixed-bottom-padding">
+      <div class="loading" id="loading"></div>
+      <!-- home page -->
+      <div class="osahan-help">
+        <div class="p-3 border-bottom">
+           <div class="d-flex align-items-center">
+              <a class="font-weight-bold text-success text-decoration-none" href="pengaturan.html">
+              <i class="icofont-rounded-left back-page"></i></a>
+              <h6 class="font-weight-bold m-0 ml-3">Pengaturan Profil</h6>
+              <div class="ml-auto m-0">
+                  <h6 onclick="simpanData()" style="color: blue;">Simpan</h6>
+              </div>
+           </div>
+        </div>
+     </div>
+      <div class="osahan-account">
+         <div class="p-4 profile text-center bg-white" id="foto_profile">
+            <!-- <img class="img-fluid rounded-pill" id="output"> -->
+            <!-- <img src="assets/img/iconUser.jpg" class="img-fluid rounded-pill"> -->
+         </div>
+         <div class="bg-white">
+            <!-- <div class="form-group"> -->
+               <input type="file" accept="image/png, image/jpeg, image/jpg" name="foto" id="foto" class="form-control" onchange="uploadFoto(event)">
+            <!-- </div> -->
+         </div>
+      </div>
+
+      <div id="tambah_produk">
+        <div class="p-3 bg-white">
+           <form action="">
+              <div class="form-group">
+                 <label for="exampleInputOLDPassword1">Nama Mitra</label>
+                 <input type="text" id="namaMitra" placeholder="Nama Mitra" class="form-control" style="border: 1px solid #cacdd0;">
+              </div>
+              
+              <div class="form-group">
+                  <div class="row">
+                     <label class="ml-3" for="lokasi">Lokasi Mitra</label>
+                     <div class="ml-auto mr-3" onclick="mapLokasi()" style="color: blue;">Ubah lokasi</div>
+                  </div>
+               
+                 <textarea name="deskripsi" id="lokasi" cols="30" rows="4" class="form-control" style="border: 1px solid #cacdd0;"></textarea>
+                  <!-- <label for="kategori">Lokasi Mitra</label>
+                  <div class="input-group mb-2" style="border: 1px solid #cacdd0;">
+                     <input type="text" placeholder="Lokasi" class="form-control" style="border-bottom: 0px;">
+                     <span class="input-group-text" style="font-size: 13px; border: none; border-radius: none;" onclick="mapLokasi()"><i class="icofont-simple-right"></i></span>
+                  </div> -->
+              </div>
+
+            <!-- <div class="row">
+               <div class="col">
+                  <div class="form-group">
+                     <label for="buka">Jam Buka</label>
+                     <input type="time" class="form-control" style="border: 1px solid #cacdd0;">
+                  </div>
+               </div>
+
+               <div class="col">
+                  <div class="form-group">
+                     <label for="tutup">Jam Tutup</label>
+                     <input type="time" class="form-control" style="border: 1px solid #cacdd0;">
+                  </div>
+               </div>
+            </div> -->
+
+            <div class="form-group">
+               <label for="noTelp">Nomor Telepon</label>
+               <input type="number" id="noTelp" placeholder="081xxx" class="form-control" style="border: 1px solid #cacdd0;">
+            </div>
+
+            <div class="form-group">
+               <label for="email">Email</label>
+               <input type="text" id="email" placeholder="Email" class="form-control" style="border: 1px solid #cacdd0;">
+            </div>
+
+            <div class="form-group">
+               <div class="row">
+                  <label class="ml-3" for="rekening">Nomor Rekening</label>
+                  <div class="ml-auto mr-3" onclick="tambahRekening()" style="color: blue;">Ubah Rekening</div>
+               </div>
+
+               <textarea name="rekening" id="rekening" cols="30" rows="4" class="form-control" style="border: 1px solid #cacdd0;"></textarea>
+               <!-- <div class="input-group mb-2" style="border: 1px solid #cacdd0;">
+                  <input type="number" placeholder="Tambah nomor rekening" class="form-control" style="border-bottom: 0px;">
+                  <span class="input-group-text" style="font-size: 13px; border: none; border-radius: none;" onclick="tambahRekening()"><i class="icofont-simple-right"></i></span>
+              </div> -->
+            </div>
+
+              <div class="form-group">
+                 <label for="deskripsi">Deskripsi</label>
+                 <textarea name="deskripsi" id="deskripsi" cols="30" rows="4" class="form-control" style="border: 1px solid #cacdd0;"></textarea>
+              </div>
+
+              <div class="form-group">
+                 <label for="fare">Ongkos Jalan</label>
+                 <input type="number" id="fare" placeholder="Ongkos Jalan" class="form-control" style="border: 1px solid #cacdd0;">
+              </div>
+
+              <div class="form-group">
+                 <label for="free_fare">Ongkos Gratis dalam radius kilometer (km)</label>
+                 <input type="number" id="free_fare" placeholder="Ongkos Gratis dalam radius" class="form-control" style="border: 1px solid #cacdd0;">
+              </div>
+
+              <input type="hidden" name="idprov" id="idprov">
+              <input type="hidden" name="idkab" id="idkab">
+              <input type="hidden" name="idkec" id="idkec">
+              <input type="hidden" name="prov" id="prov">
+              <input type="hidden" name="kab" id="kab">
+              <input type="hidden" name="kec" id="kec">
+              <input type="hidden" name="lat" id="lat">
+              <input type="hidden" name="lon" id="lon">
+              <input type="hidden" name="nmbank" id="nmbank">
+              <input type="hidden" name="norek" id="norek">
+              <input type="hidden" name="nmpem" id="nmpem">
+              <!-- <div class="form-group">
+                 <label for="ketentuan">Ketentuan Layanan</label>
+                 <textarea name="ketentuan" id="ketentuan" cols="30" rows="4" class="form-control" style="border: 1px solid #cacdd0;"></textarea>
+              </div> -->
+              <!-- <div class="text-center">
+                 <button type="submit" class="btn btn-primary btn-block btn-lg">Tambah layanan</button>
+              </div> -->
+           </form>
+        </div>
+     </div>
+
+     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Maps</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body p-0">
+               
+               <div id="map-default" class="map-canvas" style="height: 600px;"></div>
+              
+                  <div id="kotakAlamat" class=" rounded p-3 m-1 text-center hiden" style="border: 1px solid;">
+                     <h6 id="lokasiPil" class="font-weight-bold mb-2"></h6>
+                     <button type="button" onclick="btnLokasi()" class="btn rounded btn-success btn-lg btn-block" data-dismiss="modal">Gunakan Alamat</button>
+                  </div>
+
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="modal fade" id="tambahRekening" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <div class="p-1">
+                  <div class="d-flex align-items-center">
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="icofont-rounded-left back-page"></i></button>
+                     <h6 class="font-weight-bold m-0 ml-3">Tambah rekening</h6>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-body p-0">
+               <div id="tambah_produk">
+                  <div class="p-3 bg-white">
+          
+                      <div class="m-1 mb-3">
+                          <p class="font-weight-light text-dark m-0 d-flex align-items-center">
+                              Pastikan Nomor Rekening & Nama Pemilik Rekening sesuai buku tabungan
+                          </p>
+                      </div>
+          
+                     <!-- <form id="formSimpanRekening"> -->
+          
+                         <div class="form-group">
+                            <label for="namaBank">Nama Bank</label>
+                            <div class="input-group mb-2" style="border: 1px solid #cacdd0;">
+                               <input type="text" id="namaBank" name="namaBank" placeholder="Nama Bank" class="form-control" style="border-bottom: 0px;">
+                               <span class="input-group-text" style="font-size: 13px; border: none; border-radius: none;" onclick="pilihBank()"><i class="icofont-simple-right"></i></span>
+                           </div>
+                         </div>
+          
+                        <div class="form-group">
+                           <label for="modalrekening">Nomor Rekening</label>
+                           <input type="number" id="modalrekening" name="modalrekening" placeholder="Nomor Rekening" class="form-control" style="border: 1px solid #cacdd0;">
+                        </div>
+          
+                      <div class="form-group">
+                         <label for="modalNama">Nama Pemilik Rekening</label>
+                         <input type="text" id="modalNama" name="modalNama" placeholder="Nama Pemilik Rekening" class="form-control" style="border: 1px solid #cacdd0;">
+                      </div>
+                        
+                        <div class="text-center">
+                           <!-- <button type="button" class="btn btn-primary btn-block btn-lg" >Simpan</button> -->
+                           <button type="button" class="btn btn-primary btn-block btn-lg" onclick="simpanRekening()">Simpan</button>
+                        </div>
+                     <!-- </form> -->
+                  </div>
+               </div>
+
+            </div>
+
+         </div>
+      </div>
+   </div>
+
+   <div class="modal fade" id="modalNamaBank" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Nama Bank</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <!-- <form class=""> -->
+                  <div class="osahan-filter">
+                      <div class="filter">
+                         <div class="custom-control border-bottom px-0  custom-radio">
+                            <input type="radio" id="customRadio1" name="location" value="BCA" class="custom-control-input" onclick="selectBank()">
+                            <label class="custom-control-label py-3 w-100 px-3" for="customRadio1">BCA</label>
+                         </div>
+                         <div class="custom-control border-bottom px-0  custom-radio">
+                            <input type="radio" id="customRadio2" name="location" value="BNI" class="custom-control-input" onclick="selectBank()">
+                            <label class="custom-control-label py-3 w-100 px-3" for="customRadio2">BNI</label>
+                         </div>
+                         <div class="custom-control border-bottom px-0  custom-radio">
+                            <input type="radio" id="customRadio3" name="location" value="BRI" class="custom-control-input" onclick="selectBank()">
+                            <label class="custom-control-label py-3 w-100 px-3" for="customRadio3">BRI</label>
+                         </div>
+                         <div class="custom-control border-bottom px-0  custom-radio">
+                            <input type="radio" id="customRadio4" name="location" value="BPD" class="custom-control-input" onclick="selectBank()">
+                            <label class="custom-control-label py-3 w-100 px-3" for="customRadio4">BPD</label>
+                         </div>
+                         <div class="custom-control border-bottom px-0  custom-radio">
+                            <input type="radio" id="customRadio5" name="location" value="Mandiri" class="custom-control-input" onclick="selectBank()">
+                            <label class="custom-control-label py-3 w-100 px-3" for="customRadio5">Mandiri</label>
+                         </div>
+                         
+                      </div>
+                   </div>
+               <!-- </form> -->
+            </div>
+         </div>
+      </div>
+   </div>
+
+      <!-- Bootstrap core JavaScript -->
+      <script src="cordova.js"></script>
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- slick Slider JS-->
+      <script type="assets/text/javascript" src="vendor/slick/slick.min.js"></script>
+      <!-- Sidebar JS-->
+      <script type="assets/text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="assets/js/osahan.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8DMjUI5SBDVFC1PNvI7wgOV2KAC0LbxQ"></script>
+      
+
+      <script>
+const codeTetapis = localStorage.getItem('code_mitra');
+document.addEventListener("backbutton", onBackKeyDown, false); 
+
+document.addEventListener('DOMContentLoaded', async function() {
+console.log(codeTetapis);
+var form = new FormData();
+form.append("mitra_code", codeTetapis);
+   url = `https://fisio.oktal.dev/api/api/therapist_nfo`;
+   urlcat = `https://fisio.oktal.dev/api/api/area_service`;
+   daPro = await ambilData(form,url);
+   console.log(daPro);
+   document.getElementById('loading').classList.add('hilang');
+   document.getElementById("namaMitra").value = daPro.result[0].name;
+   document.getElementById("noTelp").value = daPro.result[0].no_hp;
+   document.getElementById("email").value = daPro.result[0].email;
+   document.getElementById("deskripsi").value = daPro.result[0].therapist_description;
+   // document.getElementById("password").value = daPro.result[0].password;
+   document.getElementById("idprov").value = daPro.result[0].id_province;
+   document.getElementById("idkab").value = daPro.result[0].id_kabupaten;
+   document.getElementById("idkec").value = daPro.result[0].id_kecamatan;
+   document.getElementById("prov").value = daPro.result[0].province;
+   document.getElementById("kab").value = daPro.result[0].kabupaten;
+   document.getElementById("kec").value = daPro.result[0].kecamatan;
+   document.getElementById("lat").value = daPro.result[0].lat;
+   document.getElementById("lon").value = daPro.result[0].lon;
+   document.getElementById("lokasi").value = daPro.result[0].address;
+   document.getElementById("fare").value = daPro.result[0].fare;
+   document.getElementById("free_fare").value = daPro.result[0].radius_free_fare/1000;
+
+   fotoPfl = document.getElementById("foto_profile");
+   if (daPro.result[0].profile_picture == null || daPro.result[0].profile_picture == '') {
+      // console.log("Kosong");
+      fotoPfl.innerHTML = `<img src="assets/img/iconUser.jpg" class="img-fluid rounded-pill" style="height: 275px;">`;
+   } else {
+      fotoPfl.innerHTML = `<img src="https://fisio.oktal.dev/api/images/profil/${daPro.result[0].profile_picture}" class="img-fluid rounded-pill" style="height: 275px;">`;
+   }
+
+   if (daPro.result[0].bank_name == null) {
+      namaBank = '';
+   } else {
+      namaBank = daPro.result[0].bank_name;
+      document.getElementById("nmbank").value = namaBank
+   }
+
+   if (daPro.result[0].rekening_number == null) {
+      noRek = '';
+   } else {
+      noRek = daPro.result[0].rekening_number;
+      document.getElementById("norek").value = noRek
+   }
+
+   if (daPro.result[0].rekening_an == null) {
+      atsNama = '';
+   } else {
+      atsNama = daPro.result[0].rekening_an;
+      document.getElementById("nmpem").value = atsNama
+   }
+   // console.log(namaBank);
+
+   textRekening = 
+   `${namaBank}
+${noRek}
+${atsNama}
+   `;
+   document.getElementById("rekening").value = textRekening;
+   document.getElementById("rekening").readOnly = true;
+   // dataArea = await ambilData(form,urlcat);
+   // optionSelect = document.getElementById('selectArea');
+   // let card = '';
+   // dataArea.result.map((da) => {
+   //    card += `
+   //    <option value="${da.id}">${da.name_area}</option>
+   //    `;
+   // })
+   // optionSelect.innerHTML = card;
+   // console.log(dataArea);
+   // document.getElementById("selectArea").value = daPro.result[0].email;
+
+   // document.getElementById("email").value = daPro.result[0].email;
+
+   // console.log(daPro);
+}, false);
+
+function onBackKeyDown() { 
+   
+   // console.log('back button pressed')
+      $("#exampleModal").modal('hide');  
+      $("#tambahRekening").modal('hide');
+      if (!document.body.classList.contains("modal-open")) {
+         history.back()
+      }
+   // } 
+}
+
+var marker;
+
+function ambilData(form,url) {
+   var requestOptions = {
+      method: 'POST',
+      body: form,
+      redirect: 'follow'
+   };
+return fetch(url, requestOptions)
+         .then(response => response.json())
+         .then(result => result)
+         .catch(error => error);
+}
+
+function tambahRekening() {
+   // window.location.href = "tambah_rekening.html";
+   $("#tambahRekening").modal();
+}
+
+async function btnLokasi() {
+   htmlLokasi = document.getElementById("lokasiPil").innerText;
+   document.getElementById("lokasi").value = htmlLokasi;
+   // kab = namakab.indexOf("Kabupaten");
+   namakabupaten = namakab.replace(/Kabupaten/g, '');
+   kab = namakabupaten.trim();
+   url = `https://fisio.oktal.dev/api/customer/get_id_lokasi`;
+   var form = new FormData();
+   form.append("provinsi", namaprov);
+   form.append("kabupaten", kab);
+   form.append("kecamatan", namakec);
+   ambildta = await ambilData(form,url);
+   console.log(ambildta);
+   if (ambildta.status == 'success') {
+      idProvinsi = ambildta.result.id_provinsi;
+      idKabupaten = ambildta.result.id_kabupaten;
+      idKecamatan = ambildta.result.id_kecamatan;
+      document.getElementById("idprov").value = idProvinsi
+      document.getElementById("idkab").value = idKabupaten
+      document.getElementById("idkec").value = idKecamatan
+   }
+   document.getElementById("prov").value = namaprov;
+   document.getElementById("kab").value = namakab;
+   document.getElementById("kec").value = namakec;
+}
+
+function simpanRekening() {
+   const namaBank = document.getElementById("namaBank").value;
+   const modalrekening = document.getElementById("modalrekening").value;
+   const modalNama = document.getElementById("modalNama").value;
+
+   if (namaBank == '') {
+      alert('Nama Bank harus dipilih dulu');
+      return false
+   }
+   if (modalrekening == '') {
+      alert('Nomor Rekening harus diisi dulu');
+      return false
+   }
+   if (modalNama == '') {
+      alert('Nama Pemilik Rekening harus diisi dulu');
+      return false
+   }
+
+   const htmlRekening = 
+   `${namaBank}
+${modalrekening}
+${modalNama}
+   `;
+   document.getElementById("rekening").value = htmlRekening;
+   document.getElementById("rekening").readOnly = true;
+   document.getElementById("nmbank").value = namaBank;
+   document.getElementById("norek").value = modalrekening;
+   document.getElementById("nmpem").value = modalNama;
+   $("#tambahRekening").modal('hide');
+}
+
+function pilihBank() {
+   $("#modalNamaBank").modal();
+}
+
+function selectBank() {
+   var getSelectedValue = document.querySelector('input[name="location"]:checked').value; 
+   document.getElementById("namaBank").value = getSelectedValue;
+   $("#modalNamaBank").modal('hide');
+}
+
+async function mapLokasi() {
+// window.location.href = "maps_lokasi.html"
+$("#exampleModal").modal();
+document.getElementById('loading').classList.remove('hilang');
+console.log(daPro);
+dataLat = daPro.result[0].lat;
+dataLng = daPro.result[0].lon
+console.log(dataLat);
+const map = new google.maps.Map(document.getElementById("map-default"), {
+     zoom: 11,
+     center: { lat: -7.7800689, lng: 110.3787949 },
+     mapTypeId: google.maps.MapTypeId.ROADMAP
+});
+
+if (dataLat == null) {
+   await navigator.geolocation.getCurrentPosition(a, b);
+
+   function a(position) {
+      document.getElementById('loading').classList.add('hilang');
+         lat = position.coords.latitude;
+           lng = position.coords.longitude;
+           console.log(lat);
+           console.log(lng);
+             autoSetLoc(lat, lng);
+           const marker = new google.maps.Marker({
+               position: {lat: parseFloat(lat), lng: parseFloat(lng)},
+               map,
+               // icon: titik,
+               optimized: false,
+           })
+           $("#kotakAlamat").removeClass("hiden");
+           google.maps.event.addDomListener(map, 'click', function(event) {
+             taruhMarker(this, event.latLng);
+          });
+         //  var marker;
+           function taruhMarker(peta, posisiTitik) {
+             if (marker) {
+                // pindahkan marker
+                marker.setPosition(posisiTitik);
+             } else {
+                // buat marker baru
+                marker = new google.maps.Marker({
+                   position: posisiTitik,
+                   map: peta
+                });
+             }
+   
+             latmarkerNew = posisiTitik.lat();
+             lngmarkerNew = posisiTitik.lng();
+             autoSetLoc(latmarkerNew, lngmarkerNew);
+           }
+      }
+   
+      function b(error) {
+         console.log(error.code);
+         alert('code: '    + error.code    + '\n' +
+         'message: ' + error.message + '\n');
+      }
+   
+} else {
+
+    marker = new google.maps.Marker({
+         position: {lat: parseFloat(dataLat), lng: parseFloat(dataLng)},
+         map,
+         optimized: false,
+   })
+   document.getElementById('loading').classList.add('hilang');
+      google.maps.event.addDomListener(map, 'click', function(event) {
+         taruhMarker(this, event.latLng);
+         // document.getElementById("kotakAlamat")
+         $("#kotakAlamat").removeClass("hiden");
+      });
+   
+}
+
+}
+
+function taruhMarker(peta, posisiTitik) {
+
+if (marker) {
+	// pindahkan marker
+	marker.setPosition(posisiTitik);
+} else {
+	// buat marker baru
+	marker = new google.maps.Marker({
+		position: posisiTitik,
+		map: peta
+	});
+}
+autoSetLoc(posisiTitik.lat(), posisiTitik.lng());
+
+}
+
+function autoSetLoc(lat, lng) {
+   document.getElementById("lat").value = lat;
+   document.getElementById("lon").value = lng;
+		var settings = {
+		  "url": "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng+"&language=id&key=AIzaSyB8DMjUI5SBDVFC1PNvI7wgOV2KAC0LbxQ",
+		  "method": "GET",
+		  "timeout": 0,
+		};
+      console.log(settings);
+      $.ajax(settings).done(function (response) {
+         console.log(response);
+         if (response.status == "OK") {
+            fa = response['results'][0]['formatted_address']; 
+            document.getElementById("lokasiPil").innerHTML = fa;
+            document.getElementById("lokasi").value = fa;
+         }
+
+         prov = response['results'].find(pr => pr.address_components.length == 2);
+         namaprov = prov.address_components[0].long_name;
+
+         kab = response['results'].find(kb => kb.address_components.length == 3);
+         namakab = kab.address_components[0].long_name;
+
+         kec = response['results'].find(kc => kc.address_components.length == 4);
+         namakec = kec.address_components[0].long_name;
+
+      });
+}
+
+async function simpanData() {
+   // console.log(htmlLokasi);
+nama = document.getElementById("namaMitra").value;
+noTelp = document.getElementById("noTelp").value;
+email = document.getElementById("email").value;
+deskripsi = document.getElementById("deskripsi").value;
+idProv = document.getElementById("idprov").value;
+idKab = document.getElementById("idkab").value;
+idKec = document.getElementById("idkec").value;
+nmProv = document.getElementById("prov").value;
+nmKab = document.getElementById("kab").value;
+nmKec = document.getElementById("kec").value;
+lat = document.getElementById("lat").value;
+lon = document.getElementById("lon").value;
+nmBank = document.getElementById("nmbank").value;
+noRek = document.getElementById("norek").value;
+nmPem = document.getElementById("nmpem").value;
+lok = document.getElementById("lokasi").value;
+fare = document.getElementById("fare").value;
+radius_free_fare = document.getElementById("free_fare").value * 1000;
+
+var form = new FormData();
+form.append("rapist_code", codeTetapis);
+form.append("name", nama);
+form.append("email", email);
+form.append("no_hp", noTelp);
+form.append("therapist_description", deskripsi);
+form.append("address", lok);
+form.append("id_province", idProv);
+form.append("id_kabupaten", idKab);
+form.append("id_kecamatan", idKec);
+form.append("province", nmProv);
+form.append("kabupaten", nmKab);
+form.append("kecamatan", nmKec);
+form.append("bank_name", nmBank);
+form.append("rekening_number", noRek);
+form.append("rekening_an", nmPem);
+form.append("lat", lat);
+form.append("lon", lon);
+form.append("free_fare", radius_free_fare);
+form.append("fare", fare);
+// form.append("password", "bara");
+
+urlUpd = `https://fisio.oktal.dev/api/api/mitra_update_profile`;
+
+kirimUpdate = await ambilData(form,urlUpd);
+// console.log(kirimUpdate);
+if (kirimUpdate.status == 'success') {
+   alert("Berhasil diupdate");
+   location.reload();
+} else {
+   alert("Gagal diupdate");
+}
+
+}
+
+async function uploadFoto(event) {
+   document.getElementById('loading').classList.remove('hilang');
+   var ukuran = (foto.files[0].size / 1024 / 1024).toFixed(2);
+   berkas = document.getElementById('foto');
+   const file = event.target.files[0];
+   // console.log(file);
+   if (ukuran > 2) {
+      event.preventDefault();
+      document.getElementById('loading').classList.add('hilang');
+      alert("Size file yang bisa diupload maksimal 2MB");
+      berkas.value = '';
+      return
+   }
+
+   let formData = new FormData();
+   formData.append("profil_picture", foto.files[0]);
+   formData.append('mitra_code',codeTetapis);
+   urlUpload = `https://fisio.oktal.dev/api/api/picture_profil`;
+   upload = await ambilData(formData, urlUpload);
+   // console.log(upload);
+   document.getElementById('loading').classList.add('hilang');
+   // console.log(fotoPfl);
+   if (upload.status == 'success') {
+      if (window.FileReader) {
+         var reader = new FileReader();
+         reader.readAsDataURL(file);
+         // reader.readAsText(file, "UTF-8");
+         reader.addEventListener('load', (event) => {
+            fotoPfl.innerHTML = `<img src="${event.target.result}" class="img-fluid rounded-pill" style="height: 275px;">`;
+         });
+      }
+   }
+}
+      </script>
+   </body>
+</html>

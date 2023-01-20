@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" type="image/png" href="img/logo.svg">
+      <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
+      <!-- Slick Slider -->
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick-theme.min.css"/>
+      <!-- Icofont Icon-->
+      <link href="assets/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap core CSS -->
+      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="assets/css/style.css" rel="stylesheet">
+      <!-- Sidebar CSS -->
+      <link href="assets/vendor/sidebar/demo.css" rel="stylesheet">
+      <style>
+         .hiden {
+            display: none;
+         }
+      </style>
+   </head>
+   <body class="fixed-bottom-padding bg-white">
+
+      <!-- home page -->
+      <div class="p-0 bg-white">
+
+        <div class="align-items-center text-center mb-2">
+            <!-- <h3 class="my-0">Pilih Area Layanan</h3> -->
+            <!-- <img src="assets/img/gmbmaps.jpg" > -->
+            <div id="map-default" class="map-canvas" style="height: 530px;"></div>
+        </div>
+
+        <!-- <p class="small">Sign in to Continue.</p> -->
+        <!-- <form action=""> -->
+           <div class="form-group text-center p-3">
+              <h4>Lokasi Anda</h4>
+                <p id="lokasiSaatIni"></p>
+           </div>
+           
+           <div class="p-3" style="margin-top: -35px;">
+              <button type="button" id="tombolGunakan" class="btn btn-success btn-lg rounded btn-block hiden" onclick="btnLokasi()">Gunakan Lokasi Saya</button>
+           </div>
+        <!-- </form> -->
+        <!-- <p class="text-muted text-center small m-0 py-3">Belum Punya Akun ? <span class="osahan-card font-weight-bold">Daftar</span></p> -->
+        
+     </div>
+
+      <!-- Footer -->
+      
+      <!-- Bootstrap core JavaScript -->
+      <script src="cordova.js"></script>
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- slick Slider JS-->
+      <script type="assets/text/javascript" src="vendor/slick/slick.min.js"></script>
+      <!-- Sidebar JS-->
+      <script type="assets/text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="assets/js/osahan.js"></script>
+      <script src="assets/js/main.js"></script>
+      <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8DMjUI5SBDVFC1PNvI7wgOV2KAC0LbxQ"></script> -->
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtifRsfxZ2TNNr2OnTLD7OWA7xXo-w4a4"></script>
+
+      <script>
+document.addEventListener('DOMContentLoaded', async function() {
+   // const Area = 'Daerah Istimewa Yogyakarta';
+   const Area = localStorage.getItem('area');
+   console.log(Area);
+   await navigator.geolocation.getCurrentPosition(a, b);
+
+   const map = new google.maps.Map(document.getElementById("map-default"), {
+      center: new google.maps.LatLng(-7.7800689, 110.3787949),
+      zoom: 11,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+   });
+   
+   const infoWindow = new google.maps.InfoWindow();
+
+   function a(position) {
+      lat = position.coords.latitude;
+        lng = position.coords.longitude;
+        console.log(lat);
+        console.log(lng);
+          autoSetLoc(lat, lng);
+        const marker = new google.maps.Marker({
+            position: {lat: parseFloat(lat), lng: parseFloat(lng)},
+            map,
+            // icon: titik,
+            optimized: false,
+        })
+        $("#tombolGunakan").removeClass("hiden");
+        google.maps.event.addDomListener(map, 'click', function(event) {
+          taruhMarker(this, event.latLng);
+       });
+      //  var marker;
+        function taruhMarker(peta, posisiTitik) {
+          if (marker) {
+             // pindahkan marker
+             marker.setPosition(posisiTitik);
+          } else {
+             // buat marker baru
+             marker = new google.maps.Marker({
+                position: posisiTitik,
+                map: peta
+             });
+          }
+
+          latmarkerNew = posisiTitik.lat();
+          lngmarkerNew = posisiTitik.lng();
+          autoSetLoc(latmarkerNew, lngmarkerNew);
+         // console.log();
+        }
+   }
+   function b(error) {
+      console.log(error.code);
+      alert('code: '    + error.code    + '\n' +
+      'message: ' + error.message + '\n');
+   }
+
+    function autoSetLoc(lat, lng) {
+        var settings = {
+		  "url": "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng+"&language=id&key=AIzaSyB8DMjUI5SBDVFC1PNvI7wgOV2KAC0LbxQ",
+		  "method": "GET",
+		  "timeout": 0,
+		};
+    
+      $.ajax(settings).done(function (response) {
+        console.log(response['results']);
+        if (response.status == "OK") {
+            fa = response['results'][0]['formatted_address'];
+            document.getElementById("lokasiSaatIni").innerHTML = fa;
+        }
+
+         prov = response['results'].find(pr => pr.address_components.length == 2);
+         namaprov = prov.address_components[0].long_name;
+
+         kab = response['results'].find(kb => kb.address_components.length == 3);
+         namakab = kab.address_components[0].long_name;
+
+         kec = response['results'].find(kc => kc.address_components.length == 4);
+         namakec = kec.address_components[0].long_name;
+
+            console.log(namaprov);
+            console.log(namakab);
+            console.log(namakec);
+            console.log(Area);
+         if (namaprov == Area) {
+            // alert('area sama');
+         } else {
+            // alert('beda area');
+         }
+
+         // $.each(response['results'], function(index) {
+         //    var prov = '';
+         //    $.each(response['results'][index]['address_components'], function(sindex) {
+         //       // console.log(sindex);
+
+         //                   if(sindex==response['results'][index]['address_components'].length - 3) { //Prov
+		   //      						 prov = response['results'][index]['address_components'][sindex]['long_name'];
+		   //      					}
+         //                     if(sindex==response['results'][index]['address_components'].length - 4) { //kab
+		   //      						 kab = response['results'][index]['address_components'][sindex]['long_name'];
+		   //      					}
+		   //      					if(sindex==response['results'][index]['address_components'].length - 5) { //kec
+		   //      						 kec = response['results'][index]['address_components'][sindex]['long_name'];
+		   //      					}
+		   //      					if(sindex==response['results'][index]['address_components'].length - 6) { //kec
+		   //      						 kel = response['results'][index]['address_components'][sindex]['long_name'];
+		   //      					}
+         //    })
+         //    // provinsi(prov);
+         // })
+      })
+
+      // function provinsi(prov) {
+      //    var settings = {
+      //       "url": "https://fisio.oktal.dev/api/api/get_kab_byprov",
+		// 	  "method": "POST",
+		// 	  "timeout": 0,
+		// 	  "headers": {
+		// 	    "Content-Type": "application/x-www-form-urlencoded"
+		// 	  }
+      //    };
+      //    $.ajax(settings).done(function (respon) {
+      //       console.log(respon);
+      //    })
+      // }
+
+    }
+
+
+}, false);
+   
+   function btnLokasi() {
+     window.location.href = "daftar.html"
+   }
+      </script>
+
+   </body>
+</html>

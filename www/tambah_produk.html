@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" type="image/png" href="img/logo.svg">
+      <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
+      <!-- Slick Slider -->
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick-theme.min.css"/>
+      <!-- Icofont Icon-->
+      <link href="assets/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap core CSS -->
+      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="assets/css/style.css" rel="stylesheet">
+      <link href="assets/css/mystyle.css" rel="stylesheet">
+      <!-- Sidebar CSS -->
+      <link href="assets/vendor/sidebar/demo.css" rel="stylesheet">
+   </head>
+   <body class="fixed-bottom-padding">
+      <div class="loading" id="loading"></div>
+      <!-- home page -->
+      <div class="osahan-help">
+        <div class="p-3 border-bottom">
+           <div class="d-flex align-items-center">
+              <a class="font-weight-bold text-success text-decoration-none" href="layanan.html">
+              <i class="icofont-rounded-left back-page"></i></a>
+              <h6 class="font-weight-bold m-0 ml-3">Tambah Layanan</h6>
+           </div>
+        </div>
+     </div>
+     <div id="tambah_produk">
+        <div class="p-3 bg-white">
+           <form onsubmit="event.preventDefault(); tambahLayanan()" enctype="multipart/form-data">
+              <div class="form-group">
+                 <label for="exampleInputOLDPassword1">Nama Layanan</label>
+                 <input type="text" placeholder="Nama Layanan" id="namaLayanan" class="form-control" style="border: 1px solid #cacdd0;" required>
+              </div>
+              <div class="form-group">
+                 <label for="kategori">Kategori</label>
+                 <select class="select form-control" style="border: 1px solid #cacdd0;" id="kategori" required>
+                     <!-- <option disabled value="" selected>Pilih Kategori</option> -->
+                 </select>
+              </div>
+              <div class="form-group">
+                 <label for="harga">Harga</label>
+                 <div class="input-group mb-2" style="border: 1px solid #cacdd0;">
+                     <span class="input-group-text" style="font-size: 13px; border: none; border-radius: none;">Rp</span>
+                     <input type="number" id="harga" placeholder="Harga" class="form-control" style="border-bottom: 0px;" required>
+                 </div>
+              </div>
+            <div class="form-group">
+               <label for="durasi">Durasi Layanan (menit)</label>
+               <input type="text" placeholder="Durasi" id="durasi" class="form-control" style="border: 1px solid #cacdd0;" required>
+            </div>
+            <div class="form-group">
+               <label for="sesi">Jumlah Sesi Layanan </label>
+               <input type="text" placeholder="Sesi" id="sesi" class="form-control" style="border: 1px solid #cacdd0;" required>
+            </div>
+            <div class="form-group">
+               <label for="foto">Foto Layanan</label>
+               <input type="file" id="foto" class="form-control" style="border: 1px solid #cacdd0;">
+            </div>
+              <div class="form-group">
+                 <label for="textar">Deskripsi Layanan</label>
+                 <textarea name="deskripsi" id="textar" cols="30" rows="4" class="form-control" style="border: 1px solid #cacdd0;" required></textarea>
+              </div>
+              <div class="form-group">
+                 <label for="ketentuan">Ketentuan Layanan</label>
+                 <textarea name="ketentuan" id="ketentuan" cols="30" rows="4" class="form-control" style="border: 1px solid #cacdd0;" required></textarea>
+              </div>
+              <div class="text-center">
+                 <button type="submit" class="btn btn-primary btn-block btn-lg">Tambah layanan</button>
+              </div>
+           </form>
+        </div>
+     </div>
+      
+      <!-- Bootstrap core JavaScript -->
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- slick Slider JS-->
+      <script type="assets/text/javascript" src="vendor/slick/slick.min.js"></script>
+      <!-- Sidebar JS-->
+      <script type="assets/text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="assets/js/osahan.js"></script>
+
+      <script>
+const codeTetapis = localStorage.getItem('code_mitra');
+document.addEventListener('DOMContentLoaded',async function() {
+   document.getElementById('kategori');
+   dtKategori = await ambilData();
+   document.getElementById('loading').classList.add('hilang');
+   console.log(dtKategori);
+   if (dtKategori.status == 'success') {
+      toption = '';
+      dtKategori.result.map((kt) => {
+         toption += `
+         <option value="${kt.id}">${kt.services_category}</option>
+         `;
+      })
+      optione = `<option disabled value="" selected>Pilih Kategori</option>` + toption;
+      document.getElementById('kategori').innerHTML = optione
+   }
+})
+
+function ambilData() {
+var formdata = new FormData();
+
+var requestOptions = {
+      method: 'POST',
+      body: formdata,
+      redirect: 'follow'
+};
+
+return fetch("https://fisio.oktal.dev/api/api/list_category", requestOptions)
+  .then(response => response.json())
+  .then(result => result)
+  .catch(error => error);
+
+}
+
+function tambahLayanan() {
+   document.getElementById('loading').classList.remove('hilang');
+   // codeTetapis = 'THRHVDIS';
+   inNamaLaya = document.getElementById('namaLayanan').value;
+   idKetegori = document.getElementById('kategori').value;
+   inHarga = document.getElementById('harga').value;
+   inDesLaya = document.getElementById('textar').value;
+   inKetLaya = document.getElementById('ketentuan').value;
+   inDurasi = document.getElementById('durasi').value;
+   inSesi = document.getElementById('sesi').value;
+   valfoto = document.getElementById('foto').value;
+
+   var formdata = new FormData();
+   formdata.append('mitra_code',codeTetapis);
+   formdata.append('name',inNamaLaya);
+   formdata.append('description',inDesLaya);
+   formdata.append('idcat',idKetegori);
+   formdata.append('duration_session',inDurasi);
+   formdata.append('amount_session',inSesi);
+   formdata.append('services_rates',inHarga);
+   formdata.append('terms_services',inKetLaya);
+   if (valfoto !== '') {
+      formdata.append('foto',foto.files[0]);
+   }
+
+var requestOptions = {
+  method: 'POST',
+  body: formdata,
+  redirect: 'follow'
+};
+
+fetch("https://fisio.oktal.dev/api/api/add_service", requestOptions)
+  .then(response => response.json())
+  .then(result => {
+   document.getElementById('loading').classList.add('hilang');
+   if (result.status == 'success') {
+      console.log(result);
+      alert('data berhasil disimpan');
+      window.location.href = 'layanan.html';
+   }
+  })
+  .catch(error => console.log('error', error));
+
+}
+
+        function pilih_all() {
+            window.location.href = "layananall.html";
+        }
+      </script>
+   </body>
+</html>

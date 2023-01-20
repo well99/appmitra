@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" type="image/png" href="img/logo.svg">
+      <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
+      <!-- Slick Slider -->
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick-theme.min.css"/>
+      <!-- Icofont Icon-->
+      <link href="assets/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap core CSS -->
+      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="assets/css/style.css" rel="stylesheet">
+      <link href="assets/css/mystyle.css" rel="stylesheet">
+      <!-- Sidebar CSS -->
+      <link href="assets/vendor/sidebar/demo.css" rel="stylesheet">
+   </head>
+   <body class="fixed-bottom-padding bg-white">
+      <div class="loading hilang" id="loading"></div>
+      <!-- home page -->
+      <div class="p-3 bg-white">
+
+        <div class="align-items-center text-center mt-5 mb-4">
+            <h2 class="my-0">Daftar</h2>
+            <p>Daftar jadi Mitra Fisio Homecare</p>
+        </div>
+
+        <!-- <p class="small">Sign in to Continue.</p> -->
+        <form method="post" onsubmit="event.preventDefault(); formDaftar()">
+           <div class="form-group">
+              <label for="namaMitra">Nama Mitra</label>
+              <input placeholder="Nama Mitra" type="text" class="form-control" id="namaMitra" style="border: 1px solid #cacdd0;">
+           </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">E-mail</label>
+            <input placeholder="Email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style="border: 1px solid #cacdd0;">
+         </div>
+         <div class="form-group">
+            <label for="noTelepon">Nomor Telepon</label>
+            <input placeholder="Nomor Telepon" type="number" class="form-control" id="noTelepon" style="border: 1px solid #cacdd0;">
+         </div>
+           <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input placeholder="Password" type="password" class="form-control" id="exampleInputPassword1" style="border: 1px solid #cacdd0;">
+           </div>
+           <button type="submit" class="btn btn-success btn-lg rounded btn-block">Daftar</button>
+           <!-- <button type="button" onclick="notifValidasi()" class="btn btn-success btn-lg rounded btn-block">Daftar</button> -->
+        </form>
+        <p class="text-muted text-center small m-0 py-3">Sudah Punya Akun ? <span class="osahan-card font-weight-bold" onclick="btnMasuk()">Masuk</span></p>
+        
+     </div>
+
+     <div class="modal fade" id="modalDialogNotif" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 50%; height: 30%;">
+        <div class="modal-dialog" style="height: 100px;">
+           <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Selamat, pendaftaran anda berhasil.</h5>
+               </div>
+              <div class="modal-body w-100 text-center">
+                 
+                 <div class="modal-footer">
+                    <div class="col">     
+                       <button type="button" onclick="btnMasuk()" class="btn btn-danger btn-lg btn-block">Masuk ke Aplikasi</button>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+
+      <!-- Footer -->
+      
+      <!-- Bootstrap core JavaScript -->
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- slick Slider JS-->
+      <script type="assets/text/javascript" src="vendor/slick/slick.min.js"></script>
+      <!-- Sidebar JS-->
+      <script type="assets/text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="assets/js/osahan.js"></script>
+
+      <script>
+// console.log(localStorage.getItem('area'));
+
+function notifValidasi() {
+    $("#modalDialogNotif").modal();
+}
+
+function btnMasuk() {
+    window.location.href = 'login.html';
+}
+
+async function formDaftar() {
+   document.getElementById('loading').classList.remove('hilang');
+   nama = document.getElementById('namaMitra').value;
+   email = document.getElementById('exampleInputEmail1').value;
+   noHp = document.getElementById('noTelepon').value;
+   pass = document.getElementById('exampleInputPassword1').value;
+
+   if (nama.length < 5 || nama.length >= 20) {
+      alert("Nama minimal 6 dan maksimal 20 karakter");
+      nama.value = '';
+      return false
+   }
+
+   if (email.length <= 6 ) {
+      alert("email minimal 6 karakter")
+      return false
+   }
+   
+   if (pass.length < 5) {
+      alert("password minimal 6 karakter")
+      return false
+   }
+
+   var form = new FormData();
+   form.append("name", nama);
+   form.append("email", email);
+   form.append("no_hp", noHp);
+   form.append("password", pass);
+   var formdata = new FormData();
+   formdata.append("email", email);
+   
+   url= "https://fisio.oktal.dev/api/api/mitra_register";
+   urlCk = `https://fisio.oktal.dev/api/api/mitra_username_check`;
+   cekEmail = await ambilData(formdata,urlCk);
+   if (cekEmail.status == 'success') {
+      resDaftar = await ambilData(form,url);
+      document.getElementById('loading').classList.add('hilang');
+      console.log(resDaftar);
+      if (resDaftar.status == 'success') {
+         alert("Pendaftaran Berhasil");
+         window.location.href = "login.html"
+      } 
+      if (resDaftar.status == 'failed') {
+         alert("System tidak bisa menyimpan data anda");   
+      }
+   } else if (cekEmail.status == 'failed') {
+      document.getElementById('loading').classList.add('hilang');   
+      alert("Pendaftaran Gagal! email sudah dipakai");
+   } else {
+      document.getElementById('loading').classList.add('hilang');
+      alert("Pendaftaran Gagal! email sudah dipakai");   
+   }
+   
+   // console.log(resDaftar);
+}
+
+function ambilData(form,url) {
+   var requestOptions = {
+      method: 'POST',
+      body: form,
+      redirect: 'follow'
+   };
+return fetch(url, requestOptions)
+         .then(response => response.json())
+         .then(result => result)
+         .catch(error => error);
+}
+      </script>
+   </body>
+</html>

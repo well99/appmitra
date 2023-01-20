@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" type="image/png" href="img/logo.svg">
+      <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
+      <!-- Slick Slider -->
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick-theme.min.css"/>
+      <!-- Icofont Icon-->
+      <link href="assets/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap core CSS -->
+      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="assets/css/style.css" rel="stylesheet">
+      <!-- Sidebar CSS -->
+      <link href="assets/vendor/sidebar/demo.css" rel="stylesheet">
+   </head>
+   <body class="fixed-bottom-padding">
+      <!-- home page -->
+      <div class="osahan-help">
+        <div class="p-3 border-bottom">
+           <div class="d-flex align-items-center">
+              <a class="font-weight-bold text-success text-decoration-none" onclick="history.back()">
+              <i class="icofont-rounded-left back-page"></i></a>
+              <h6 class="font-weight-bold m-0 ml-3">Detail Lokasi</h6>
+           </div>
+        </div>
+     </div>
+     <div class="osahan-body">
+        <div class="p-0">
+            <div id="map-default" class="map-canvas" style="height: 550px;"></div>
+            <div class=" rounded p-3 m-1 text-center" style="border: 1px solid;">
+                <button type="button" class="btn rounded btn-success btn-lg btn-block" onclick="leparGmap()">Dapatkan Petunjuk Arah</button>
+             </div>
+        </div>
+     </div>
+      
+      <!-- Bootstrap core JavaScript -->
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- slick Slider JS-->
+      <script type="assets/text/javascript" src="vendor/slick/slick.min.js"></script>
+      <!-- Sidebar JS-->
+      <script type="assets/text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="assets/js/osahan.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8DMjUI5SBDVFC1PNvI7wgOV2KAC0LbxQ"></script>
+
+      <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    var latitude = localStorage.getItem('latitude');
+    var long = localStorage.getItem('longitude');
+   //  console.log(latitude);
+   //  console.log(long);
+
+    const map = new google.maps.Map(document.getElementById("map-default"), {
+        center: new google.maps.LatLng(-7.7800689, 110.3787949),
+        zoom: 11,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    const infoWindow = new google.maps.InfoWindow();
+
+    const marker = new google.maps.Marker({
+        position: {lat: parseFloat(latitude), lng: parseFloat(long)},
+        map,
+        // icon: titik,
+        optimized: false,
+    })
+    
+}, false);
+
+function leparGmap() {
+   var onSuccess = function(position) {
+      lat = position.coords.latitude;
+      lng = position.coords.longitude;
+      console.log(lat);
+      console.log(lng);
+      var latitude = localStorage.getItem('latitude');
+      var long = localStorage.getItem('longitude');
+      url = 'https://www.google.com/maps/dir/'+lat+','+lng+'/'+ latitude +','+ long;
+      // console.log(url);
+      window.open(url)
+   }
+
+   function onError(error) {
+      console.log(error.code);
+      alert('code: '    + error.code    + '\n' +
+      'message: ' + error.message + '\n');
+   }
+
+   navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+}
+
+      </script>
+   </body>
+</html>

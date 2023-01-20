@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" type="image/png" href="img/logo.svg">
+      <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
+      <!-- Slick Slider -->
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick-theme.min.css"/>
+      <!-- Icofont Icon-->
+      <link href="assets/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap core CSS -->
+      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="assets/css/style.css" rel="stylesheet">
+      <!-- Sidebar CSS -->
+      <link href="assets/vendor/sidebar/demo.css" rel="stylesheet">
+   </head>
+   <body class="fixed-bottom-padding">
+      <!-- home page -->
+      <div class="osahan-help">
+        <div class="p-3 border-bottom">
+           <div class="d-flex align-items-center">
+              <a class="font-weight-bold text-success text-decoration-none" href="index.html">
+              <i class="icofont-rounded-left back-page"></i></a>
+              <h6 class="font-weight-bold m-0 ml-3">Tambah rekening</h6>
+           </div>
+        </div>
+     </div>
+
+      <div id="tambah_produk">
+        <div class="p-3 bg-white">
+
+            <div class="m-1 mb-3">
+                <p class="font-weight-light text-dark m-0 d-flex align-items-center">
+                    Pastikan Nomor Rekening & Nama Pemilik Rekening sesuai buku tabungan
+                </p>
+            </div>
+
+           <form id="formSimpanRekening">
+
+               <div class="form-group">
+                  <label for="namaBank">Nama Bank</label>
+                  <div class="input-group mb-2" style="border: 1px solid #cacdd0;">
+                     <input type="text" id="namaBank" name="namaBank" placeholder="Nama Bank" class="form-control" style="border-bottom: 0px;">
+                     <span class="input-group-text" style="font-size: 13px; border: none; border-radius: none;" onclick="pilihBank()"><i class="icofont-simple-right"></i></span>
+                 </div>
+               </div>
+
+              <div class="form-group">
+                 <label for="rekening">Nomor Rekening</label>
+                 <input type="number" id="rekening" name="rekening" placeholder="Nomor Rekening" class="form-control" style="border: 1px solid #cacdd0;">
+              </div>
+
+            <div class="form-group">
+               <label for="nama">Nama Pemilik Rekening</label>
+               <input type="text" id="nama" name="nama_pemilik" placeholder="Nama Pemilik Rekening" class="form-control" style="border: 1px solid #cacdd0;">
+            </div>
+              
+              <div class="text-center">
+                 <button type="submit" class="btn btn-primary btn-block btn-lg" >Simpan</button>
+                 <!-- <button type="submit" class="btn btn-primary btn-block btn-lg" onclick="simpanRekening()">Simpan</button> -->
+              </div>
+           </form>
+        </div>
+     </div>
+
+     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+           <div class="modal-content">
+              <div class="modal-header">
+                 <h5 class="modal-title" id="exampleModalLabel">Nama Bank</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+                 </button>
+              </div>
+              <div class="modal-body">
+                 <!-- <form class=""> -->
+                    <div class="osahan-filter">
+                        <div class="filter">
+                           <div class="custom-control border-bottom px-0  custom-radio">
+                              <input type="radio" id="customRadio1" name="location" value="BCA" class="custom-control-input" onclick="selectBank()">
+                              <label class="custom-control-label py-3 w-100 px-3" for="customRadio1">BCA</label>
+                           </div>
+                           <div class="custom-control border-bottom px-0  custom-radio">
+                              <input type="radio" id="customRadio2" name="location" value="BNI" class="custom-control-input" onclick="selectBank()">
+                              <label class="custom-control-label py-3 w-100 px-3" for="customRadio2">BNI</label>
+                           </div>
+                           <div class="custom-control border-bottom px-0  custom-radio">
+                              <input type="radio" id="customRadio3" name="location" value="BRI" class="custom-control-input" onclick="selectBank()">
+                              <label class="custom-control-label py-3 w-100 px-3" for="customRadio3">BRI</label>
+                           </div>
+                           <div class="custom-control border-bottom px-0  custom-radio">
+                              <input type="radio" id="customRadio4" name="location" value="BPD" class="custom-control-input" onclick="selectBank()">
+                              <label class="custom-control-label py-3 w-100 px-3" for="customRadio4">BPD</label>
+                           </div>
+                           <div class="custom-control border-bottom px-0  custom-radio">
+                              <input type="radio" id="customRadio5" name="location" value="Mandiri" class="custom-control-input" onclick="selectBank()">
+                              <label class="custom-control-label py-3 w-100 px-3" for="customRadio5">Mandiri</label>
+                           </div>
+                           
+                        </div>
+                     </div>
+                 <!-- </form> -->
+              </div>
+           </div>
+        </div>
+     </div>
+
+      <!-- Bootstrap core JavaScript -->
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- slick Slider JS-->
+      <script type="assets/text/javascript" src="vendor/slick/slick.min.js"></script>
+      <!-- Sidebar JS-->
+      <script type="assets/text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="assets/js/osahan.js"></script>
+
+      <script>
+      const codeTetapis = localStorage.getItem('code_mitra');
+      console.log(codeTetapis);
+        function pilihBank() {
+            $("#exampleModal").modal();
+        }
+
+        function selectBank() {
+         var getSelectedValue = document.querySelector('input[name="location"]:checked').value; 
+         // console.log(getSelectedValue);
+         // document.getElementById("namaBank").innerHTML = getSelectedValue;
+         document.getElementById("namaBank").value = getSelectedValue;
+         $("#exampleModal").modal('hide');
+        }
+
+      const form = document.querySelector("#formSimpanRekening");
+      form.addEventListener("submit", async function (event) {
+         event.preventDefault();
+         const namaPemilik = document.getElementById('nama').value;
+         const noRekening = document.getElementById('rekening').value;
+         const namaBannk = document.getElementById('namaBank').value;
+
+         if (namaBannk == '') {
+            alert('nama bank tidak boleh kosong');
+            return false;
+         }
+         if (namaPemilik == '') {
+            alert('nama pemilik tidak boleh kosong');
+            return false;
+         }
+         if (noRekening == '') {
+            alert('no rekening tidak boleh kosong');
+            return false;
+         }
+         // console.log(namaPemilik);
+         // console.log(noRekening);
+         // console.log(namaBannk);
+         url =`https://fisio.oktal.dev/api/api/mitra_update_rekening`;
+         var form = new FormData();
+         form.append("bank_name", namaBannk);
+         form.append("rekening_number", noRekening);
+         form.append("rekening_an", namaPemilik);
+         form.append("rapist_code", codeTetapis);
+         resSimpan = await ambilData(form,url);
+         console.log(resSimpan);
+         if (resSimpan.status == 'success') {
+            alert('data berhasil disimpan');
+            window.location.href = 'penarikan_saldo.html';
+         }
+      });
+
+function ambilData(form,url) {
+   var requestOptions = {
+      method: 'POST',
+      body: form,
+      redirect: 'follow'
+   };
+return fetch(url, requestOptions)
+         .then(response => response.json())
+         .then(result => result)
+         .catch(error => error);
+}
+
+      </script>
+   </body>
+</html>

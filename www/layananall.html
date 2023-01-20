@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" type="image/png" href="img/logo.svg">
+      <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
+      <!-- Slick Slider -->
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick-theme.min.css"/>
+      <!-- Icofont Icon-->
+      <link href="assets/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap core CSS -->
+      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="assets/css/style.css" rel="stylesheet">
+      <link href="assets/css/mystyle.css" rel="stylesheet">
+      <!-- Sidebar CSS -->
+      <link href="assets/vendor/sidebar/demo.css" rel="stylesheet">
+   </head>
+   <body class="fixed-bottom-padding">
+      <div class="loading" id="loading"></div>
+      <div class="theme-switch-wrapper" style="left: 12px; margin: auto; bottom: 70px; z-index: 1111; width: 300px;">
+        <!-- <button class="btn btn-success btn-lg btn-block" onclick="btnAtursekaligus()">Atur Sekaligus</button> -->
+        <input type="hidden" id="staaktif">
+        <button class="btn btn-success btn-lg btn-block" onclick="btnAtursekaligus()">Atur Sekaligus</button>
+      </div>
+      <!-- home page -->
+      <div class="osahan-home-page">
+         <div class="p-3">
+            <div class="title d-flex align-items-center">
+                    <div>
+                        <h4>Daftar Layanan</h4>
+                    </div>
+                    <div class="ml-auto m-0">
+                        <a href="tambah_produk.html" class="text-decoration-none bg-white rounded shadow-sm d-flex align-items-center" style="padding:1rem;">
+                        <i class="text-dark icofont-plus"></i>
+                        <!-- <span class="badge badge-danger p-1 ml-1 small">2</span> -->
+                        </a>
+                    </div>
+                   <!-- <p class="ml-auto m-0">
+                   </p> -->
+                   <!-- <a class="toggle ml-3" href="#"><i class="icofont-navigation-menu"></i></a> -->
+            </div>
+            <div class="text-decoration-none">
+                <div class="input-group mt-3 rounded shadow-sm overflow-hidden bg-white">
+                   <div class="input-group-prepend">
+                      <button class="border-0 btn btn-outline-secondary text-success bg-white"><i class="icofont-search"></i></button>
+                   </div>
+                   <input type="text" class="shadow-none border-0 form-control pl-0" id="inputSearch" placeholder="Cari Layanan" aria-label="" aria-describedby="basic-addon1" onkeyup="myFunction()">
+                </div>
+            </div>
+         </div>
+         <!-- body -->
+         <div class="osahan-body">
+            <!-- Promos -->
+            <div class="p-3">
+                <div class="d-flex align-items-center mb-3">
+                    <p class="bg-success text-white py-1 px-2 rounded small status" id="bageAktif" data-buton="aktif" onclick="bageNonaktif(this)">Aktif </p>
+                    <p class="bg-warning text-white py-1 px-2 rounded small status" id="bageNonAktif" data-buton="nonaktif" onclick="bageNonaktif(this)" style="margin-left: 15px;">Nonaktif </p>
+                </div>
+            </div>
+
+            <div class="osahan-recommend px-3" style="margin-top: -30px;">
+               <div class="row">
+                  <div class="col-12 mb-3">
+                        <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
+                            <div class="d-flex align-items-center">
+                                <div class="custom-control custom-checkbox" style="margin-left: 5px;">
+                                    <input type="checkbox" id="myCheckbox" class="custom-control-input" checked><label title="" type="checkbox" for="myCheckbox" class="custom-control-label small"></label>
+                                </div>
+                                <p class="m-1" id="jmlProdPil"></p>
+                                <p class="m-1 ml-auto font-weight-bold" onclick="spanBatal()" style="color: blue;">Batalkan</p>
+                            </div>
+                        </div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="p-3" style="margin-top: -25px;" id="cardTampilan">
+             </div>
+
+             <div class="p-3" style="margin-top: -25px;">
+               <div class="custom-control custom px-0 mb-1 position-relative border-custom-kosongan">
+                  <div class="cart-items position-relative ">
+                     <div class="d-flex align-items-center p-3">
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      </div>
+      <!-- Footer -->
+      <div class="osahan-menu-fotter fixed-bottom bg-white text-center border-top">
+         <div class="row m-0">
+            <a href="index.html" class="text-muted small col text-decoration-none p-2 ">
+               <p class="h5 m-0"><i class=" icofont-home"></i></p>
+               Home
+            </a>
+            <a href="pesanan_baru.html" class="text-muted col small text-decoration-none p-2">
+               <p class="h5 m-0"><i class="icofont-cart"></i></p>
+               Pesanan
+            </a>
+            <a href="layanan.html" class="text-dark col small font-weight-bold text-decoration-none p-2 selected">
+               <p class="h5 m-0"><i class="text-success icofont-list"></i></p>
+               Layanan
+            </a>
+            <a href="pengaturan.html" class="text-muted small col text-decoration-none p-2">
+               <p class="h5 m-0"><i class="icofont-user"></i></p>
+               Pengaturan
+            </a>
+         </div>
+      </div>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 110%; ">
+        <div class="modal-dialog" style="height: 300px;">
+           <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Atur Sekaligus</h5>
+                  <button type="button" onclick="tutupModal()" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+              <div class="modal-body" style="margin-top: -10px;">
+                 <!-- <form class=""> -->
+                  <div class="osahan-filter">
+                     <div class="filter" id="cardModalExample">
+                     </div>
+                  </div>
+                 <!-- </form> -->
+              </div>
+           </div>
+        </div>
+     </div>
+      
+      <!-- Bootstrap core JavaScript -->
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- slick Slider JS-->
+      <script type="assets/text/javascript" src="vendor/slick/slick.min.js"></script>
+      <!-- Sidebar JS-->
+      <script type="assets/text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="assets/js/osahan.js"></script>
+      <script src="assets/js/main.js"></script>
+
+      <script>
+   const codeTetapis = localStorage.getItem('code_mitra');
+document.addEventListener('DOMContentLoaded',async function() {
+   staBar = localStorage.getItem('statusBar');
+   document.getElementById('staaktif').value = staBar;
+   urlAk = `https://fisio.oktal.dev/api/api/list_service`;
+   var form = new FormData();
+   form.append("rapist_code", codeTetapis);
+   form.append("filter", staBar);
+
+   var formdata = new FormData();
+   formdata.append("rapist_code", codeTetapis);
+   formdata.append("filter", 'non-aktif');
+
+   var formData = new FormData();
+   formData.append("rapist_code", codeTetapis);
+   formData.append("filter", 'aktif');
+
+   const datalayanan = await ambilData(form,urlAk);
+   const layananNonaktif = await ambilData(formdata,urlAk);
+   const layananaktif = await ambilData(formData,urlAk);
+   document.getElementById('loading').classList.add('hilang');
+   jmlProd = datalayanan.result.length;
+   jmlProdNonAk = layananNonaktif.result.length;
+   jmlProdAk = layananaktif.result.length;
+   document.getElementById('jmlProdPil').innerHTML = `${jmlProd} Produk dipilih`;
+   document.getElementById('bageAktif').innerHTML = `Aktif (${jmlProdAk})`;
+   document.getElementById('bageNonAktif').innerHTML = `Nonaktif (${jmlProdNonAk})`;
+
+   statusBar = document.querySelectorAll(".status");
+   bagePcard = '';
+   if (staBar == 'nonaktif') {
+      statusBar[0].classList.replace('bg-success','bg-warning');
+      statusBar[1].classList.replace('bg-warning','bg-success');
+      bagePcard = 'bg-warning';
+   }
+   if (staBar == 'aktif') {
+      bagePcard = 'bg-primary';
+   }
+   const cardTapil = document.getElementById('cardTampilan');
+
+   if (datalayanan.status =='success') {
+      if(datalayanan.result.length > 0) {
+         let card = '';
+         datalayanan.result.map((lyn) => {
+            if (lyn.services_photo) {
+               imG = `<div><img src="https://fisio.oktal.dev/manage/assets/img/services_photo/${lyn.services_photo}" class="img-fluid"></div>`;
+            } else {
+               imG = `<div><img src="https://fisio.oktal.dev/manage/assets/img/logos/logo_mitra.png" class="img-fluid"></div>`;
+            }
+            card += `
+            <div class="custom-control custom px-0 mb-1 position-relative border-custom">
+                  <div class="cart-items bg-white position-relative border-bottom">
+                      <div class="d-flex align-items-center p-3">
+
+                          <div class="custom-control custom-checkbox" style="margin-left: 5px;">
+                              <input type="checkbox" name="layananck" id="custom-checkbox${lyn.id}" checked class="custom-control-input" value="${lyn.id}" ><label title="" type="checkbox" for="custom-checkbox${lyn.id}" class="custom-control-label small"></label>
+                          </div>
+                              
+                         ${imG}
+                         <div class="ml-3 text-dark text-decoration-none w-100">
+                            <h6 class="mb-1">${lyn.services_name}</h6>
+                            <p class="text-muted mb-2">${config.uang(lyn.services_rates)}</p>
+                            <div class="d-flex align-items-center">
+                              <p class="${bagePcard} text-white py-1 px-2 rounded small">${staBar}</p>
+                            </div>
+                         </div>
+                      </div>
+                  </div>
+            </div> `;
+         })
+         cardTapil.innerHTML = card;
+      }
+   }
+})
+
+function ambilData(form,url) {
+   var requestOptions = {
+      method: 'POST',
+      body: form,
+      redirect: 'follow'
+   };
+return fetch(url, requestOptions)
+         .then(response => response.json())
+         .then(result => result)
+         .catch(error => error);
+}
+
+         function btnAtursekaligus() {
+            
+            // $("#exampleModal").modal("show");
+            inSta = document.getElementById('staaktif').value;
+            cardExample = document.getElementById('cardModalExample');
+            console.log(inSta);
+            cardEx = '';
+            if (inSta == 'aktif') {
+               cardEx = `<div class="custom-control border-bottom px-0  custom-radio">
+                           <input type="radio" id="customRadio1" name="location" class="custom-control-input" onclick="notifValidasi(this)" value="hapus">
+                           <label class="custom-control-label py-3 w-100 px-3" for="customRadio1">Hapus</label>
+                        </div>
+                        <div class="custom-control border-bottom px-0  custom-radio">
+                           <input type="radio" id="customRadio2" name="location" value="non-aktif" class="custom-control-input" onclick="notifValidasi(this)">
+                           <label class="custom-control-label py-3 w-100 px-3" for="customRadio2">Nonaktifkan Produk</label>
+                        </div>`;
+            }
+            if (inSta == 'nonaktif') {
+               cardEx = `<div class="custom-control border-bottom px-0  custom-radio">
+                           <input type="radio" id="customRadio1" name="location" class="custom-control-input" onclick="notifValidasi(this)" value="hapus">
+                           <label class="custom-control-label py-3 w-100 px-3" for="customRadio1">Hapus</label>
+                        </div>
+                        <div class="custom-control border-bottom px-0  custom-radio">
+                           <input type="radio" id="customRadio3" name="location" value="aktif" class="custom-control-input" onclick="notifValidasi(this)">
+                           <label class="custom-control-label py-3 w-100 px-3" for="customRadio3">Aktifkan Produk</label>
+                        </div>`;
+            }
+            cardExample.innerHTML = cardEx;
+            $("#exampleModal").modal("show");
+            // btn = document.getElementsByClassName('theme-switch-wrapper')[0].remove();
+            btn = document.getElementsByClassName('theme-switch-wrapper')[0];
+            // console.log(btn);
+            btn.classList.add('hilang')
+         }
+
+         async function notifValidasi(e) {
+            console.log(e);
+            valButton = e.value;
+            $("#exampleModal").modal("hide");
+            modal = innerModal(valButton);
+            $(modal).modal();
+         }
+
+         function innerModal(val) {
+
+         return `<div class="modal fade" id="modalDialogNotif" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 50%; height: 30%;">
+      <div class="modal-dialog" style="height: 100px;">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title w-100 text-center" id="exampleModalLabel">${val} Layanan</h5>
+            </div>
+            <div class="modal-body w-100 text-center">
+               <div class="w-100 px-3">
+                  <h6>Apakah Anda Yakin ${val} Layanan?</h6>
+               </div>
+               <div class="modal-footer">
+                  <div class="col-5 m-0 p-0">     
+                     <button type="button" onclick="btnYa()" class="btn btn-danger btn-lg btn-block">Ya ${val}</button>
+                  </div>
+                  <div class="col-2 m-0 p-0"></div>
+                  <div class="col-5 m-0 p-0">                 
+                     <button type="button" onclick="tutupModal()" class="btn btn-warning btn-lg btn-block" data-dismiss="modal">Batalkan</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>`;
+         }
+
+         async function btnYa() {
+            console.log(valButton);
+            // codeTetapis = 'THRHVDIS';
+            url = `https://fisio.oktal.dev/api/api/set_active`;
+            // var getSelectedValue = document.querySelector('input[name="location"]:checked');
+            var checkboxes = document.querySelectorAll('input[name="layananck"]:checked');
+            result = [];
+            for (var i=0; i < checkboxes.length; i++) {
+               if (checkboxes[i].checked) {
+                  result.push(checkboxes[i].value);
+               }
+            }
+            var form = new FormData();
+            form.append("mitra_code", codeTetapis);
+            form.append("active", valButton);
+            result.forEach((item) => form.append("idserv[]", item));
+
+            // for (var pair of form.entries()) {
+            //    console.log(pair[0]+ ', ' + pair[1]); 
+            // }
+            ubahLayanan = await ambilData(form,url);
+            
+            window.location.href = 'layanan.html';
+         }
+
+         const checkbox = document.getElementById('myCheckbox');
+         checkbox.addEventListener('change', (event) => {
+
+            if (event.currentTarget.checked) {
+               var inputcek = document.querySelectorAll('input[type=checkbox]'); 
+               console.log(inputcek);
+               inputcek.forEach(item => {
+                  item.checked = true
+               })
+            } else {
+               var inputcek = document.querySelectorAll('input[type=checkbox]'); 
+               console.log(inputcek);
+               inputcek.forEach(item => {
+                  item.checked = false
+               })
+            }
+         })
+
+         function hapusCheck() {
+         }
+
+         function spanBatal() {
+            var inputcek = document.querySelectorAll('input[type=checkbox]');
+            console.log(inputcek);
+            inputcek.forEach(item => {
+               item.checked = false
+            })
+         }
+
+async function bageNonaktif(e) {
+
+         ckBxBtl = document.getElementById("myCheckbox").checked;
+         console.log(ckBxBtl);
+         if (ckBxBtl == true) {
+            ck = 'checked'
+         } else {
+            ck = ''
+         }
+
+         document.getElementById("inputSearch").value ='';
+         const cardTapil = document.getElementById('cardTampilan');
+         if (e.dataset.buton == 'nonaktif') {
+            document.getElementById('staaktif').value = 'nonaktif';
+            e.classList.replace('bg-warning','bg-success');
+            e.previousElementSibling.classList.replace('bg-success','bg-warning');
+            // codeTetapis = 'THRHVDIS';
+            urlAk = `https://fisio.oktal.dev/api/api/list_service`;
+            var form = new FormData();
+            form.append("rapist_code", codeTetapis);
+            form.append("filter", "non-aktif");
+
+            datalayanan = await ambilData(form,urlAk);
+            jmlProd = datalayanan.result.length;
+            document.getElementById('jmlProdPil').innerHTML = `${jmlProd} Produk dipilih`;
+
+            if (datalayanan.status =='success') {
+               if (datalayanan.result.length > 0) {
+                  let card = ''
+                  datalayanan.result.map((lyn) => {
+
+            if (lyn.services_photo) {
+               imG = `<div><img src="https://fisio.oktal.dev/manage/assets/img/services_photo/${lyn.services_photo}" class="img-fluid"></div>`;
+            } else {
+               imG = `<div><img src="https://fisio.oktal.dev/manage/assets/img/logos/logo_mitra.png" class="img-fluid"></div>`;
+            }
+                     card += `
+                  <div class="custom-control custom px-0 mb-1 position-relative border-custom">
+                        <div class="cart-items bg-white position-relative border-bottom">
+                           <div class="d-flex align-items-center p-3">
+
+                           <div class="custom-control custom-checkbox" style="margin-left: 5px;">
+                              <input type="checkbox" name="layananck" id="custom-checkbox${lyn.id}" ${ck} class="custom-control-input" value="${lyn.id}" ><label title="" type="checkbox" for="custom-checkbox${lyn.id}" class="custom-control-label small"></label>
+                          </div>
+                                    
+                              ${imG}
+                              <div class="ml-3 text-dark text-decoration-none w-100">
+                                 <h6 class="mb-1">${lyn.services_name}</h6>
+                                 <p class="text-muted mb-2">${config.uang(lyn.services_rates)}</p>
+                                 <div class="d-flex align-items-center">
+                                    <p class="bg-warning text-white py-1 px-2 rounded small">NonAktif</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                  </div>
+                     `;
+                  })
+                  cardTapil.innerHTML = card;
+               } else {
+                  cardTapil.innerHTML = "<h6>Data Masih Kosong</h6>";
+               }
+            }
+         }
+         
+         if(e.dataset.buton == 'aktif') {
+            document.getElementById('staaktif').value = 'aktif';
+            e.classList.replace('bg-warning','bg-success');
+            e.nextElementSibling.classList.replace('bg-success','bg-warning');
+            // codeTetapis = 'THRHVDIS';
+            urlAk = `https://fisio.oktal.dev/api/api/list_service`;
+            var form = new FormData();
+            form.append("rapist_code", codeTetapis);
+            form.append("filter", "aktif");
+            datalayanan = await ambilData(form,urlAk);
+            jmlProd = datalayanan.result.length;
+            document.getElementById('jmlProdPil').innerHTML = `${jmlProd} Produk dipilih`;
+            if (datalayanan.status =='success') {
+               if (datalayanan.result.length > 0) {
+                  let card = '';
+                  datalayanan.result.map((lyn) => {
+
+            if (lyn.services_photo) {
+               imG = `<div><img src="https://fisio.oktal.dev/manage/assets/img/services_photo/${lyn.services_photo}" class="img-fluid"></div>`;
+            } else {
+               imG = `<div><img src="https://fisio.oktal.dev/manage/assets/img/logos/logo_mitra.png" class="img-fluid"></div>`;
+            }
+                     card += `
+            <div class="custom-control custom px-0 mb-1 position-relative border-custom">
+                  <div class="cart-items bg-white position-relative border-bottom">
+                      <div class="d-flex align-items-center p-3">
+
+                           <div class="custom-control custom-checkbox" style="margin-left: 5px;">
+                              <input type="checkbox" name="layananck" id="custom-checkbox${lyn.id}" ${ck} class="custom-control-input" value="${lyn.id}" ><label title="" type="checkbox" for="custom-checkbox${lyn.id}" class="custom-control-label small"></label>
+                          </div>
+                              
+                         ${imG}
+                         <div class="ml-3 text-dark text-decoration-none w-100">
+                            <h6 class="mb-1">${lyn.services_name}</h6>
+                            <p class="text-muted mb-2">${config.uang(lyn.services_rates)}</p>
+                            <div class="d-flex align-items-center">
+                              <p class="bg-primary text-white py-1 px-2 rounded small">Aktif</p>
+                            </div>
+                         </div>
+                      </div>
+                  </div>
+            </div> `;
+                  });
+                  cardTapil.innerHTML = card;
+               } else {
+                  cardTapil.innerHTML = "<h6>Data Masih Kosong</h6>";
+               }
+            }
+         }
+}
+
+function tutupModal() {
+   console.log(btn);
+   btn.classList.remove('hilang')
+   // alert('tutup');
+   // document.getElementsByClassName('theme-switch-wrapper')[0].add();
+}
+
+function myFunction() {
+   let x = document.getElementById("inputSearch").value.toLowerCase();
+   cardTam = document.getElementsByClassName("border-custom");
+
+   pil = [];
+   for(i=0;i < cardTam.length;i++){
+      h6 = cardTam[i].childNodes[1].getElementsByTagName('h6')[0];
+      txtValue = h6.innerText;
+      if (txtValue.toLowerCase().indexOf(x) > -1) {
+         pil.push(cardTam[i]);
+         cardTam[i].style.display = "";
+      } else {
+         cardTam[i].style.display = "none";
+      }
+   }
+   document.getElementById('jmlProdPil').innerHTML = `${pil.length} Produk`;
+}
+
+      </script>
+   </body>
+</html>

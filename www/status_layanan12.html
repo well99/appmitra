@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" type="image/png" href="img/logo.svg">
+      <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
+      <!-- Slick Slider -->
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick-theme.min.css"/>
+      <!-- Icofont Icon-->
+      <link href="assets/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap core CSS -->
+      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="assets/css/style.css" rel="stylesheet">
+      <!-- Sidebar CSS -->
+      <link href="assets/vendor/sidebar/demo.css" rel="stylesheet">
+      <style>
+        .hiddengem{
+            display: none;
+        }
+      </style>
+   </head>
+   <body class="fixed-bottom-padding">
+      <!-- home page -->
+      <div class="osahan-help">
+        <div class="p-3 border-bottom">
+           <div class="d-flex align-items-center">
+              <a class="font-weight-bold text-success text-decoration-none" href="pengaturan.html">
+              <i class="icofont-rounded-left back-page"></i></a>
+              <h6 class="font-weight-bold m-0 ml-3">Status Layanan Mitra</h6>
+           </div>
+        </div>
+     </div>
+
+      <div id="tambah_produk">
+        <div class="p-3 bg-white">
+
+            <form action="">
+            
+                <div class="form-group">
+                    <!-- <label for="kategori">Kategori</label> -->
+                    <!-- <select class="select form-control" id="statusMitra" style="border: 1px solid #cacdd0;" onchange="pilihStatus()">
+                        <option disabled value="" selected>Pilih Kategori</option>
+                        <option value="buka">Buka</option>
+                        <option value="tutup">Tutup</option>
+                        <option value="tutup sementara">Tutup Sementara</option>
+                    </select> -->
+                    <div class="filter">
+                        <div class="custom-control border-bottom px-0  custom-radio">
+                            <input type="radio" id="customRadio1" name="location" value="buka" class="custom-control-input" onclick="pilihStatus()">
+                            <label class="custom-control-label py-3 w-100 px-3" for="customRadio1">Buka</label>
+                        </div>
+                        <div class="custom-control border-bottom px-0  custom-radio">
+                            <input type="radio" id="customRadio2" name="location" value="tutup" onclick="pilihStatus()" class="custom-control-input">
+                            <label class="custom-control-label py-3 w-100 px-3" for="customRadio2">Tutup</label>
+                        </div>
+                        <div class="custom-control border-bottom px-0  custom-radio">
+                            <input type="radio" id="customRadio3" name="location" value="tutup_sementara" onclick="pilihStatus()" class="custom-control-input">
+                            <label class="custom-control-label py-3 w-100 px-3" for="customRadio3">Tutup Sementara</label>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="form-group" id="pilihTanggal" style="display: none;">
+            <!-- <div class="form-group"> -->
+                <label for="nama">Pilih Tanggal Tutup</label>
+                
+                        <div class="row">
+                            <!-- <input class="form-check-input" name="hari3" type="checkbox" value="hari3"  id="btn-check-outlined2">
+                            <input class="form-check-input" name="hari2" type="checkbox" value="hari2"  id="btn-check-outlined2">
+                            <input class="form-check-input" name="hari4" type="checkbox" value="hari4"  id="btn-check-outlined2"> -->
+
+                            <!-- <div class="col pl-0 pr-1 py-1"> -->
+                                <div class="custom-control custom-radio px-0 mb-3 position-relative border-custom-radio rounded text-center px-1 py-1 c-it">
+                                    <input type="checkbox" id="hari1" name="hari1" class="custom-control-input">
+                                    <label class="custom-control-label w-100" for="hari1">
+                                        <p class="m-0 pt-1 text-muted text-center">Senin</p>
+                                        <h6>12 Des</h6>
+                                    </label>
+                                </div>
+                                <div class="custom-control custom-radio px-0 mb-3 position-relative border-custom-radio rounded text-center px-1 py-1 c-it">
+                                    <input type="checkbox" id="hari2" name="hari2" class="custom-control-input">
+                                    <label class="custom-control-label w-100" for="hari2">
+                                        <p class="m-0 pt-1 text-muted text-center">Selasa</p>
+                                        <h6>13 Des</h6>
+                                    </label>
+                                </div>
+                                <div class="custom-control custom-radio px-0 mb-3 position-relative border-custom-radio rounded text-center px-1 py-1 c-it">
+                                    <input type="checkbox" id="hari3" name="hari3" class="custom-control-input">
+                                    <label class="custom-control-label w-100" for="hari3">
+                                        <p class="m-0 pt-1 text-muted text-center">Rabu</p>
+                                        <h6>14 Des</h6>
+                                    </label>
+                                </div>
+                                <div class="custom-control custom-radio px-0 mb-3 position-relative border-custom-radio rounded text-center px-1 py-1 c-it">
+                                    <input type="checkbox" id="hari4" name="hari4" class="custom-control-input">
+                                    <label class="custom-control-label w-100" for="hari4">
+                                        <p class="m-0 pt-1 text-muted text-center">Kamis</p>
+                                        <h6>15 Des</h6>
+                                    </label>
+                                </div>
+                                <div class="custom-control custom-radio px-0 mb-3 position-relative border-custom-radio rounded text-center px-1 py-1 c-it">
+                                    <input type="checkbox" id="hari5" name="hari5" class="custom-control-input">
+                                    <label class="custom-control-label w-100" for="hari5">
+                                        <p class="m-0 pt-1 text-muted text-center">Jum'at</p>
+                                        <h6>16 Des</h6>
+                                    </label>
+                                </div>
+                                <div class="custom-control custom-radio px-0 mb-3 position-relative border-custom-radio rounded text-center px-1 py-1 c-it">
+                                    <input type="checkbox" id="hari6" name="hari6" class="custom-control-input">
+                                    <label class="custom-control-label w-100" for="hari6">
+                                        <p class="m-0 pt-1 text-muted text-center">Sabtu</p>
+                                        <h6>17 Des</h6>
+                                    </label>
+                                </div>
+                                <div class="custom-control custom-radio px-0 mb-3 position-relative border-custom-radio rounded text-center px-1 py-1 c-it">
+                                    <input type="checkbox" id="hari7" name="hari7" class="custom-control-input">
+                                    <label class="custom-control-label w-100" for="hari7">
+                                        <p class="m-0 pt-1 text-muted text-center">Minggu</p>
+                                        <p>18 Des</p>
+                                    </label>
+                                </div>
+                            <!-- </div> -->
+                        
+                            <!-- <div class="col pl-0 pr-1 py-1">
+                                <div class="bg-white shadow-sm rounded text-center px-1 py-1 c-it form-check">
+                                        <input class="form-check-input" type="checkbox" value="hari2"  id="btn-check1" checked>
+                                        <label class="btn-outline-primary" for="btn-check1">
+                                            <p class="m-0 pt-1 text-muted text-center">Senin</p>
+                                            <h6>12 Des</h6>
+                                        </label>
+                                </div>
+                            </div> -->
+                            <!-- <div class="col pl-0 pr-1 py-1">
+                                <div class="bg-white shadow-sm rounded text-center px-1 py-1 c-it form-check">
+                                        <input class="form-check-input" type="checkbox" value="hari2"  id="btn-check1" checked>
+                                        <label class="btn-outline-primary" for="btn-check1">
+                                            <p class="m-0 pt-1 text-muted text-center">Senin</p>
+                                            <h6>12 Des</h6>
+                                        </label>
+                                </div>
+                            </div> -->
+                            <!-- <div class="col pl-0 pr-1 py-1">
+                                <div class="bg-white shadow-sm rounded text-center px-1 py-1 c-it form-check">
+                                    
+                                        <input class="form-check-input" type="checkbox" value="hari3" id="btn-check2">
+                                        <label class="btn-outline-primary" for="btn-check2">
+                                            <p class="m-0 pt-1 text-muted text-center">Selasa</p>
+                                            <h6>13 Des</h6>
+                                        </label>
+                                   
+                                </div>
+                             </div>
+                            <div class="col pl-0 pr-1 py-1">
+                                <div class="bg-white shadow-sm rounded text-center px-1 py-1 c-it form-check">
+                                    <input class="form-check-input" name="hari4" type="checkbox" value="hari4" id="btn-check-outlined3" checked>
+                                    <label class="btn-outline-primary" for="btn-check-outlined3">
+                                        <p class="m-0 pt-1 text-muted text-center">Rabu </p>
+                                        <h6>14 Des</h6>
+                                    </label>
+                                </div>
+                             </div>
+                            <div class="col pl-0 pr-1 py-1">
+                                <div class="bg-white shadow-sm rounded text-center px-1 py-1 c-it form-check">
+                                    <input class="form-check-input" name="hari5" type="checkbox" value="hari5" style="display:none" id="btn-check-outlined4">
+                                    <label class="btn-outline-primary" for="btn-check-outlined4">
+                                        <p class="m-0 pt-1 text-muted text-center">Kamis</p>
+                                        <h6>15 Des</h6>
+                                    </label>
+                                </div>
+                             </div>
+                            <div class="col pl-0 pr-1 py-1">
+                                <div class="bg-white shadow-sm rounded text-center px-1 py-1 c-it form-check">
+                                    <input class="form-check-input" name="hari6" type="checkbox" value="hari6" style="display:none" id="btn-check-outlined5">
+                                    <label class="btn-outline-primary" for="btn-check-outlined5">
+                                        <p class="m-0 pt-1 text-muted text-center">Jum'at</p>
+                                        <h6>16 Des</h6>
+                                    </label>
+                                </div>
+                             </div>
+                            <div class="col pl-0 pr-1 py-1">
+                                <div class="bg-white shadow-sm rounded text-center px-1 py-1 c-it form-check">
+                                    <input class="form-check-input" name="hari7" type="checkbox" value="hari7" style="display:none" id="flexCheckDefault6">
+                                    <label class="btn-outline-primary" for="btn-check-outlined6">
+                                        <p class="m-0 pt-1 text-muted text-center">Sabtu</p>
+                                        <h6>17 Des</h6>
+                                    </label>
+                                </div>
+                             </div> -->
+                        </div>
+
+            </div>
+               
+               <div class="text-center">
+                  <button type="submit" class="btn btn-primary btn-block btn-lg">Ubah layanan</button>
+               </div>
+            </form>
+
+        </div>
+     </div>
+
+      <!-- Bootstrap core JavaScript -->
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- slick Slider JS-->
+      <script type="assets/text/javascript" src="vendor/slick/slick.min.js"></script>
+      <!-- Sidebar JS-->
+      <script type="assets/text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="assets/js/osahan.js"></script>
+
+      <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    // alert("Ready!");
+    let label = [];
+    for (let i = 0; i < 7; i++) {
+        var date = new Date();
+        const el = date.setTime(date.getTime() + ([i] * 24 * 60 * 60 * 1000));
+        var d = new Date(el);
+        let mo = new Intl.DateTimeFormat('ind', { month: 'short' }).format(d);
+        let da = new Intl.DateTimeFormat('ind', { day: '2-digit' }).format(d);
+        
+        // const hr = d.toLocaleDateString();
+        // console.log(hr);
+        label.push(mo);;
+    }
+
+    console.log(label);
+}, false);
+
+
+    function pilihStatus() {
+        $("#pilihTanggal").removeAttr("style");
+        var getSelectedValue = document.querySelector('input[name="location"]:checked');
+
+        if(getSelectedValue.value == 'tutup_sementara') {   
+            $("#pilihTanggal").removeClass("hiddengem");
+        }
+
+        if(getSelectedValue.value == 'tutup') {   
+            $("#pilihTanggal").addClass("hiddengem");
+        }
+
+        if(getSelectedValue.value == 'buka') {   
+            $("#pilihTanggal").addClass("hiddengem");
+        }
+    }
+        // function pilihStatus() {
+        //     var staMIt = document.getElementById('statusMitra').value;
+        //     if (staMIt == 'tutup sementara') {
+        //         alert('hello');
+        //         $("#pilihTanggal").removeAttr("style");
+        //     }
+        // }
+      </script>
+   </body>
+</html>

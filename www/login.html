@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" type="image/png" href="img/logo.svg">
+      <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
+      <!-- Slick Slider -->
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick-theme.min.css"/>
+      <!-- Icofont Icon-->
+      <link href="assets/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap core CSS -->
+      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="assets/css/style.css" rel="stylesheet">
+      <link href="assets/css/mystyle.css" rel="stylesheet">
+      <!-- Sidebar CSS -->
+      <link href="assets/vendor/sidebar/demo.css" rel="stylesheet">
+   </head>
+   <body class="fixed-bottom-padding bg-white">
+      <div class="loading hilang" id="loading"></div>
+        <!-- <div class="switch-wrapper" style="bottom: 110px; position: fixed; z-index: 1111; width: 300px; margin-left: 10%;">
+        <button class="btn btn-danger btn-lg btn-block">Kelluar</button>
+        </div>
+
+        <div class="switch-wrapper" style="bottom: 70px; position: fixed; z-index: 1111; margin-left: 35%;">
+            <h6>version 6.6.6.6</h6>
+        </div> -->
+
+      <!-- home page -->
+      <div class="p-3 bg-white">
+
+        <div class="align-items-center text-center mt-5 mb-4">
+            <h2 class="my-0">Masuk</h2>
+        </div>
+
+        <!-- <p class="small">Sign in to Continue.</p> -->
+        <!-- <form action="pilih_area.html"> -->
+        <form method="post" id="formLogin" onsubmit="event.preventDefault(); formlogin()">
+           <div class="form-group">
+              <label for="inputEmail">E-mail</label>
+              <input placeholder="Email" type="email" name="username" class="form-control" id="inputEmail" aria-describedby="emailHelp" style="border: 1px solid #cacdd0;">
+           </div>
+           <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input placeholder="Password" type="password" name="password" class="form-control" id="exampleInputPassword1" style="border: 1px solid #cacdd0;">
+                <label class="form-label">
+                    <!-- <a href="" class="ml-auto small">Lupa password ?</a> -->
+                </label>
+           </div>
+           <button type="submit" class="btn btn-success btn-lg rounded btn-block">Masuk</button>
+        </form>
+        <p class="text-muted text-center small m-0 py-3">Belum Punya Akun ? <span class="osahan-card font-weight-bold" onclick="btnDaftar()">Daftar</span></p>
+        
+     </div>
+
+      <!-- Footer -->
+      
+      <!-- Bootstrap core JavaScript -->
+      <script src="cordova.js"></script>
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- slick Slider JS-->
+      <script type="assets/text/javascript" src="vendor/slick/slick.min.js"></script>
+      <!-- Sidebar JS-->
+      <script type="assets/text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="assets/js/osahan.js"></script>
+
+      <script>
+// document.addEventListener("backbutton", onBackKeyDown, false);
+// var countPress = 0;
+// function onBackKeyDown(e) {
+//    countPress += 1;
+//    if (countPress == 1) {
+//       alert ('Tekan 1 kali lagi untuk keluar aplikasi');
+//    } else if (countPress == 2) {
+//       alert('Anda yakin ingin keluar dari Aplikasi');
+//       avigator.app.exitApp();
+//    } else {
+//       return false;
+//    }
+
+//    console.log('back button pressed');
+// }
+
+function btnDaftar() {
+    window.location.href = 'pilih_area.html';
+}
+
+async function formlogin() {
+document.getElementById('loading').classList.remove('hilang');
+username = document.getElementById('inputEmail').value;
+password = document.getElementById('exampleInputPassword1').value;
+
+// var myHeaders = new Headers();
+// myHeaders.append("Cookie", "ci_session=uu4juoo1f2raen21dhctrf0ui0p863o4");
+var formdata = new FormData();
+formdata.append("email", username);
+formdata.append("password", password);
+urlLogin = `https://fisio.oktal.dev/api/api/login_mitra`;
+
+dataLogin = await ambilData(formdata,urlLogin);
+console.log(dataLogin);
+if (dataLogin.status == 'success') {
+      localStorage.setItem('code_mitra',dataLogin.result[0].code_therapist);
+      let agent = navigator.userAgent;
+      idMitra = dataLogin.result[0].id;
+      nameMitra = dataLogin.result[0].name;
+
+      var form = new FormData();
+      form.append("id_mitra", idMitra);
+      form.append("name_therapist", nameMitra);
+      form.append("type_hp", agent);
+      url = `https://fisio.oktal.dev/api/api/log_login`;
+      addLog = await ambilData(form,url);
+      document.getElementById('loading').classList.add('hilang');
+      // console.log(addLog);
+      window.location.href = "index.html"
+}
+
+if (dataLogin.status == 'failed') {
+      alert('Email dan Password salah');
+      document.getElementById('loading').classList.add('hilang');
+}
+
+   // $("#formLogin").submit( function () {
+   //    preventDefault();
+   //    // alert('coba');
+   //    kirim = $(this).serialize();
+   //    console.log(kirim);
+      // $.ajax({ 
+      //    type: "POST",
+      //    data : $(this).serialize(),
+      //    url : 'https://fisio.oktal.dev/api/login_mitra',
+      //    success: function(data){
+      //       console.log(data);
+      //    }
+      // })
+   // })
+}
+
+function ambilData(form,url) {
+   var requestOptions = {
+      method: 'POST',
+      body: form,
+      redirect: 'follow'
+   };
+return fetch(url, requestOptions)
+         .then(response => response.json())
+         .then(result => result)
+         .catch(error => error);
+}
+
+
+      </script>
+   </body>
+</html>

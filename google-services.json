@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "655647930443",
+    "project_id": "fisio-mitra",
+    "storage_bucket": "fisio-mitra.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:655647930443:android:175d3fe2b820cc756ff5ce",
+        "android_client_info": {
+          "package_name": "com.mitra.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "655647930443-rbckqvapvcrjvqk2mumq6birsc5u3tj3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSTLbIu_s9pEK3_3Kt809AlvNR8HFNJ-c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "655647930443-rbckqvapvcrjvqk2mumq6birsc5u3tj3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

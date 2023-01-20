@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" type="image/png" href="img/logo.svg">
+      <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
+      <!-- Slick Slider -->
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick-theme.min.css"/>
+      <!-- Icofont Icon-->
+      <link href="assets/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap core CSS -->
+      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="assets/css/style.css" rel="stylesheet">
+      <link href="assets/css/mystyle.css" rel="stylesheet">
+      <!-- Sidebar CSS -->
+      <link href="assets/vendor/sidebar/demo.css" rel="stylesheet">
+   </head>
+   <body class="fixed-bottom-padding">
+      <div class="loading" id="loading"></div>
+      <!-- home page -->
+      <div class="osahan-home-page">
+         <div class="p-3">
+            <div class="title d-flex align-items-center">
+                <a class="font-weight-bold text-success text-decoration-none" href="index.html">
+                <i class="icofont-rounded-left back-page"></i></a>
+                <h4 class="font-weight-bold m-0 ml-3">Pemberitahuan</h4>
+            </div>
+        </div>
+         <!-- body -->
+         <div class="osahan-body" style="margin-top: -20px;">
+
+            <div class="p-3" style="margin-top: -15px;">
+                <div class="custom-control custom-radio px-0 mb-1 position-relative border-custom-radio" id="tampilan">
+                    <div class="cart-items bg-white position-relative border-bottom mb-2">
+                        <h6 class="ml-2 mt-2 pt-2 pl-2">Belum dibaca</h6>
+                        <div id="cardBelumBaca"></div>
+                        <!-- <div class="osahan-notifications bg-white" style="margin-top: -10px;">
+                            <div class="position-absolute ml-1 py-3"><i class="icofont-info pl-2 p-1"></i></div>
+
+                               <div class="notifiction p-3 ml-3">
+                                  <p class="small m-0"> 12 Des</p>
+                                   <p class="font-weight-bold mb-1">Pesanan baru masuk</p>
+                                   <p class="small m-0"> Pesanan baru masuk dengan kode YYMMDD-123456. Silahkan konfirmasi sebelum pukul 18.00 WIB untuk menghindari penolakan. <a href="">
+                                    <span class="osahan-card font-weight-bold">Konfirmasi pesanan</span>
+                                   </a>
+                                   </p>
+                               </div>
+                        </div> -->
+                     </div>
+
+                    <div class="cart-items bg-white position-relative border-bottom mb-2">
+                        <h6 class="ml-2 mt-2 pt-2 pl-2">Sudah dibaca</h6>
+                        <div id="cardBaca"></div>
+                        <!-- <div class="osahan-notifications bg-white" style="margin-top: -10px;">
+                            <div class="position-absolute ml-1 py-3"><i class="icofont-info pl-2 p-1"></i></div>
+
+                               <div class="notifiction p-3 ml-3">
+                                  <p class="small m-0"> 11 Des</p>
+                                   <p class="font-weight-bold mb-1">Pesanan Selesai</p>
+                                   <p class="small m-0"> Pesanan dengan kode order YYMMDD-123456 telah selesai</p>
+                               </div>
+
+                        </div> -->
+                    </div>
+                </div>
+                
+            </div>
+
+         </div>
+      </div>
+      <!-- Footer -->
+      <div class="osahan-menu-fotter fixed-bottom bg-white text-center border-top">
+         <div class="row m-0">
+            <a href="index.html" class="text-dark small col font-weight-bold text-decoration-none p-2 selected">
+               <p class="h5 m-0"><i class="text-success icofont-home"></i></p>
+               Home
+            </a>
+            <a href="pesanan_baru.html" class="text-muted col small text-decoration-none p-2">
+               <p class="h5 m-0"><i class="icofont-cart"></i></p>
+               Pesanan
+            </a>
+            <a href="layanan.html" class="text-muted col small text-decoration-none p-2">
+               <p class="h5 m-0"><i class="icofont-list"></i></p>
+               Layanan
+            </a>
+            <a href="pengaturan.html" class="text-muted small col text-decoration-none p-2">
+               <p class="h5 m-0"><i class="icofont-user"></i></p>
+               Pengaturan
+            </a>
+         </div>
+      </div>
+      
+      <!-- Bootstrap core JavaScript -->
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- slick Slider JS-->
+      <script type="assets/text/javascript" src="vendor/slick/slick.min.js"></script>
+      <!-- Sidebar JS-->
+      <script type="assets/text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="assets/js/osahan.js"></script>
+
+      <script>
+const codeTetapis = localStorage.getItem('code_mitra');
+document.addEventListener('DOMContentLoaded', async function() {
+   url = `https://fisio.oktal.dev/api/api/notif`;
+   var form = new FormData();
+   form.append("code_mitra", codeTetapis);
+   form.append("user_type", "mitra");
+   dataNotif = await ambilData(form,url);
+   // console.log(dataNotif);
+   document.getElementById('loading').classList.add('hilang');
+   const Tampilan = document.getElementById('tampilan');
+   if (dataNotif.status == 'success') {
+      if (dataNotif.result.length > 0) {
+         // let card = ''
+         let baca = ''
+         let belumBaca = ''
+         dataNotif.result.map((dnt) => {
+            if (dnt.see == 0) {
+               belumBaca += `
+                        <div class="osahan-notifications bg-white" style="margin-top: -10px;" onclick="tandai(${dnt.id})">
+                            <div class="position-absolute ml-1 py-3"><i class="icofont-info pl-2 p-1"></i></div>
+                               <div class="notifiction p-3 ml-3">
+                                  <p class="small m-0">${dnt.notification_date}</p>
+                                   <p class="font-weight-bold mb-1">${dnt.description}</p>
+                                   <p class="small m-0"> ${dnt.title}</p>
+                               </div>
+                        </div>`;
+            } else {
+               belumBaca += '';
+            }
+
+            if (dnt.see == 1) {
+               baca += `
+                        <div class="osahan-notifications bg-white" style="margin-top: -10px;">
+                            <div class="position-absolute ml-1 py-3"><i class="icofont-info pl-2 p-1"></i></div>
+                               <div class="notifiction p-3 ml-3">
+                                  <p class="small m-0"> ${dnt.notification_date}</p>
+                                   <p class="font-weight-bold mb-1">${dnt.description}</p>
+                                   <p class="small m-0"> ${dnt.title}</p>
+                               </div>
+
+                        </div>`;
+            } else {
+               baca += '';
+            }
+
+            // card += `
+            //       <div class="cart-items bg-white position-relative border-bottom mb-2">
+            //             <h6 class="ml-2 mt-2 pt-2 pl-2">Belum dibaca</h6>
+            //       ${belumBaca}
+            //       </div>
+
+            //       <div class="cart-items bg-white position-relative border-bottom mb-2">
+            //             <h6 class="ml-2 mt-2 pt-2 pl-2">Sudah dibaca</h6>
+            //       ${baca}
+            //       </div>
+            // `;
+         })
+         document.getElementById('cardBaca').innerHTML = baca;
+         document.getElementById('cardBelumBaca').innerHTML = belumBaca;
+         // Tampilan.innerHTML = card;
+      } else {
+         Tampilan.innerHTML = "<h6>Data Masih Kosong</h6>";
+      }
+   }
+
+}, false)
+
+function ambilData(form,url) {
+var requestOptions = {
+      method: 'POST',
+      body: form,
+      redirect: 'follow'
+   };
+return fetch(url, requestOptions)
+         .then(response => response.json())
+         .then(result => result)
+         .catch(error => error);
+}
+
+async function tandai(id) {
+   var form = new FormData();
+   form.append("id_notification", id);
+   url = `https://fisio.oktal.dev/api/customer/baca_notification`;
+
+   bacaNotif = await ambilData(form,url);
+   if (bacaNotif.status == 'success') {
+      location.reload();
+   }
+}
+
+      </script>
+   </body>
+</html>

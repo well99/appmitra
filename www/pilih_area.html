@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" type="image/png" href="img/logo.svg">
+      <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
+      <!-- Slick Slider -->
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick-theme.min.css"/>
+      <!-- Icofont Icon-->
+      <link href="assets/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap core CSS -->
+      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="assets/css/style.css" rel="stylesheet">
+      <link href="assets/css/mystyle.css" rel="stylesheet">
+      <!-- Sidebar CSS -->
+      <link href="assets/vendor/sidebar/demo.css" rel="stylesheet">
+   </head>
+   <body class="fixed-bottom-padding bg-white">
+      <div class="loading" id="loading"></div>
+      <!-- home page -->
+      <div class="p-3 bg-white">
+
+        <div class="align-items-center mt-5 mb-4">
+            <h3 class="my-0">Pilih Area Layanan</h3>
+            <p>Pastikan area layananmu ada di daftar untuk jadi Mitra Fisio Homecare</p>
+        </div>
+
+        <!-- <p class="small">Sign in to Continue.</p> -->
+        <!-- <form action="lokasi_sekarang.html"> -->
+        <form onsubmit="event.preventDefault(); formArea()">
+           <div class="form-group">
+            <select class="select form-control" style="border: 1px solid #cacdd0;" id="selectArea" required>
+            </select>
+           </div>
+           
+           <button type="submit" class="btn btn-success btn-lg rounded btn-block">Selanjutnya</button>
+        </form>
+        <p class="text-muted text-center small m-0 py-3">Sudah Punya Akun ? <span class="osahan-card font-weight-bold" onclick="btnMasuk()">Masuk</span></p>
+        
+     </div>
+
+      <!-- Footer -->
+      
+      <!-- Bootstrap core JavaScript -->
+      <script src="cordova.js"></script>
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- slick Slider JS-->
+      <script type="assets/text/javascript" src="vendor/slick/slick.min.js"></script>
+      <!-- Sidebar JS-->
+      <script type="assets/text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="assets/js/osahan.js"></script>
+
+      <script>
+
+document.addEventListener('DOMContentLoaded', async function() {
+   url = `https://fisio.oktal.dev/api/api/area_service`;
+   var form = new FormData();
+   dataArea = await ambilData(form,url);
+   document.getElementById('loading').classList.add('hilang');
+   console.log(dataArea);
+   let card = '<option disabled value="" selected>Pilih Arena Layanan</option>';
+   optionSelect = document.getElementById('selectArea');
+   dataArea.result.map((da) => {
+      card += `
+      <option value="${da.id}">${da.name_area}</option>
+      `;
+   })
+   optionSelect.innerHTML = card;
+}, false);
+
+function ambilData(form,url) {
+   var requestOptions = {
+      method: 'POST',
+      body: form,
+      redirect: 'follow'
+   };
+return fetch(url, requestOptions)
+         .then(response => response.json())
+         .then(result => result)
+         .catch(error => error);
+}
+
+function btnMasuk() {
+    window.location.href = 'login.html';
+}
+
+function formArea() {
+
+area = document.getElementById('selectArea').value;
+   // var formdata = new FormData();
+   // formdata.append("area", username);
+   // localStorage.setItem('area', area);
+
+   // window.location.href = "lokasi_sekarang.html"
+   window.location.href = "daftar.html"
+}
+
+      </script>
+
+   </body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" type="image/png" href="img/logo.svg">
+      <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
+      <!-- Slick Slider -->
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick-theme.min.css"/>
+      <!-- Icofont Icon-->
+      <link href="assets/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap core CSS -->
+      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="assets/css/style.css" rel="stylesheet">
+      <link href="assets/css/mystyle.css" rel="stylesheet">
+      <!-- Sidebar CSS -->
+      <link href="assets/vendor/sidebar/demo.css" rel="stylesheet">
+   </head>
+   <body class="fixed-bottom-padding">
+    <div class="loading" id="loading"></div>
+      <!-- home page -->
+      <div class="osahan-home-page">
+         <div class="p-3">
+            <div class="title d-flex align-items-center">
+                <a class="font-weight-bold text-success text-decoration-none" href="index.html">
+                <i class="icofont-rounded-left back-page"></i></a>
+                <h4 class="font-weight-bold m-0 ml-3">Riwayat Transaksi</h4>
+            </div>
+        </div>
+         <!-- body -->
+         <div class="osahan-body" style="margin-top: -20px;">
+            
+            <div class="row m-0 text-center p-2">
+                <!-- <div class="d-flex align-center mb-3"> -->
+                    <div class="col-4 pl-2 pr-2 p-1 staBar" onclick="bageAktif(this)" data-val="semua" >
+                        <!-- <a href="riwayat.html"> -->
+                            <p class="bg-warning text-white py-2 px-2 rounded ">Semua</p>
+                        <!-- </a> -->
+                    </div>
+                    <div class="col-4 pl-2 pr-2 p-1 staBar" onclick="bageAktif(this)" data-val="input">
+                        <!-- <a href="ri_penghasilan.html"> -->
+                            <p class="bg-warning text-white py-2 px-2 rounded ">Penghasilan</p>
+                        <!-- </a> -->
+                    </div>
+                    <div class="col-4 pl-2 pr-2 p-1 staBar" onclick="bageAktif(this)" data-val="output">
+                        <!-- <a href="ri_penarikan.html"> -->
+                            <p class="bg-warning text-white py-2 px-2 rounded ">Penarikan</p>
+                        <!-- </a> -->
+                    </div>
+                <!-- </div> -->
+            </div>
+
+            <div class="p-3" style="margin-top: -15px;">
+                <div class="custom-control custom-radio px-0 mb-1 position-relative border-custom-radio" id="tampilan">
+                    <!-- <div class="cart-items bg-white position-relative border-bottom mb-2">
+
+                        <div class="osahan-notifications bg-white">
+                            <div class="position-absolute ml-1 py-4"><i class="icofont-credit-card pl-2 p-1"></i></div>
+
+                               <div class="notifiction p-4 ml-3">
+                                   <p class="font-weight-bold mb-1">Pembayaran</p>
+                                   <p class="small m-0"> Today, 05:14 AM</p>
+                                   <p class="font-weight-bold mt-1 mb-1">Rp 120.000</p>
+                                   <p class="small m-0"> Pembayaran dengan kode YYMMDD-123456 diterima</p>
+                               </div>
+
+                        </div>
+
+                    </div> -->
+
+                </div>
+                
+            </div>
+
+         </div>
+      </div>
+      <!-- Footer -->
+      <div class="osahan-menu-fotter fixed-bottom bg-white text-center border-top">
+         <div class="row m-0">
+            <a href="index.html" class="text-dark small col font-weight-bold text-decoration-none p-2 selected">
+               <p class="h5 m-0"><i class="text-success icofont-home"></i></p>
+               Home
+            </a>
+            <a href="pesanan_baru.html" class="text-muted col small text-decoration-none p-2">
+               <p class="h5 m-0"><i class="icofont-cart"></i></p>
+               Pesanan
+            </a>
+            <a href="layanan.html" class="text-muted col small text-decoration-none p-2">
+               <p class="h5 m-0"><i class="icofont-list"></i></p>
+               Layanan
+            </a>
+            <a href="pengaturan.html" class="text-muted small col text-decoration-none p-2">
+               <p class="h5 m-0"><i class="icofont-user"></i></p>
+               Pengaturan
+            </a>
+         </div>
+      </div>
+      
+      <!-- Bootstrap core JavaScript -->
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- slick Slider JS-->
+      <script type="assets/text/javascript" src="vendor/slick/slick.min.js"></script>
+      <!-- Sidebar JS-->
+      <script type="assets/text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="assets/js/osahan.js"></script>
+      <script src="assets/js/main.js"></script>
+
+<script>
+const codeTetapis = localStorage.getItem('code_mitra');
+statusBar = document.querySelectorAll('.staBar');
+document.addEventListener('DOMContentLoaded', async function() {
+var form = new FormData();
+   form.append("mitra_code", codeTetapis);
+   form.append("page", 0);
+   url = `https://fisio.oktal.dev/api/api/balance_history`;
+
+   data = await ambilData(form,url);
+   console.log(data);
+   cardTampilan = document.getElementById('tampilan');
+   if (data.status == 'success') {
+    document.getElementById('loading').classList.add('hilang');
+    dataOutput = [];
+    dataInput = [];
+    if (data.result.length > 0) {
+        let card = '';
+        data.result.map((dr) => {
+            if (dr.type == 'incoming') {
+                sta = 'pembayaran';
+                icon = 'icofont-credit-card';
+                dataInput.push(dr);
+            }
+            if (dr.type == 'out') {
+                sta = 'penarikan';
+                icon = 'icofont-address-book'
+                dataOutput.push(dr);
+            }
+            
+            card += `
+                    <div class="cart-items bg-white position-relative border-bottom mb-2">
+                        <div class="osahan-notifications bg-white">
+                            <div class="position-absolute ml-1 py-4"><i class="${icon} pl-2 p-1"></i></div>
+                               <div class="notifiction p-4 ml-3">
+                                   <p class="font-weight-bold mb-1">${sta}</p>
+                                   <p class="small m-0"> ${dr.date}</p>
+                                   <p class="font-weight-bold mt-1 mb-1">${config.uang(dr.nominal)}</p>
+                                   <p class="small m-0"> ${sta} saldo sebesar ${config.uang(dr.nominal)}</p>
+                               </div>
+                        </div>
+                    </div>
+            `;
+        })
+        cardTampilan.innerHTML = card;
+    } else {
+        cardTampilan.innerHTML = "<h6>Data Masih Kosong</h6>";
+    }
+    
+   }
+   statusBar[0].getElementsByTagName('p')[0].classList.replace('bg-warning','bg-success');
+// console.log(data);
+console.log(dataOutput);
+}, false);
+
+function ambilData(form,url) {
+var requestOptions = {
+      method: 'POST',
+      body: form,
+      redirect: 'follow'
+   };
+return fetch(url, requestOptions)
+         .then(response => response.json())
+         .then(result => result)
+         .catch(error => error);
+}
+
+ function bageAktif(e) {
+    // console.log(e);
+    cardTampilan = document.getElementById('tampilan');
+    // statusBar = document.querySelectorAll('.staBar');
+    // console.log(statusBar);
+        if (e.dataset.val == 'semua') {
+            elmP = e.getElementsByTagName('p')[0];
+            console.log(elmP);
+            for (let i = 0; i < statusBar.length; i++) {
+                sb = statusBar[i].getElementsByTagName('p')[0];
+                if (statusBar[i].dataset.val == 'semua') {
+                    elmP.classList.replace('bg-warning','bg-success');
+                } else {
+                    statusBar[i].getElementsByTagName('p')[0].classList.replace('bg-success','bg-warning');
+                }
+            }
+            // e.childNodes.classList.replace('bg-warning','bg-success');
+            // console.log(data);
+            if (data.result.length > 0) {
+            let card = '';
+            data.result.map((dr) => {
+                if (dr.type == 'incoming') {
+                    sta = 'pembayaran';
+                    icon = 'icofont-credit-card';
+                }
+                if (dr.type == 'out') {
+                    sta = 'penarikan';
+                    icon = 'icofont-address-book'
+                }
+                
+                card += `
+                        <div class="cart-items bg-white position-relative border-bottom mb-2">
+                            <div class="osahan-notifications bg-white">
+                                <div class="position-absolute ml-1 py-4"><i class="${icon} pl-2 p-1"></i></div>
+                                   <div class="notifiction p-4 ml-3">
+                                       <p class="font-weight-bold mb-1">${sta}</p>
+                                       <p class="small m-0"> ${dr.date}</p>
+                                       <p class="font-weight-bold mt-1 mb-1">${config.uang(dr.nominal)}</p>
+                                       <p class="small m-0"> ${sta} saldo sebesar ${config.uang(dr.nominal)}</p>
+                                   </div>
+                            </div>
+                        </div>
+                `;
+            })
+                cardTampilan.innerHTML = card;
+            }
+        }
+    
+        if (e.dataset.val == 'input') {
+            // e.childNodes.classList.replace('bg-warning','bg-success');
+            elmP = e.getElementsByTagName('p')[0];
+            for (let i = 0; i < statusBar.length; i++) {
+                sb = statusBar[i].getElementsByTagName('p')[0];
+                if (statusBar[i].dataset.val == 'input') {
+                    elmP.classList.replace('bg-warning','bg-success');
+                } else {
+                    statusBar[i].getElementsByTagName('p')[0].classList.replace('bg-success','bg-warning');
+                }
+            }
+    
+            if (dataInput.length > 0) {
+            let card = '';
+            dataInput.map((dr) => {
+                if (dr.type == 'incoming') {
+                    sta = 'pembayaran';
+                    icon = 'icofont-credit-card';
+                    card += `
+                            <div class="cart-items bg-white position-relative border-bottom mb-2">
+                                <div class="osahan-notifications bg-white">
+                                    <div class="position-absolute ml-1 py-4"><i class="${icon} pl-2 p-1"></i></div>
+                                       <div class="notifiction p-4 ml-3">
+                                           <p class="font-weight-bold mb-1">${sta}</p>
+                                           <p class="small m-0"> ${dr.date}</p>
+                                           <p class="font-weight-bold mt-1 mb-1">${config.uang(dr.nominal)}</p>
+                                           <p class="small m-0"> ${sta} saldo sebesar ${config.uang(dr.nominal)}</p>
+                                       </div>
+                                </div>
+                            </div>
+                    `;
+                }
+            })
+                cardTampilan.innerHTML = card;
+            } else {
+                cardTampilan.innerHTML = "<h6>Data Masih Kosong</h6>";
+            }
+        }
+    
+        if (e.dataset.val == 'output') {
+            // e.childNodes.classList.replace('bg-warning','bg-success');
+            elmP = e.getElementsByTagName('p')[0];
+            for (let i = 0; i < statusBar.length; i++) {
+                sb = statusBar[i].getElementsByTagName('p')[0];
+                if (statusBar[i].dataset.val == 'output') {
+                    elmP.classList.replace('bg-warning','bg-success');
+                } else {
+                    statusBar[i].getElementsByTagName('p')[0].classList.replace('bg-success','bg-warning');
+                }
+            }
+    
+            if (dataOutput.length > 0) {
+            let card = '';
+            dataOutput.map((dr) => {
+                if (dr.type == 'out') {
+                    sta = 'penarikan';
+                    icon = 'icofont-address-book';
+                    card += `
+                            <div class="cart-items bg-white position-relative border-bottom mb-2">
+                                <div class="osahan-notifications bg-white">
+                                    <div class="position-absolute ml-1 py-4"><i class="${icon} pl-2 p-1"></i></div>
+                                       <div class="notifiction p-4 ml-3">
+                                           <p class="font-weight-bold mb-1">${sta}</p>
+                                           <p class="small m-0"> ${dr.date}</p>
+                                           <p class="font-weight-bold mt-1 mb-1">${config.uang(dr.nominal)}</p>
+                                           <p class="small m-0"> ${sta} saldo sebesar ${config.uang(dr.nominal)}</p>
+                                       </div>
+                                </div>
+                            </div>
+                    `;
+                }
+            })
+                cardTampilan.innerHTML = card;
+            } else {
+                cardTampilan.innerHTML = "<h6>Data Masih Kosong</h6>";
+            }
+        }
+
+ }
+</script>
+
+   </body>
+</html>

@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" type="image/png" href="img/logo.svg">
+      <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
+      <!-- Slick Slider -->
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick-theme.min.css"/>
+      <!-- Icofont Icon-->
+      <link href="assets/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap core CSS -->
+      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="assets/css/style.css" rel="stylesheet">
+      <link href="assets/css/mystyle.css" rel="stylesheet">
+      <!-- Sidebar CSS -->
+      <link href="assets/vendor/sidebar/demo.css" rel="stylesheet">
+      <style>
+        .hiddengem{
+            display: none;
+        }
+      </style>
+   </head>
+   <body class="fixed-bottom-padding">
+    <div class="loading" id="loading"></div>
+      <!-- home page -->
+      <div class="osahan-help">
+        <div class="p-3 border-bottom">
+           <div class="d-flex align-items-center">
+              <a class="font-weight-bold text-success text-decoration-none" href="pengaturan.html">
+              <i class="icofont-rounded-left back-page"></i></a>
+              <h6 class="font-weight-bold m-0 ml-3">Jam Operasional Mitra</h6>
+           </div>
+        </div>
+     </div>
+
+        <div class="p-3 bg-white" id="cardJadwal">
+            <!-- <div class="row">
+                <div class="col-12 mb-1">
+                      <div class="list-card h-100 rounded overflow-hidden position-relative">
+                          <div class="d-flex align-items-center">
+                              <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" id="custom-checkbox1" class="custom-control-input" onclick="btncentang()"><label type="checkbox" for="custom-checkbox1" class="custom-control-label small"></label>
+                                  <input type="checkbox" id="myCheckbox" data-cek="1" class="custom-control-input ckbox" ><label type="checkbox" for="myCheckbox" class="custom-control-label small"></label>
+                              </div>
+                              <p class="m-1">Buka</p>
+                              <div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mt-2 ml-4">
+                            <h6>Senin</h6>
+                        </div>
+                        <div class="d-flex align-items-center ketKolom1" style="margin-top: -10px;">
+                            <div class="d-flex align-items-center mt-2 ml-4">
+                                <p id="tulisanTutup1" class="hiddengem">Tutup</p>
+                            </div>
+                            <div class="row col-12 mt-1" id="inputJam1" style="margin-left: -30px;">
+                                <div class="col-6">
+                                   <div class="form-group">
+                                      <label for="buka">Jam Buka</label>
+                                      <input type="time" id="bukaSenin" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                 
+                                <div class="col-6">
+                                   <div class="form-group">
+                                      <label for="tutup">Jam Tutup</label>
+                                      <input type="time" id="tutupSenin" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+             </div> -->
+
+            <!-- <div class="row">
+                <div class="col-12 mb-3">
+                      <div class="list-card h-100 rounded overflow-hidden position-relative">
+                          <div class="d-flex align-items-center">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" id="custom-checkbox2" data-cek="2" class="custom-control-input ckbox" checked><label type="checkbox" for="custom-checkbox2" class="custom-control-label small"></label>
+                            </div>
+                              <p class="m-1">Buka</p>
+                              <div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mt-2 ml-4">
+                            <h6>Selasa</h6>
+                        </div>
+                        <div class="d-flex align-items-center ketKolom" style="margin-top: -10px;">
+                            <div class="d-flex align-items-center mt-2 ml-4">
+                                <p data-hari="selasa" id="tulisanTutup2" class="hiddengem">Tutup</p>
+                            </div>
+                            <div class="row col-12 mt-1" id="inputJam2" style="margin-left: -30px;">
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="buka">Jam Buka</label>
+                                      <input type="time" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                 
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="tutup">Jam Tutup</label>
+                                      <input type="time" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 mb-3">
+                      <div class="list-card h-100 rounded overflow-hidden position-relative">
+                          <div class="d-flex align-items-center">
+                              <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" id="custom-checkbox3" data-cek="3" class="custom-control-input ckbox" checked><label type="checkbox" for="custom-checkbox3" class="custom-control-label small"></label>
+                              </div>
+                              <p class="m-1">Buka</p>
+                              <div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mt-2 ml-4">
+                            <h6>Rabu</h6>
+                        </div>
+                        <div class="d-flex align-items-center" style="margin-top: -10px;">
+                            <div class="d-flex align-items-center mt-2 ml-4">
+                                <p data-hari="rabu" id="tulisanTutup3" class="hiddengem">Tutup</p>
+                            </div>
+                            <div class="row col-12 mt-1" id="inputJam3" style="margin-left: -30px;">
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="buka">Jam Buka</label>
+                                      <input type="time" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                 
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="tutup">Jam Tutup</label>
+                                      <input type="time" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 mb-3">
+                      <div class="list-card h-100 rounded overflow-hidden position-relative">
+                          <div class="d-flex align-items-center">
+                              <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" id="custom-checkbox4" data-cek="4" class="custom-control-input ckbox" checked><label type="checkbox" for="custom-checkbox4" class="custom-control-label small"></label>
+                              </div>
+                              <p class="m-1">Buka</p>
+                              <div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mt-2 ml-4">
+                            <h6>Kamis</h6>
+                        </div>
+                        <div class="d-flex align-items-center" style="margin-top: -10px;">
+                            <div class="d-flex align-items-center mt-2 ml-4">
+                                <p data-hari="kamis" id="tulisanTutup4" class="hiddengem">Tutup</p>
+                            </div>
+                            <div class="row col-12 mt-1" id="inputJam4" style="margin-left: -30px;">
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="buka">Jam Buka</label>
+                                      <input type="time" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                 
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="tutup">Jam Tutup</label>
+                                      <input type="time" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 mb-3">
+                      <div class="list-card h-100 rounded overflow-hidden position-relative">
+                          <div class="d-flex align-items-center">
+                              <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" id="custom-checkbox5" data-cek="5" class="custom-control-input ckbox" checked><label type="checkbox" for="custom-checkbox5" class="custom-control-label small"></label>
+                              </div>
+                              <p class="m-1">Buka</p>
+                              <div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mt-2 ml-4">
+                            <h6>Jum'at</h6>
+                        </div>
+                        <div class="d-flex align-items-center" style="margin-top: -10px;">
+                            <div class="d-flex align-items-center mt-2 ml-4">
+                                <p data-hari="jumat" id="tulisanTutup5" class="hiddengem">Tutup</p>
+                            </div>
+                            <div class="row col-12 mt-1" id="inputJam5" style="margin-left: -30px;">
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="buka">Jam Buka</label>
+                                      <input type="time" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                 
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="tutup">Jam Tutup</label>
+                                      <input type="time" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 mb-3">
+                      <div class="list-card h-100 rounded overflow-hidden position-relative">
+                          <div class="d-flex align-items-center">
+                              <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" id="custom-checkbox6" data-cek="6" class="custom-control-input ckbox"><label type="checkbox" for="custom-checkbox6" class="custom-control-label small"></label>
+                              </div>
+                              <p class="m-1">Buka</p>
+                              <div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mt-2 ml-4">
+                            <h6>Sabtu</h6>
+                        </div>
+                        <div class="d-flex align-items-center" style="margin-top: -10px;">
+                            <div class="d-flex align-items-center mt-2 ml-4">
+                                <p data-hari="sabtu" id="tulisanTutup6" class="hiddengem">Tutup</p>
+                            </div>
+                            <div class="row col-12 mt-1" id="inputJam6" style="margin-left: -30px;">
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="buka">Jam Buka</label>
+                                      <input type="time" id="bukaSabtu" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                 
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="tutup">Jam Tutup</label>
+                                      <input type="time" id="tutupSabtu" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 mb-3">
+                      <div class="list-card h-100 rounded overflow-hidden position-relative">
+                          <div class="d-flex align-items-center">
+                              <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" id="custom-checkbox7" data-cek="7" class="custom-control-input ckbox"><label type="checkbox" for="custom-checkbox7" class="custom-control-label small"></label>
+                              </div>
+                              <p class="m-1">Buka</p>
+                              <div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mt-2 ml-4">
+                            <h6>Minggu</h6>
+                        </div>
+                        <div class="d-flex align-items-center" style="margin-top: -10px;">
+                            <div class="d-flex align-items-center mt-2 ml-4">
+                                <p data-hari="minggu" id="tulisanTutup7" class="hiddengem">Tutup</p>
+                            </div>
+                            <div class="row col-12 mt-1" id="inputJam7" style="margin-left: -30px;">
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="buka">Jam Buka</label>
+                                      <input type="time" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                 
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="tutup">Jam Tutup</label>
+                                      <input type="time" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div> -->
+            
+        </div>
+
+        <div class="p-3" style="margin-top: -10px;">
+            <div class="row bg-white">
+                <div class="col-12 mb-1">
+                    <div class="list-card h-100 rounded overflow-hidden position-relative">
+                        <div class="d-flex align-items-center mt-2">
+                            <h5>Tutup Sementara</h5>
+                        </div>
+                        <div class="d-flex align-items-center ml-3">
+                            <div class="row g-2">
+                                <div class="col-auto">
+                                   <div class="form-group">
+                                      <label for="buka">Pilih tanggal tutup</label>
+                                      <input type="date" id="tglTutup" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                 
+                                <div class="col-auto">
+                                    <button type="button" onclick="simpanTanggal()" class="btn btn-primary" style="margin-top: 20px;">Simpan</button>
+                                  </div>
+                                <!-- <div class="col">
+                                    <button class="bg-success text-white py-1 px-2 rounded small">Simpan</button>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="my-1 mx-1 border-top" style="background: black;"></div>
+
+                        <div id="tglInput">
+                            <!-- <div class="d-flex align-items-center mt-2">
+                                <div class="input-group-prepend">
+                                    <button class="border-0 btn btn-outline-secondary text-success bg-white"><i class="icofont-ui-calendar"></i></button>
+                                </div>
+                                <span class="font-weight-bold">
+                                    12 Des 2022
+                                </span>
+                                <button class="border-0 btn btn-outline-secondary text-success bg-white ml-auto" onclick="hapus(this)"><i class="icofont-trash"></i></button>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-3" style="margin-top: -10px;">
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-block btn-lg" onclick="ubahLayanan()">Ubah layanan</button>
+                 </div>
+            </div>
+        </div>
+
+      <!-- Bootstrap core JavaScript -->
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- slick Slider JS-->
+      <script type="assets/text/javascript" src="vendor/slick/slick.min.js"></script>
+      <!-- Sidebar JS-->
+      <script type="assets/text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="assets/js/osahan.js"></script>
+
+      <script>
+const codeTetapis = localStorage.getItem('code_mitra');
+console.log(codeTetapis);
+document.addEventListener('DOMContentLoaded', async function() {
+    url =`https://fisio.oktal.dev/api/api/working_hours`;
+    var form = new FormData();
+    form.append("mitra_code", codeTetapis);
+    dataJadwal = await ambilData(form,url);
+    document.getElementById('loading').classList.add('hilang');
+    console.log(dataJadwal);
+    if (dataJadwal.status =='success') {
+        if (dataJadwal.operasional.length > 0) {
+            let card = '';
+            dataJadwal.operasional.map((djl,indx) => {
+    
+                if (djl.opening_hours == '00:00:00') {
+                    pTutup = '';
+                    tInput = 'hiddengem';
+                    ck = '';
+                } else {
+                    pTutup = 'hiddengem';
+                    tInput = ''
+                    ck = 'checked';
+                }
+    
+                card += `
+                <div class="row">
+                    <div class="col-12 mb-1">
+                          <div class="list-card h-100 rounded overflow-hidden position-relative">
+                              <div class="d-flex align-items-center">
+                                  <div class="custom-control custom-checkbox">
+                                      <input type="checkbox" id="myCheckbox${indx + 1}" data-cek="${djl.id}" data-hari="${djl.day}" class="custom-control-input ckbox" ${ck}><label type="checkbox" for="myCheckbox${indx + 1}" class="custom-control-label small"></label>
+                                  </div>
+                                  <p class="m-1">Buka</p>
+                                  <div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center mt-2 ml-4">
+                                <h6>${djl.day}</h6>
+                            </div>
+                            <div class="d-flex align-items-center" style="margin-top: -10px;">
+                                <div class="d-flex align-items-center mt-2 ml-4">
+                                    <p id="tulisanTutup${indx + 1}" class="${pTutup}">Tutup</p>
+                                </div>
+                                <div class="row col-12 mt-1 ${tInput}" id="inputJam${indx + 1}" style="margin-left: -30px;">
+                                    <div class="col-6">
+                                       <div class="form-group">
+                                          <label for="buka">Jam Buka</label>
+                                          <input type="time" id="buka${djl.id}" class="form-control" style="border: 1px solid #cacdd0;" value="${djl.opening_hours}">
+                                       </div>
+                                    </div>
+                     
+                                    <div class="col-6">
+                                       <div class="form-group">
+                                          <label for="tutup">Jam Tutup</label>
+                                          <input type="time" id="tutup${djl.id}" class="form-control" style="border: 1px solid #cacdd0;" value="${djl.closing_hours}">
+                                       </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                    </div>
+                 </div>`;
+            })
+            document.getElementById('cardJadwal').innerHTML = card; 
+        } else {
+            card = `
+            <div class="row">
+                <div class="col-12 mb-1">
+                      <div class="list-card h-100 rounded overflow-hidden position-relative">
+                          <div class="d-flex align-items-center">
+                              <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" id="myCheckbox1" data-cek="1" data-hari="monday" class="custom-control-input ckbox" ><label type="checkbox" for="myCheckbox1" class="custom-control-label small"></label>
+                              </div>
+                              <p class="m-1">Buka</p>
+                              <div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mt-2 ml-4">
+                            <h6>Senin</h6>
+                        </div>
+                        <div class="d-flex align-items-center ketKolom1" style="margin-top: -10px;">
+                            <div class="d-flex align-items-center mt-2 ml-4">
+                                <p id="tulisanTutup1" class="">Tutup</p>
+                            </div>
+                            <div class="row col-12 mt-1 hiddengem" id="inputJam1" style="margin-left: -30px;">
+                                <div class="col-6">
+                                   <div class="form-group">
+                                      <label for="buka">Jam Buka</label>
+                                      <input type="time" id="buka1" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                 
+                                <div class="col-6">
+                                   <div class="form-group">
+                                      <label for="tutup">Jam Tutup</label>
+                                      <input type="time" id="tutup1" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+             </div>
+             <div class="row">
+                <div class="col-12 mb-3">
+                      <div class="list-card h-100 rounded overflow-hidden position-relative">
+                          <div class="d-flex align-items-center">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" id="myCheckbox2" data-cek="2" data-hari="tuesday" class="custom-control-input ckbox" ><label type="checkbox" for="myCheckbox2" class="custom-control-label small"></label>
+                            </div>
+                              <p class="m-1">Buka</p>
+                              <div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mt-2 ml-4">
+                            <h6>Selasa</h6>
+                        </div>
+                        <div class="d-flex align-items-center ketKolom" style="margin-top: -10px;">
+                            <div class="d-flex align-items-center mt-2 ml-4">
+                                <p data-hari="selasa" id="tulisanTutup2" class="">Tutup</p>
+                            </div>
+                            <div class="row col-12 mt-1 hiddengem" id="inputJam2" style="margin-left: -30px;">
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="buka">Jam Buka</label>
+                                      <input type="time" id="buka2" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                 
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="tutup">Jam Tutup</label>
+                                      <input type="time" id="tutup2" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 mb-3">
+                      <div class="list-card h-100 rounded overflow-hidden position-relative">
+                          <div class="d-flex align-items-center">
+                              <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" id="myCheckbox3" data-cek="3" data-hari="wednesday" class="custom-control-input ckbox" ><label type="checkbox" for="myCheckbox3" class="custom-control-label small"></label>
+                              </div>
+                              <p class="m-1">Buka</p>
+                              <div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mt-2 ml-4">
+                            <h6>Rabu</h6>
+                        </div>
+                        <div class="d-flex align-items-center" style="margin-top: -10px;">
+                            <div class="d-flex align-items-center mt-2 ml-4">
+                                <p data-hari="rabu" id="tulisanTutup3" class="">Tutup</p>
+                            </div>
+                            <div class="row col-12 mt-1 hiddengem" id="inputJam3" style="margin-left: -30px;">
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="buka">Jam Buka</label>
+                                      <input type="time" id="buka3" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                 
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="tutup">Jam Tutup</label>
+                                      <input type="time" id="tutup3" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 mb-3">
+                      <div class="list-card h-100 rounded overflow-hidden position-relative">
+                          <div class="d-flex align-items-center">
+                              <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" id="myCheckbox4" data-cek="4" data-hari="thursday" class="custom-control-input ckbox" ><label type="checkbox" for="myCheckbox4" class="custom-control-label small"></label>
+                              </div>
+                              <p class="m-1">Buka</p>
+                              <div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mt-2 ml-4">
+                            <h6>Kamis</h6>
+                        </div>
+                        <div class="d-flex align-items-center" style="margin-top: -10px;">
+                            <div class="d-flex align-items-center mt-2 ml-4">
+                                <p data-hari="kamis" id="tulisanTutup4" class="">Tutup</p>
+                            </div>
+                            <div class="row col-12 mt-1 hiddengem" id="inputJam4" style="margin-left: -30px;">
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="buka">Jam Buka</label>
+                                      <input type="time" id="buka4" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                 
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="tutup">Jam Tutup</label>
+                                      <input type="time" id="tutup4" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 mb-3">
+                      <div class="list-card h-100 rounded overflow-hidden position-relative">
+                          <div class="d-flex align-items-center">
+                              <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" id="myCheckbox5" data-cek="5" data-hari="friday" class="custom-control-input ckbox" ><label type="checkbox" for="myCheckbox5" class="custom-control-label small"></label>
+                              </div>
+                              <p class="m-1">Buka</p>
+                              <div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mt-2 ml-4">
+                            <h6>Jum'at</h6>
+                        </div>
+                        <div class="d-flex align-items-center" style="margin-top: -10px;">
+                            <div class="d-flex align-items-center mt-2 ml-4">
+                                <p data-hari="jumat" id="tulisanTutup5" class="">Tutup</p>
+                            </div>
+                            <div class="row col-12 mt-1 hiddengem" id="inputJam5" style="margin-left: -30px;">
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="buka">Jam Buka</label>
+                                      <input type="time" id="buka5" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                 
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="tutup">Jam Tutup</label>
+                                      <input type="time" id="tutup5" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 mb-3">
+                      <div class="list-card h-100 rounded overflow-hidden position-relative">
+                          <div class="d-flex align-items-center">
+                              <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" id="myCheckbox6" data-cek="6" data-hari="saturday" class="custom-control-input ckbox" ><label type="checkbox" for="myCheckbox6" class="custom-control-label small"></label>
+                              </div>
+                              <p class="m-1">Buka</p>
+                              <div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mt-2 ml-4">
+                            <h6>Sabtu</h6>
+                        </div>
+                        <div class="d-flex align-items-center" style="margin-top: -10px;">
+                            <div class="d-flex align-items-center mt-2 ml-4">
+                                <p data-hari="sabtu" id="tulisanTutup6" class="">Tutup</p>
+                            </div>
+                            <div class="row col-12 mt-1 hiddengem" id="inputJam6" style="margin-left: -30px;">
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="buka">Jam Buka</label>
+                                      <input type="time" id="buka6"  class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                 
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="tutup">Jam Tutup</label>
+                                      <input type="time" id="tutup6" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 mb-3">
+                      <div class="list-card h-100 rounded overflow-hidden position-relative">
+                          <div class="d-flex align-items-center">
+                              <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" id="myCheckbox7" data-cek="7" data-hari="sunday" class="custom-control-input ckbox" ><label type="checkbox" for="myCheckbox7" class="custom-control-label small"></label>
+                              </div>
+                              <p class="m-1">Buka</p>
+                              <div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mt-2 ml-4">
+                            <h6>Minggu</h6>
+                        </div>
+                        <div class="d-flex align-items-center" style="margin-top: -10px;">
+                            <div class="d-flex align-items-center mt-2 ml-4">
+                                <p data-hari="minggu" id="tulisanTutup7" class="">Tutup</p>
+                            </div>
+                            <div class="row col-12 mt-1 hiddengem" id="inputJam7" style="margin-left: -30px;">
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="buka">Jam Buka</label>
+                                      <input type="time" id="buka7" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                 
+                                <div class="col">
+                                   <div class="form-group">
+                                      <label for="tutup">Jam Tutup</label>
+                                      <input type="time" id="tutup7" class="form-control" style="border: 1px solid #cacdd0;">
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+            `;
+            document.getElementById('cardJadwal').innerHTML = card; 
+        }
+
+        cardInputTgl = document.getElementById('tglInput');
+        console.log(cardInputTgl);
+        let cardIzn = '';
+        dataJadwal.operasional_exc.map((tIz) => {
+            cardIzn +=`
+                            <div class="d-flex align-items-center mt-2">
+                                <div class="input-group-prepend">
+                                    <button class="border-0 btn btn-outline-secondary text-success bg-white"><i class="icofont-ui-calendar"></i></button>
+                                </div>
+                                <span class="font-weight-bold">
+                                    <div>${tIz.date}</div>
+                                </span>
+                                <button class="border-0 btn btn-outline-secondary text-success bg-white ml-auto" onclick="hapus(${tIz.id})"><i class="icofont-trash"></i></button>
+                            </div>
+            `;
+        })
+        cardInputTgl.innerHTML = cardIzn;
+    }
+
+    var ckBox = document.querySelectorAll('.ckbox');
+console.log(ckBox);
+
+ckBox.forEach(item => {
+    item.addEventListener('change', (event) => {
+
+        if (event.currentTarget.checked) {
+            console.log(item.dataset.cek);
+            
+            if (item.dataset.hari == 'monday' || item.dataset.cek == 1) {
+                $("#tulisanTutup1").addClass("hiddengem");
+                $("#inputJam1").removeClass("hiddengem");
+            }
+            if (item.dataset.hari == 'tuesday' || item.dataset.cek == 2) {
+                $("#tulisanTutup2").addClass("hiddengem");
+                $("#inputJam2").removeClass("hiddengem");
+            }
+            if (item.dataset.hari == 'wednesday' || item.dataset.cek == 3) {
+                $("#tulisanTutup3").addClass("hiddengem");
+                $("#inputJam3").removeClass("hiddengem");
+            }
+            if (item.dataset.hari == 'thursday' || item.dataset.cek == 4) {
+                $("#tulisanTutup4").addClass("hiddengem");
+                $("#inputJam4").removeClass("hiddengem");
+            }
+            if (item.dataset.hari == 'friday' || item.dataset.cek == 5) {
+                $("#tulisanTutup5").addClass("hiddengem");
+                $("#inputJam5").removeClass("hiddengem");
+            }
+            if (item.dataset.hari == 'saturday' || item.dataset.cek == 6) {
+                $("#tulisanTutup6").addClass("hiddengem");
+                $("#inputJam6").removeClass("hiddengem");
+            }
+            if (item.dataset.hari == 'sunday' || item.dataset.cek == 7) {
+                $("#tulisanTutup7").addClass("hiddengem");
+                $("#inputJam7").removeClass("hiddengem");
+            }
+            // alert('dicentang');
+        } else {
+
+            if (item.dataset.hari == 'monday' || item.dataset.cek == 1) {
+                $("#tulisanTutup1").removeClass("hiddengem");
+                $("#inputJam1").addClass("hiddengem");
+            }
+            if (item.dataset.hari == 'tuesday' || item.dataset.cek == 2) {
+                $("#tulisanTutup2").removeClass("hiddengem");
+                $("#inputJam2").addClass("hiddengem");
+            }
+            if (item.dataset.hari == 'wednesday' || item.dataset.cek == 3) {
+                $("#tulisanTutup3").removeClass("hiddengem");
+                $("#inputJam3").addClass("hiddengem");
+            }
+            if (item.dataset.hari == 'thursday' || item.dataset.cek == 4) {
+                $("#tulisanTutup4").removeClass("hiddengem");
+                $("#inputJam4").addClass("hiddengem");
+            }
+            if (item.dataset.hari == 'friday' || item.dataset.cek == 5) {
+                $("#tulisanTutup5").removeClass("hiddengem");
+                $("#inputJam5").addClass("hiddengem");
+            }
+            if (item.dataset.hari == 'saturday' || item.dataset.cek == 6) {
+                $("#tulisanTutup6").removeClass("hiddengem");
+                $("#inputJam6").addClass("hiddengem");
+            }
+            if (item.dataset.hari == 'sunday' || item.dataset.cek == 7) {
+                $("#tulisanTutup7").removeClass("hiddengem");
+                $("#inputJam7").addClass("hiddengem");
+            }
+        }
+    })
+})
+
+}, false);
+
+function ambilData(form,url) {
+   var requestOptions = {
+      method: 'POST',
+      body: form,
+      redirect: 'follow'
+   };
+return fetch(url, requestOptions)
+         .then(response => response.json())
+         .then(result => result)
+         .catch(error => error);
+}
+
+
+async function simpanTanggal() {
+    document.getElementById('loading').classList.remove('hilang');
+    inTgl = document.getElementById('tglTutup').value;
+    if (inTgl == '') {
+        return alert('Harus diisi');
+    }
+    var date = new Date(inTgl);
+    let day = date.toLocaleString('en-us', {weekday: 'long'});
+    console.log(inTgl);
+    console.log(day);
+    tanggalE = date.toLocaleDateString('id');
+    isitgl = `
+                            <div class="d-flex align-items-center mt-2">
+                                <div class="input-group-prepend">
+                                    <button class="border-0 btn btn-outline-secondary text-success bg-white"><i class="icofont-ui-calendar"></i></button>
+                                </div>
+                                <span class="font-weight-bold" id='tglIjin'>
+                                    <div>${tanggalE}</div>
+                                </span>
+                                <button class="border-0 btn btn-outline-secondary text-success bg-white ml-auto" onclick="hapus(this)"><i class="icofont-trash"></i></button>
+                            </div>
+    `;
+    // $("#tglInput").append(isitgl);
+    jamBuka = '00:00';
+    jamTutup = '00:00';
+
+    var form = new FormData();
+        form.append("mitra_code", codeTetapis);
+        form.append("day", day);
+        form.append("except_date", inTgl);
+        form.append("opening_hours", jamBuka);
+        form.append("closing_hours", jamTutup);
+        form.append("is_exceptional", 1);
+        url = `https://fisio.oktal.dev/api/api/add_working_hours`;
+    kirimdt = await ambilData(form,url);
+    document.getElementById('loading').classList.add('hilang');
+    if (kirimdt.status == 'success') {
+        alert('Berhasil ditambah');
+        location.reload();
+    } else {
+        alert('Gagal');
+    }
+    // console.log(kirimdt);
+}
+
+async function hapus(e) {
+    document.getElementById('loading').classList.remove('hilang');
+    console.log(e);
+    url = `https://fisio.oktal.dev/api/api/delete_working_hours`;
+    var form = new FormData();
+    form.append("mitra_code", codeTetapis);
+    form.append("idops", e);
+    form.append("is_exceptional", 1);
+    kirimdt = await ambilData(form,url);
+    document.getElementById('loading').classList.add('hilang');
+    if (kirimdt.status == 'success') {
+        alert('berhasil dihapus');
+        location.reload();
+    } else {
+        alert('gagal')
+    }
+    // console.log(e.parentNode);
+    // e.parentNode.classList.add("hiddengem")
+    // e.parentNode.remove()
+    // console.log(e.parentNode.nodeName);
+}
+
+async function ubahLayanan() {
+    document.getElementById('loading').classList.remove('hilang');
+var ckBox = document.querySelectorAll('.ckbox');
+    hari = [];
+    jamOpen = [];
+    jamClose = [];
+    for (let i = 0; i < ckBox.length; i++) {
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        if (ckBox[i].checked == true) {
+            idne = ckBox[i].dataset.cek;
+            // hari = ckBox[i].dataset.hari;
+            console.log(idne);
+            // console.log(hari);
+            jamBuka = document.getElementById(`buka${idne}`).value;
+            jamTutup = document.getElementById(`tutup${idne}`).value;
+           
+            if (jamBuka == '') {
+                alert('Jam Buka Harus diisi');
+                return;
+            }
+            if (jamTutup == '') {
+                alert('Jam Buka Harus diisi');
+                return;
+            }
+            hari.push(ckBox[i].dataset.hari);
+            jamOpen.push(jamBuka);
+            jamClose.push(jamTutup);
+        } else {
+            idne = ckBox[i].dataset.cek;
+            // hari = ckBox[i].dataset.hari;
+            jamBuka = '00:00:00';
+            jamTutup = '00:00:00';
+            hari.push(ckBox[i].dataset.hari);
+            jamOpen.push(jamBuka);
+            jamClose.push(jamTutup);
+        }
+    }
+    url = `https://fisio.oktal.dev/api/api/add_working_hours`;
+            var form = new FormData();
+            form.append("mitra_code", codeTetapis);
+            // form.append("day[]", hari);
+            hari.forEach((day) => form.append("day[]", day));
+            jamOpen.forEach((oh) => form.append("opening_hours[]", oh));
+            jamClose.forEach((ch) => form.append("closing_hours[]", ch));
+            form.append("is_exceptional", 0);
+            kirimdt = await ambilData(form,url);
+            document.getElementById('loading').classList.add('hilang');
+    // tglInput = document.getElementById('tglInput');
+    // // console.log(tglInput.getElementsByTagName('span'));
+    // spanTgl = tglInput.getElementsByTagName('span');
+    // for (i = 0; i < spanTgl.length; i++) {
+    //     textVal = spanTgl[i].innerText;
+    //     let d  = textVal.split("/").reverse().join("-");
+    //     let date = new Date(d);
+    //     let day = date.toLocaleString('en-us', {weekday: 'long'});
+    //     jamBuka = '00:00';
+    //     jamTutup = '00:00';
+    //     // console.log(textVal);
+    //     // console.log(d);
+    //     console.log(day);
+    //     var form = new FormData();
+    //         form.append("mitra_code", codeTetapis);
+    //         form.append("day", day);
+    //         form.append("except_date", d);
+    //         form.append("opening_hours", jamBuka);
+    //         form.append("closing_hours", jamTutup);
+    //         form.append("is_exceptional", 1);
+    //         url = `https://fisio.oktal.dev/api/api/add_working_hours`;
+    //         kirimdt = await ambilData(form,url);
+    //         // console.log(kirimdt);
+    // }
+    location.reload();
+}
+
+      </script>
+   </body>
+</html>

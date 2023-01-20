@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" type="image/png" href="img/logo.svg">
+      <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
+      <!-- Slick Slider -->
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick-theme.min.css"/>
+      <!-- Icofont Icon-->
+      <link href="assets/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap core CSS -->
+      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="assets/css/style.css" rel="stylesheet">
+      <link href="assets/css/mystyle.css" rel="stylesheet">
+      <!-- Sidebar CSS -->
+      <link href="assets/vendor/sidebar/demo.css" rel="stylesheet">
+      <style>
+         .menu{
+			position: fixed;
+			background: white;
+			color: #232323;			
+			height: 60%;
+			width: 100%;
+			bottom: -100000px;
+			-webkit-transition: left 0.2s;
+			transition: left 0.2s;
+			padding: 20px;
+			border: 1px solid #ccc;			
+		}
+      .slide-menu-tampil{
+			bottom: 0 !important;
+		}
+      </style>
+   </head>
+   <body class="fixed-bottom-padding">
+      <div class="loading" id="loading"></div>
+      <!-- home page -->
+      <div class="osahan-help">
+        <div class="p-3 border-bottom">
+           <div class="d-flex align-items-center">
+              <a class="font-weight-bold text-success text-decoration-none" href="layanan.html">
+              <i class="icofont-rounded-left back-page"></i></a>
+              <h6 class="font-weight-bold m-0 ml-3">Edit Produk</h6>
+           </div>
+        </div>
+     </div>
+     <div id="edit_produk">
+        <div class="p-3 bg-white">
+         <form onsubmit="event.preventDefault(); editLayanan()">
+            <div class="form-group">
+               <label for="exampleInputOLDPassword1">Nama Layanan</label>
+               <input type="text" placeholder="Nama Layanan" id="namaLayanan" class="form-control" style="border: 1px solid #cacdd0;">
+            </div>
+            <div class="form-group">
+               <label for="kategori">Kategori</label>
+               <select class="select form-control" style="border: 1px solid #cacdd0;" id="kategori">
+                   <!-- <option disabled value="" selected>Pilih Kategori</option> -->
+               </select>
+            </div>
+            <div class="form-group">
+               <label for="harga">Harga</label>
+               <div class="input-group mb-2" style="border: 1px solid #cacdd0;">
+                   <span class="input-group-text" style="font-size: 13px; border: none; border-radius: none;">Rp</span>
+                   <input type="number" id="harga" placeholder="Harga" class="form-control" style="border-bottom: 0px;">
+               </div>
+            </div>
+          <div class="form-group">
+             <label for="durasi">Durasi Layanan (menit)</label>
+             <input type="text" placeholder="Durasi" id="durasi" class="form-control" style="border: 1px solid #cacdd0;">
+          </div>
+          <div class="form-group">
+            <label for="sesi">Jumlah Sesi Layanan </label>
+            <input type="text" placeholder="Sesi" id="sesi" class="form-control" style="border: 1px solid #cacdd0;" required>
+         </div>
+         <div class="form-group">
+            <label for="foto">Foto Layanan</label>
+            <input type="hidden" name="oldfoto" id="oldfoto">
+            <input type="file" id="foto" class="form-control" style="border: 1px solid #cacdd0;">
+         </div>
+            <div class="form-group">
+               <label for="textar">Deskripsi Layanan</label>
+               <textarea name="deskripsi" id="textar" cols="30" rows="4" class="form-control" style="border: 1px solid #cacdd0;"></textarea>
+            </div>
+            <div class="form-group">
+               <label for="ketentuan">Ketentuan Layanan</label>
+               <textarea name="ketentuan" id="ketentuan" cols="30" rows="4" class="form-control" style="border: 1px solid #cacdd0;"></textarea>
+            </div>
+            <div class="text-center">
+               <button type="submit" class="btn btn-primary btn-block btn-lg">Simpan Perubahan</button>
+            </div>
+         </form>
+        </div>
+     </div>
+
+   <nav class="menu">
+      <ul class="second-nav">
+         <li><a href="index.html"><i class="icofont-smart-phone mr-2"></i> Splash</a></li>
+         <li>
+            <a href="#"><i class="icofont-login mr-2"></i> Authentication</a>
+            <ul>
+               <li> <a href="account-setup.html">Account Setup</a></li>
+               <li><a href="signin.html">Sign in</a></li>
+               <li><a href="signup.html">Sign up</a></li>
+               <li><a href="verification.html">Verification</a></li>
+            </ul>
+         </li>
+         <li><a href="get_started.html"><i class="icofont-check-circled mr-2"></i> Get Started</a></li>
+         <li><a href="landing.html"><i class="icofont-paper-plane mr-2"></i> Landing</a></li>
+         <li><a href="home.html"><i class="icofont-ui-home mr-2"></i> Homepage</a></li>
+         <li><a href="notification.html"><i class="icofont-notification mr-2"></i> Notification</a></li>
+         <li><a href="search.html"><i class="icofont-search-1 mr-2"></i> Search</a></li>
+         <li><a href="listing.html"><i class="icofont-list mr-2"></i> Listing</a></li>
+         <li><a href="picks_today.html"><i class="icofont-flash mr-2"></i> Trending</a></li>
+         <li><a href="recommend.html"><i class="icofont-like mr-2"></i> Recommend</a></li>
+         <li><a href="fresh_vegan.html"><i class="icofont-badge mr-2"></i> Most Popular</a></li>
+         <li><a href="product_details.html"><i class="icofont-search-document mr-2"></i> Product Details</a></li>
+         <li><a href="cart.html"><i class="icofont-cart mr-2"></i> Cart</a></li>
+         <li><a href="order_address.html"><i class="icofont-location-pin mr-2"></i> Order Address</a></li>
+         <li><a href="delivery_time.html"><i class="icofont-ui-calendar mr-2"></i> Delivery Time</a></li>
+         <li><a href="order_payment.html"><i class="icofont-money mr-2"></i> Order Payment</a></li>
+         <li><a href="checkout.html"><i class="icofont-checked mr-2"></i> Checkout</a></li>
+         <li><a href="successful.html"><i class="icofont-gift mr-2"></i> Successful</a></li>
+         <li>
+            <a href="#"><i class="icofont-sub-listing mr-2"></i> My Order</a>
+            <ul>
+               <li><a href="complete_order.html">Complete Order</a></li>
+               <li><a href="status_complete.html">Status Complete</a></li>
+               <li><a href="progress_order.html">Progress Order</a></li>
+               <li><a href="status_onprocess.html">Status on Process</a></li>
+               <li><a href="canceled_order.html">Canceled Order</a></li>
+               <li><a href="status_canceled.html">Status Canceled</a></li>
+               <li><a href="review.html">Review</a></li>
+            </ul>
+         </li>
+         <li>
+            <a href="#"><i class="icofont-ui-user mr-2"></i> My Account</a>
+            <ul>
+               <li> <a href="my_account.html">My Account</a></li>
+               <li><a href="edit_profile.html">Edit Profile</a></li>
+               <li><a href="change_password.html">Change Password</a></li>
+               <li><a href="deactivate_account.html">Deactivate Account</a></li>
+               <li><a href="my_address.html">My Address</a></li>
+            </ul>
+         </li>
+         <li>
+            <a href="#"><i class="icofont-page mr-2"></i> Pages</a>
+            <ul>
+               <li> <a href="promos.html">Promos</a></li>
+               <li><a href="promo_details.html">Promo Details</a></li>
+               <li><a href="terms_conditions.html">Terms & Conditions</a></li>
+               <li><a href="privacy.html">Privacy</a></li>
+               <li><a href="terms&conditions.html">Conditions</a></li>
+               <li> <a href="help_support.html">Help Support</a></li>
+               <li>  <a href="help_ticket.html">Help Ticket</a></li>
+               <li>  <a href="refund_payment.html">Refund Payment</a></li>
+               <li>  <a href="faq.html">FAQ</a></li>
+            </ul>
+         </li>
+         <li>
+            <a href="#"><i class="icofont-link mr-2"></i> Navigation Link Example</a>
+            <ul>
+               <li>
+                  <a href="#">Link Example 1</a>
+                  <ul>
+                     <li>
+                        <a href="#">Link Example 1.1</a>
+                        <ul>
+                           <li><a href="#">Link</a></li>
+                           <li><a href="#">Link</a></li>
+                           <li><a href="#">Link</a></li>
+                           <li><a href="#">Link</a></li>
+                           <li><a href="#">Link</a></li>
+                        </ul>
+                     </li>
+                     <li>
+                        <a href="#">Link Example 1.2</a>
+                        <ul>
+                           <li><a href="#">Link</a></li>
+                           <li><a href="#">Link</a></li>
+                           <li><a href="#">Link</a></li>
+                           <li><a href="#">Link</a></li>
+                        </ul>
+                     </li>
+                  </ul>
+               </li>
+               <li><a href="#">Link Example 2</a></li>
+               <li><a href="#">Link Example 3</a></li>
+               <li><a href="#">Link Example 4</a></li>
+               <li data-nav-custom-content>
+                  <div class="custom-message">
+                     You can add any custom content to your navigation items. This text is just an example.
+                  </div>
+               </li>
+            </ul>
+         </li>
+      </ul>
+      <ul class="bottom-nav">
+         <li class="email">
+            <a class="text-success" href="home.html">
+               <p class="h5 m-0"><i class="icofont-home text-success"></i></p>
+               Home
+            </a>
+         </li>
+         <li class="github">
+            <a href="cart.html">
+               <p class="h5 m-0"><i class="icofont-cart"></i></p>
+               CART
+            </a>
+         </li>
+         <li class="ko-fi">
+            <a href="help_ticket.html">
+               <p class="h5 m-0"><i class="icofont-headphone"></i></p>
+               Help
+            </a>
+         </li>
+      </ul>
+   </nav>
+
+     <div class="modal fade" id="modalDialogSelect" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="height: 500px; margin-top: 50%;">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Pilih Kategori</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <form action="my_address.html">
+               <div class="osahan-filter">
+                  <div class="filter">
+                     <div class="custom-control border-bottom px-0  custom-radio" onclick="pilihKategori()">
+                        <input type="radio" id="customRadio3" name="location" value="aktif" class="custom-control-input">
+                        <label class="custom-control-label py-3 w-100 px-3" for="customRadio3">Aktifkan Produk</label>
+                     </div>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+      
+      <!-- Bootstrap core JavaScript -->
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- slick Slider JS-->
+      <script type="assets/text/javascript" src="vendor/slick/slick.min.js"></script>
+      <!-- Sidebar JS-->
+      <script type="assets/text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="assets/js/osahan.js"></script>
+
+      <script>
+const codeTetapis = localStorage.getItem('code_mitra');
+document.addEventListener('DOMContentLoaded',async function() {
+   document.getElementById('kategori');
+   var formdata = new FormData();
+   var url = `https://fisio.oktal.dev/api/api/list_category`;
+   dtKategori = await ambilData(formdata, url);
+   
+   urlLay = `https://fisio.oktal.dev/api/api/services_detail`;
+   var idLay = localStorage.getItem('idLayanan');
+   var form = new FormData();
+   form.append('idserv',idLay);
+
+   dtlayanan = await ambilData(form, urlLay);
+   document.getElementById('loading').classList.add('hilang');
+   console.log(dtlayanan);
+   // console.log(dtKategori);
+   if (dtKategori.status == 'success') {
+      toption = '';
+      dtKategori.result.map((kt) => {
+         toption += `
+         <option value="${kt.id}">${kt.services_category}</option>
+         `;
+      })
+      optione =`<option disabled value="">Pilih Kategori</option>` + toption;
+      document.getElementById('kategori').innerHTML = optione
+   }
+
+   if (dtlayanan.status == 'success') {
+      document.getElementById('namaLayanan').value = dtlayanan.result[0].services_name;
+      document.getElementById('kategori').value = dtlayanan.result[0].id_category;
+      document.getElementById('harga').value = dtlayanan.result[0].services_rates;
+      document.getElementById('textar').value = dtlayanan.result[0].description;
+      document.getElementById('ketentuan').value = dtlayanan.result[0].terms_services;
+      document.getElementById('durasi').value = dtlayanan.result[0].duration_session;
+      document.getElementById('sesi').value = dtlayanan.result[0].amount_session;
+      document.getElementById('oldfoto').value = dtlayanan.result[0].services_photo;
+   }
+
+})
+
+function ambilData(formdata, url) {
+
+var requestOptions = {
+      method: 'POST',
+      body: formdata,
+      redirect: 'follow'
+};
+
+return fetch(url, requestOptions)
+  .then(response => response.json())
+  .then(result => result)
+  .catch(error => console.log('error', error));
+
+}
+
+async function editLayanan() {
+   document.getElementById('loading').classList.remove('hilang');
+   var idLay = localStorage.getItem('idLayanan');
+   // codeTetapis = 'THRHVDIS';
+   inNamaLaya = document.getElementById('namaLayanan').value;
+   idKetegori = document.getElementById('kategori').value;
+   inHarga = document.getElementById('harga').value;
+   inDesLaya = document.getElementById('textar').value;
+   inKetLaya = document.getElementById('ketentuan').value;
+   inDurasi = document.getElementById('durasi').value;
+   inSesi = document.getElementById('sesi').value;
+   valfoto = document.getElementById('foto').value;
+   valFt = document.getElementById('oldfoto').value;
+
+   if (valfoto !== '') {
+      var ukuran = (foto.files[0].size / 1024 / 1024).toFixed(2);
+      if (ukuran > 2) {
+         event.preventDefault();
+         document.getElementById('loading').classList.add('hilang');
+         alert("Size file yang bisa diupload maksimal 2MB");
+         valfoto = '';
+         return
+      }
+   }
+
+   var formdata = new FormData();
+   formdata.append('mitra_code',codeTetapis);
+   formdata.append('idserv',idLay);
+   formdata.append('name',inNamaLaya);
+   formdata.append('description',inDesLaya);
+   formdata.append('idcat',idKetegori);
+   formdata.append('duration_session',inDurasi);
+   formdata.append('amount_session',inSesi);
+   formdata.append('services_rates',inHarga);
+   formdata.append('terms_services',inKetLaya);
+
+   if (valfoto == '') {
+      formdata.append('foto_old',valFt);
+   } else {
+      formdata.append('foto',foto.files[0]);
+   }
+
+// for (var pair of formdata.entries()) {
+//     console.log(pair[0]+ ', ' + pair[1]); 
+// }
+   url = `https://fisio.oktal.dev/api/api/update_service`;
+   kirim = await ambilData(formdata, url);
+   document.getElementById('loading').classList.add('hilang');
+   console.log(kirim);
+   if (kirim.status == 'success') {
+      alert('data berhasil diupdate');
+      window.location.href = 'layanan.html';
+   }
+}
+
+        function pilih_all() {
+            window.location.href = "layananall.html";
+        }
+
+      function btnSelect() {
+         // $("#modalDialogSelect").modal();
+         $('.menu').toggleClass("slide-menu-tampil");
+      }
+      </script>
+   </body>
+</html>

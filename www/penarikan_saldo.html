@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" type="image/png" href="img/logo.svg">
+      <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
+      <!-- Slick Slider -->
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick-theme.min.css"/>
+      <!-- Icofont Icon-->
+      <link href="assets/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap core CSS -->
+      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="assets/css/style.css" rel="stylesheet">
+      <link href="assets/css/mystyle.css" rel="stylesheet">
+      <!-- Sidebar CSS -->
+      <link href="assets/vendor/sidebar/demo.css" rel="stylesheet">
+   </head>
+   <body class="fixed-bottom-padding">
+    <div class="loading" id="loading"></div>
+      <!-- home page -->
+      <div class="osahan-help">
+        <div class="p-3 border-bottom">
+           <div class="d-flex align-items-center">
+              <a class="font-weight-bold text-success text-decoration-none" href="index.html">
+              <i class="icofont-rounded-left back-page"></i></a>
+              <h6 class="font-weight-bold m-0 ml-3">Penarikan Saldo</h6>
+           </div>
+        </div>
+     </div>
+     <div id="tambah_produk">
+        <!-- <form action=""> -->
+        <div class="p-3 bg-white">
+              <div class="form-group">
+                 <label for="exampleInputOLDPassword1">Saldo Anda</label>
+                <div class="input-group mb-2" style="border: 1px solid #cacdd0;">
+                    <span class="input-group-text" style="font-size: 13px; border: none; border-radius: none;">Rp</span>
+                    <input type="text" id="saldo" readonly class="form-control" style="border-bottom: 0px;">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <div class="row">
+                    <label class="ml-3" for="harga">Nominal Penarikan</label>
+                    <div class="ml-auto mr-3" onclick="tarikSemua()">Tarik semua</div>
+                </div>
+                 <div class="input-group mb-2" style="border: 1px solid #cacdd0;">
+                     <span class="input-group-text" style="font-size: 13px; border: none; border-radius: none;">Rp</span>
+                     <input type="number" id="nominal" placeholder="Nominal Penarikan" class="form-control" style="border-bottom: 0px;">
+                </div>
+                    <span style="color: red;"><i class="icofont-info-circle pl-2 p-1"></i>Penarikan dikenakan biaya admin</span>
+              </div>
+        </div>
+        <div class="cart-items bg-white position-relative border-bottom mb-2">
+            <h6 class="ml-2 mt-2 pt-2 pl-2">Rekening tujuan</h6>
+            <div>
+                <div class="col" style="margin-right: -20px;">
+                    <div class="rounded p-2 mb-3" style="background: #cacdd0;">
+                        <div class="position-absolute ml-1 py-3"><i class="icofont-credit-card pl-2 p-1"></i></div>
+
+                        <div class="notifiction p-3 ml-3">
+                            <p id="namaBank" class="font-weight-bold mb-0"></p>
+                            <p id="noRek" class="font-weight-bold mb-0"></p>
+                            <p id="nameRek" class="font-weight-bold mb-1"></p>
+                            <!-- <p class="small m-0"> Biaya admin Rp 2000</p> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fixed-bottom">
+            <button type="button" onclick="selanjutnya()" class="btn btn-primary btn-block btn-lg">Selanjutnya</button>
+        </div>
+        <!-- </form> -->
+     </div>
+      
+      <!-- Bootstrap core JavaScript -->
+      <script src="cordova.js"></script>
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- slick Slider JS-->
+      <script type="assets/text/javascript" src="vendor/slick/slick.min.js"></script>
+      <!-- Sidebar JS-->
+      <script type="assets/text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="assets/js/osahan.js"></script>
+      <script src="assets/js/main.js"></script>
+
+      <script>
+const codeTetapis = localStorage.getItem('code_mitra');
+document.addEventListener("backbutton", onBackKeyDown, false);
+function onBackKeyDown() { 
+    window.location.href = "index.html";
+}
+
+document.addEventListener('DOMContentLoaded', async function() {
+
+    url = `https://fisio.oktal.dev/api/api/therapist_nfo`;
+    urlBiAdm = `https://fisio.oktal.dev/api/api/biaya_admin`;
+    var form = new FormData();
+    form.append("mitra_code", codeTetapis);
+    dtInfo = await ambilData(form,url);
+    dtAdmin = await ambilData(form,urlBiAdm);
+    console.log(dtAdmin);
+    if (dtInfo.status == 'success') {
+        formatUang = config.uangnoRp(dtInfo.result[0].balance);
+        // console.log(formatUang);
+        document.getElementById('loading').classList.add('hilang');
+        document.getElementById('saldo').value = formatUang;
+        document.getElementById('namaBank').innerHTML = dtInfo.result[0].bank_name;
+        document.getElementById('noRek').innerHTML = dtInfo.result[0].rekening_number;
+        document.getElementById('nameRek').innerHTML = dtInfo.result[0].rekening_an;
+    }
+}, false);
+
+function ambilData(form,url) {
+   var requestOptions = {
+      method: 'POST',
+      body: form,
+      redirect: 'follow'
+   };
+return fetch(url, requestOptions)
+         .then(response => response.json())
+         .then(result => result)
+         .catch(error => error);
+}
+
+        function tarikSemua() {
+            var saldoval = document.getElementById('saldo').value;
+            document.getElementById('nominal').value = saldoval;
+        }
+
+        function selanjutnya() {
+            let inNom = document.getElementById('nominal');
+            // console.log(inNom.value);
+            if (saldo.value == 0) {
+                alert("Anda tidak dapat melakukan Penarikan Saldo, karena saldo anda Rp 0");
+                return
+            }
+
+            if (inNom.value == '') {
+                alert("Nominal Penarikan harus di isi");
+                return
+            }
+            // console.log(saldo.value);
+            if (parseInt(inNom.value) >= parseInt(saldo.value) - parseInt(dtAdmin.result.value_conf)) {
+                alert("Nominal Yang anda masukkan melebihi Saldo anda");
+                return
+            }
+
+            localStorage.setItem('nominal',inNom.value);
+            window.location.href = 'detail_penarikan_saldo.html';
+        }
+      </script>
+   </body>
+</html>

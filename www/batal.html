@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" type="image/png" href="img/logo.svg">
+      <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
+      <!-- Slick Slider -->
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick-theme.min.css"/>
+      <!-- Icofont Icon-->
+      <link href="assets/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap core CSS -->
+      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="assets/css/style.css" rel="stylesheet">
+      <link href="assets/css/mystyle.css" rel="stylesheet">
+      <!-- Sidebar CSS -->
+      <link href="assets/vendor/sidebar/demo.css" rel="stylesheet">
+   </head>
+   <body class="fixed-bottom-padding">
+    <div class="loading" id="loading"></div>
+      <!-- home page -->
+      <div class="osahan-home-page">
+         <div class="p-3">
+            <div class="title d-flex align-items-center">
+                    <div>
+                        <h4>Pesanan</h4>
+                    </div>
+            </div>
+        </div>
+         <!-- body -->
+         <div class="osahan-body" style="margin-top: -20px;">
+            
+            <div class="row-12 m-0 text-center">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="col-3 p-0 pl-1">
+                        <a href="pesanan_baru.html">
+                            <p class="bg-warning text-white py-1 px-1 rounded " >Pesanan Baru</p>
+                        </a>
+                    </div>
+                    <div class="col-3 p-1">
+                        <a href="diproses.html">
+                            <p class="bg-warning text-white py-1 px-1 rounded ">Diproses</p>
+                        </a>
+                    </div><div class="col-2 p-1">
+                        <a href="dibayar.html">
+                            <p class="bg-warning text-white py-1 px-1 rounded ">Dibayar</p>
+                        </a>
+                    </div>
+                    <div class="col-2 p-1 border-success">
+                        <a href="batal.html">
+                            <p class="bg-success text-white py-1 px-1 rounded ">Batal</p>
+                        </a>
+                    </div>
+                    <div class="col-2 p-1 ">
+                        <a href="selesai.html">
+                            <p class="bg-warning text-white py-1 px-1 rounded ">Selesai</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="osahan-recommend " style="margin-top: -25px;">
+                <div class="d-flex align-items-center mt-0 mb-3 px-3">
+                    <p class="m-1" id="jumlTampil"> Pesanan</p>
+                </div>
+            </div>
+
+            <div class="p-3" style="margin-top: -15px;" id="TampilanCard">
+            <!-- <div class="p-3" style="margin-top: -15px;" > -->
+                <!-- <div class="custom-control custom-radio px-0 mb-1 position-relative border-custom-radio">
+                    <div class="cart-items bg-white position-relative border-bottom pb-3">
+                        <div class="d-flex  align-items-center p-2">
+                            <div class="pt-0">
+                                <p class="font-weight-light text-dark m-0 d-flex align-items-center">
+                                   221212-11-1212 (kode order)
+                                </p>
+                                <span class="badge badge-danger m-1">Diproses</span>
+                            </div>
+                        </div>
+                        <div class="my-2 mx-1 border-top" style="background: black;"></div>
+                        <div class="d-flex  align-items-center p-1">
+                            <img src="img/cart/g2.png" class="img-fluid" style="height: 80px; width:80px">
+                            <div class="ml-2 text-dark text-decoration-none w-100">
+                                <h6 class="mb-1">Terapi Keterlambatan</h6>
+                                <p class="text-muted mb-2">12 Des 2022  10.00</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center ml-2 mt-2">
+                            <div class="input-group-prepend">
+                                <button class="border-0 btn btn-outline-secondary text-success bg-white"><i class="icofont-user"></i></button>
+                            </div>
+                            <span class="font-weight-bold">
+                                Axe
+                             </span>
+                        </div>
+                        <div class="d-flex align-items-center ml-2 mt-0" onclick="klikAlamat(-7.8549303, 110.3610688)">
+                            <div class="input-group-prepend">
+                                <button class="border-0 btn btn-outline-secondary text-success bg-white"><i class="icofont-pin"></i></button>
+                            </div>
+                            <span class="font-weight-bold">
+                                Jln Paris
+                             </span>
+                        </div>
+                        <div class="d-flex align-items-center ml-2 mt-0">
+                            <div class="input-group-prepend">
+                                <button class="border-0 btn btn-outline-secondary text-success bg-white"><i class="icofont-hotel"></i></button>
+                            </div>
+                            <span class="font-weight-bold">
+                                Rumah putih deket makam
+                             </span>
+                        </div>
+                        <div class="d-flex align-items-center ml-2 mt-1">
+                            <div class="col-6">
+                                <button class="btn btn-primary btn-block btn-sm" value="selesaikan" data-cdorder="ORD344239487" onclick="notifVal(this)">Selesaikan</button>
+                            </div>
+                            <div class="col-6 mr-2">
+                                <button class="btn btn-danger btn-block btn-sm" value="tolak" data-cdorder="ORD344239487" onclick="notifVal(this)">Tolak</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+
+         </div>
+      </div>
+      <!-- Footer -->
+      <div class="osahan-menu-fotter fixed-bottom bg-white text-center border-top">
+         <div class="row m-0">
+            <a href="index.html" class="text-muted small col text-decoration-none p-2 ">
+                <p class="h5 m-0"><i class="icofont-home"></i></p>
+                Home
+             </a>
+             <a href="pesanan_baru.html" class="text-dark col font-weight-bold small text-decoration-none p-2 selected">
+                <p class="h5 m-0"><i class="text-success icofont-cart"></i></p>
+                Pesanan
+             </a>
+            <a href="layanan.html" class="text-muted col small text-decoration-none p-2">
+               <p class="h5 m-0"><i class="icofont-list"></i></p>
+               Layanan
+            </a>
+            <a href="pengaturan.html" class="text-muted small col text-decoration-none p-2">
+               <p class="h5 m-0"><i class="icofont-user"></i></p>
+               Pengaturan
+            </a>
+         </div>
+      </div>
+      
+      <!-- Bootstrap core JavaScript -->
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- slick Slider JS-->
+      <script type="assets/text/javascript" src="vendor/slick/slick.min.js"></script>
+      <!-- Sidebar JS-->
+      <script type="assets/text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="assets/js/osahan.js"></script>
+
+      <script>
+    const codeTetapis = localStorage.getItem('code_mitra');
+document.addEventListener('DOMContentLoaded',async function() {
+    filter = 'batal';
+    url = `https://fisio.oktal.dev/api/api/list_order`;
+    var form = new FormData();
+    form.append("mitra_code", codeTetapis);
+    form.append("filter", filter);
+    form.append("sort", "asc");
+    // form.append("orderby", "order_date");
+    // form.append("page", "0");
+    dtBatal = await ambilData(form,url);
+    // dtBatal = await ambilData(form,url);
+    console.log(dtBatal);
+    const cardTapil = document.getElementById('TampilanCard');
+    // console.log(cardTapil);
+    document.getElementById('jumlTampil').innerHTML = `${dtBatal.result.length} Pesanan`;
+    if (dtBatal.status == 'success') {
+        document.getElementById('loading').classList.add('hilang');
+        if (dtBatal.result.length > 0) {
+            let card = '';
+            dtBatal.result.map((btl) => {
+                if (btl.address == '' || btl.address == 'null') {
+                    addres = '-'
+                } else {
+                    addres = btl.address;
+                }
+
+                if (btl.building_description == '' || btl.building_description == 'null') {
+                    bangunan = '-'
+                } else {
+                    bangunan = btl.building_description
+                }
+
+                if (btl.services_photo) {
+                    foTo = `<div><img src="https://fisio.oktal.dev/manage/assets/img/services_photo/${btl.services_photo}" class="img-fluid" style="height: 80px; width:80px"></div>`;
+                } else {
+                    foTo = `<a href=""><img src="https://fisio.oktal.dev/manage/assets/img/logos/logo_mitra.png" class="img-fluid" style="height: 80px; width:80px"></a>`;
+                    // foTo = `<div><img src="../app_icon/logo.png" class="img-fluid" style="height: 80px; width:80px"></div>`;
+                }
+
+                    card += `
+                    <div class="custom-control custom-radio px-0 mb-1 position-relative border-custom-radio">
+                        <div class="cart-items bg-white position-relative border-bottom pb-3">
+                            <div class="d-flex  align-items-center p-2">
+                               
+                                    <p class="font-weight-light text-dark m-0 d-flex align-items-center font-weight-bold">
+                                       ${btl.code_order}
+                                    </p>
+                                    <p class="bg-danger text-white py-1 px-1 rounded small ml-auto m-0">Dibatalkan</p>
+                                
+                            </div>
+                            <div class="my-2 mx-1 border-top" style="background: black;"></div>
+                            <div class="d-flex  align-items-center p-1">
+                                ${foTo}
+                                <div class="ml-2 text-dark text-decoration-none w-100">
+                                    <h6 class="mb-1">${btl.services_name}</h6>
+                                    <p class="text-muted mb-2">${btl.order_date}</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center ml-2 mt-2">
+                                <div class="input-group-prepend">
+                                    <button class="border-0 btn btn-outline-secondary text-success bg-white"><i class="icofont-user"></i></button>
+                                </div>
+                                <span class="font-weight-bold">
+                                    ${btl.name_customer}
+                                 </span>
+                            </div>
+                            <div class="d-flex align-items-center ml-2 mt-0" onclick="klikAlamat(${btl.lat}, ${btl.lon})">
+                                <div class="input-group-prepend">
+                                    <button class="border-0 btn btn-outline-secondary text-success bg-white"><i class="icofont-pin"></i></button>
+                                </div>
+                                <span class="font-weight-bold">
+                                    ${addres}
+                                 </span>
+                            </div>
+                            <div class="d-flex align-items-center ml-2 mt-0">
+                                <div class="input-group-prepend">
+                                    <button class="border-0 btn btn-outline-secondary text-success bg-white"><i class="icofont-hotel"></i></button>
+                                </div>
+                                <span class="font-weight-bold">
+                                    ${bangunan}
+                                 </span>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+            });
+            cardTapil.innerHTML = card;
+        } else {
+            cardTapil.innerHTML = "<h6>Data Masih Kosong</h6>";
+        }
+    }
+})
+
+function ambilData(form,url) {
+   var requestOptions = {
+      method: 'POST',
+      body: form,
+      redirect: 'follow'
+   };
+return fetch(url, requestOptions)
+         .then(response => response.json())
+         .then(result => result)
+         .catch(error => error);
+}
+
+        function klikAlamat(lat,lng) {
+            
+            localStorage.setItem("latitude", lat);
+            localStorage.setItem("longitude", lng);
+            window.location.href = 'lihat_maps.html' 
+        }
+      </script>
+   </body>
+</html>

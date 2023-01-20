@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" type="image/png" href="img/logo.svg">
+      <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
+      <!-- Slick Slider -->
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/vendor/slick/slick-theme.min.css"/>
+      <!-- Icofont Icon-->
+      <link href="assets/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap core CSS -->
+      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="assets/css/style.css" rel="stylesheet">
+      <link href="assets/css/mystyle.css" rel="stylesheet">
+      <!-- Sidebar CSS -->
+      <link href="assets/vendor/sidebar/demo.css" rel="stylesheet">
+   </head>
+   <body class="fixed-bottom-padding">
+      <div class="loading" id="loading"></div>
+      
+      <!-- home page -->
+      <div class="osahan-home-page">
+         <div class="p-3">
+            <div class="title d-flex align-items-center">
+                <a class="font-weight-bold text-success text-decoration-none" href="index.html">
+                <i class="icofont-rounded-left back-page"></i></a>
+                <h6 class="font-weight-bold m-0 ml-3">Riwayat Permintaan Penarikan Saldo</h6>
+            </div>
+        </div>
+         <!-- body -->
+         <div class="osahan-body">
+
+            <div class="p-3">
+                <div class="custom-control custom-radio px-0 mb-1 position-relative border-custom-radio" id="tampilan">
+
+                    <!-- <div class="cart-items bg-white position-relative border-bottom mb-2">
+                        <div class="osahan-notifications bg-white">
+                            <div class="position-absolute ml-1 py-4"><i class="icofont-credit-card pl-2 p-1"></i></div>
+                               <div class="notifiction p-4 ml-3">
+                                    <div class="d-flex align-items-center mb-2">
+                                       <p class="font-weight-bold mb-1">Pembayaran</p>
+                                       <p class="mb-0 badge badge-success ml-auto"></p>
+                                    </div>
+                                   <p class="small m-0"> Today, 05:14 AM</p>
+                                   <p class="font-weight-bold mt-1 mb-1">Rp 120.000</p>
+                                   <p class="small m-0"> Pembayaran dengan kode YYMMDD-123456 diterima</p>
+                               </div>
+                        </div>
+                    </div> -->
+
+                </div>
+                
+            </div>
+
+         </div>
+      </div>
+      <div class="fixed-bottom">
+         <button type="button" onclick="selanjutnya()" class="btn btn-primary btn-block btn-lg">Ajukan Permintaan Penarikan Saldo</button>
+     </div>
+      
+      <!-- Bootstrap core JavaScript -->
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- slick Slider JS-->
+      <script type="assets/text/javascript" src="vendor/slick/slick.min.js"></script>
+      <!-- Sidebar JS-->
+      <script type="assets/text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="assets/js/osahan.js"></script>
+      <script src="assets/js/main.js"></script>
+
+<script>
+const codeTetapis = localStorage.getItem('code_mitra');
+document.addEventListener('DOMContentLoaded', async function() {
+   var form = new FormData();
+   form.append("mitra_code", codeTetapis);
+   form.append("page", 0);
+   url = `https://fisio.oktal.dev/api/api/balance_history_penarikan`;
+
+   data = await ambilData(form, url);
+   document.getElementById('loading').classList.add('hilang');
+   console.log(data);
+   cardTampilan = document.getElementById('tampilan');
+   if (data.status == 'success') {
+      if (data.result.length > 0) {
+         let card = '';
+         data.result.map((rps) => {
+            if (rps.status == 'request') {
+               statusE = 'Diproses'
+            }
+            if (rps.status == 'approve') {
+               statusE = 'Diterima'
+            }
+            if (rps.status == 'reject') {
+               statusE = 'Ditolak'
+            }
+            card += `
+            <div class="cart-items bg-white position-relative border-bottom mb-2">
+               <div class="osahan-notifications bg-white">
+                  <div class="position-absolute ml-1 py-4"><i class="icofont-address-book pl-2 p-1"></i></div>
+                     <div class="notifiction p-4 ml-3">
+                        <div class="d-flex align-items-center mb-1">
+                           <p class="font-weight-bold mb-1">Penarikan</p>
+                           <p class="mb-0 badge badge-success ml-auto">${statusE}</p>
+                        </div>
+                        <p class="small m-0"> ${rps.date_request}</p>
+                        <p class="font-weight-bold mt-1 mb-1">${config.uang(rps.nominal)}</p>
+                        <p class="small m-0"> Permintaan penarikan saldo sebesar ${config.uang(rps.nominal)}</p>
+                     </div>
+               </div>
+            </div>
+            `;
+         })
+         cardTampilan.innerHTML = card
+      } else {
+         cardTampilan.innerHTML = `<h5 class="font-weight-bold m-0 ml-3">Belum Ada Riwayat Penarikan Saldo</h5>`;
+      }
+   }
+}, false);
+
+function ambilData(form,url) {
+var requestOptions = {
+      method: 'POST',
+      body: form,
+      redirect: 'follow'
+   };
+return fetch(url, requestOptions)
+         .then(response => response.json())
+         .then(result => result)
+         .catch(error => error);
+}
+
+function selanjutnya() {
+   window.location.href ='penarikan_saldo.html';
+}
+</script>
+
+   </body>
+</html>
